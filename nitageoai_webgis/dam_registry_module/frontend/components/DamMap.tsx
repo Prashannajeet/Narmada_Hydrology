@@ -13,10 +13,13 @@ const LIVING_ATLAS_DAMS_URL = "https://livingatlas.esri.in/server1/rest/services
 const ADMIN_BOUNDARY_STATE_URL = "https://livingatlas.esri.in/server/rest/services/LivingAtlas/IND_AdminBoundary/MapServer/1/query";
 const ADMIN_BOUNDARY_DISTRICT_URL = "https://livingatlas.esri.in/server/rest/services/LivingAtlas/IND_AdminBoundary/MapServer/2/query";
 const LIVING_ATLAS_ID_BATCH_SIZE = 250;
-const ADMIN_BOUNDARY_ID_BATCH_SIZE = 3;
-const ADMIN_BOUNDARY_CONCURRENCY = 8;
+const STATE_BOUNDARY_ID_BATCH_SIZE = 60;
+const DISTRICT_BOUNDARY_ID_BATCH_SIZE = 25;
+const ADMIN_BOUNDARY_CONCURRENCY = 4;
 const RESERVOIR_MIN_ZOOM = 7;
+const DISTRICT_MIN_ZOOM = 7;
 const LABEL_MIN_ZOOM = 10;
+const MAP_REQUEST_TIMEOUT_MS = 12000;
 const ARCGIS_BASEMAPS = {
   topo: {
     label: "Topographic",
@@ -103,32 +106,41 @@ export default function DamMap({
 }) {
   const mappedDams = dams.filter((dam) => dam.latitude && dam.longitude);
   const [livingAtlas, setLivingAtlas] = useState<LivingAtlasFeatureCollection | null>(null);
-  const [livingAtlasStatus, setLivingAtlasStatus] = useState("Loading Living Atlas dams...");
+  const [livingAtlasStatus, setLivingAtlasStatus] = useState("Reservoir layer off");
   const [stateBoundaries, setStateBoundaries] = useState<AdminBoundaryFeatureCollection | null>(null);
   const [districtBoundaries, setDistrictBoundaries] = useState<AdminBoundaryFeatureCollection | null>(null);
-  const [boundaryStatus, setBoundaryStatus] = useState("Loading state and district boundaries...");
+  const [boundaryStatus, setBoundaryStatus] = useState("Loading state boundaries...");
   const [zoom, setZoom] = useState(5);
   const [basemap, setBasemap] = useState<ArcgisBasemapId>("topo");
   const [layers, setLayers] = useState<LayerVisibility>({
-    reservoirs: true,
+    reservoirs: false,
     dams: true,
     stateBoundaries: true,
-    districtBoundaries: true,
+    districtBoundaries: false,
     labels: true
   });
   const initialCenter = getStateCenter(stateFilter);
   const roundedZoom = Math.round(zoom);
   const showReservoirs = layers.reservoirs && roundedZoom >= RESERVOIR_MIN_ZOOM;
+  const showDistrictBoundaries = layers.districtBoundaries && (roundedZoom >= DISTRICT_MIN_ZOOM || Boolean(stateFilter));
   const showLabels = layers.labels && roundedZoom >= LABEL_MIN_ZOOM;
   const activeBasemap = ARCGIS_BASEMAPS[basemap];
 
   useEffect(() => {
     setZoom(stateFilter ? RESERVOIR_MIN_ZOOM : 5);
+    setStateBoundaries(null);
+    setDistrictBoundaries(null);
+    setBoundaryStatus("Loading state boundaries...");
   }, [stateFilter]);
 
   useEffect(() => {
     const controller = new AbortController();
     async function loadLivingAtlasLayer() {
+      if (!layers.reservoirs) {
+        setLivingAtlas(null);
+        setLivingAtlasStatus("Reservoir layer off");
+        return;
+      }
       if (!showReservoirs) {
         setLivingAtlas(null);
         setLivingAtlasStatus(`Zoom to level ${RESERVOIR_MIN_ZOOM}+ to display reservoir polygons`);
@@ -137,14 +149,14 @@ export default function DamMap({
       try {
         setLivingAtlasStatus("Loading Living Atlas dams...");
         const where = stateFilter ? `state='${stateFilter.replace(/'/g, "''")}'` : "1=1";
-        const idResponse = await fetch(buildLivingAtlasIdsUrl(where), { signal: controller.signal });
+        const idResponse = await fetchWithTimeout(buildLivingAtlasIdsUrl(where), controller.signal);
         if (!idResponse.ok) throw new Error(`ID request failed with ${idResponse.status}`);
         const idData = (await idResponse.json()) as { objectIds?: number[] };
         const objectIds = idData.objectIds ?? [];
         const features: LivingAtlasFeature[] = [];
         for (let index = 0; index < objectIds.length; index += LIVING_ATLAS_ID_BATCH_SIZE) {
           const ids = objectIds.slice(index, index + LIVING_ATLAS_ID_BATCH_SIZE);
-          const response = await fetch(buildLivingAtlasFeaturesUrl(where, ids), { signal: controller.signal });
+          const response = await fetchWithTimeout(buildLivingAtlasFeaturesUrl(where, ids), controller.signal);
           if (!response.ok) throw new Error(`Feature request failed with ${response.status}`);
           const data = (await response.json()) as LivingAtlasFeatureCollection;
           features.push(...(data.features ?? []));
@@ -161,7 +173,7 @@ export default function DamMap({
 
     void loadLivingAtlasLayer();
     return () => controller.abort();
-  }, [stateFilter, showReservoirs]);
+  }, [layers.reservoirs, stateFilter, showReservoirs]);
 
   const livingAtlasKey = useMemo(() => `${stateFilter || "india"}-${livingAtlas?.features.length ?? 0}`, [livingAtlas, stateFilter]);
   const stateBoundaryKey = useMemo(() => `states-${stateFilter || "india"}-${stateBoundaries?.features.length ?? 0}`, [stateBoundaries, stateFilter]);
@@ -174,23 +186,45 @@ export default function DamMap({
     const controller = new AbortController();
     async function loadAdminBoundaries() {
       try {
-        setBoundaryStatus("Loading state and district boundaries...");
+        const requests: Array<Promise<AdminBoundaryBatchResult>> = [];
         const where = stateFilter ? `state='${stateFilter.replace(/'/g, "''")}'` : "1=1";
-        const [stateResult, districtResult] = await Promise.all([
-          fetchAdminBoundaryLayer(ADMIN_BOUNDARY_STATE_URL, where, "objectid,state,country", controller.signal),
-          fetchAdminBoundaryLayer(ADMIN_BOUNDARY_DISTRICT_URL, where, "objectid,district,state,country", controller.signal)
-        ]);
-        const stateFeatures = stateResult.features;
-        const districtFeatures = districtResult.features;
+        let stateResult: AdminBoundaryBatchResult = { features: stateBoundaries?.features ?? [], skipped: 0 };
+        let districtResult: AdminBoundaryBatchResult = { features: [], skipped: 0 };
+
+        if (layers.stateBoundaries && !stateBoundaries?.features.length) {
+          setBoundaryStatus("Loading state boundaries...");
+          requests.push(fetchAdminBoundaryLayer(ADMIN_BOUNDARY_STATE_URL, where, "objectid,state,country", STATE_BOUNDARY_ID_BATCH_SIZE, controller.signal));
+        }
+
+        if (showDistrictBoundaries) {
+          setBoundaryStatus("Loading district boundaries...");
+          requests.push(fetchAdminBoundaryLayer(ADMIN_BOUNDARY_DISTRICT_URL, where, "objectid,district,state,country", DISTRICT_BOUNDARY_ID_BATCH_SIZE, controller.signal));
+        } else {
+          setDistrictBoundaries(null);
+        }
+
+        if (!requests.length) {
+          setBoundaryStatus(showDistrictBoundaries ? "Boundary layers ready" : `District boundary loads at zoom ${DISTRICT_MIN_ZOOM}+`);
+          return;
+        }
+
+        const results = await Promise.all(requests);
+        let resultIndex = 0;
+        if (layers.stateBoundaries && !stateBoundaries?.features.length) {
+          stateResult = results[resultIndex++];
+          setStateBoundaries({ type: "FeatureCollection", features: stateResult.features });
+        }
+        if (showDistrictBoundaries) {
+          districtResult = results[resultIndex] ?? districtResult;
+          setDistrictBoundaries({ type: "FeatureCollection", features: districtResult.features });
+        }
+
+        const stateCount = (layers.stateBoundaries ? stateResult.features.length || stateBoundaries?.features.length || 0 : 0);
+        const districtCount = showDistrictBoundaries ? districtResult.features.length : 0;
         const skipped = stateResult.skipped + districtResult.skipped;
-        setStateBoundaries({ type: "FeatureCollection", features: stateFeatures });
-        setDistrictBoundaries({ type: "FeatureCollection", features: districtFeatures });
-        setBoundaryStatus(
-          `${stateFeatures.length.toLocaleString("en-IN")} state / ${districtFeatures.length.toLocaleString("en-IN")} district boundaries${skipped ? ` (${skipped} skipped)` : ""}`
-        );
+        setBoundaryStatus(`${stateCount.toLocaleString("en-IN")} state / ${districtCount.toLocaleString("en-IN")} district boundaries${skipped ? ` (${skipped} skipped)` : ""}`);
       } catch (error) {
         if (controller.signal.aborted) return;
-        setStateBoundaries(null);
         setDistrictBoundaries(null);
         setBoundaryStatus(error instanceof Error ? error.message : "Boundary layers unavailable");
       }
@@ -198,7 +232,7 @@ export default function DamMap({
 
     void loadAdminBoundaries();
     return () => controller.abort();
-  }, [stateFilter]);
+  }, [layers.stateBoundaries, showDistrictBoundaries, stateFilter]);
 
   return (
     <MapContainer key={stateFilter || "india"} center={initialCenter} zoom={stateFilter ? RESERVOIR_MIN_ZOOM : 5} scrollWheelZoom className="dam-map">
@@ -212,7 +246,7 @@ export default function DamMap({
       />
       <MapZoomButtons />
       <TileLayer key={basemap} attribution={activeBasemap.attribution} url={activeBasemap.url} />
-      {layers.districtBoundaries && districtBoundaries ? (
+      {showDistrictBoundaries && districtBoundaries ? (
         <GeoJSON
           key={districtBoundaryKey}
           data={districtBoundaries}
@@ -297,7 +331,7 @@ export default function DamMap({
         <label><input type="checkbox" checked={layers.dams} onChange={() => toggleLayer(setLayers, "dams")} /> Dams</label>
         <label><input type="checkbox" checked={layers.reservoirs} onChange={() => toggleLayer(setLayers, "reservoirs")} /> Reservoirs <small>z{RESERVOIR_MIN_ZOOM}+</small></label>
         <label><input type="checkbox" checked={layers.stateBoundaries} onChange={() => toggleLayer(setLayers, "stateBoundaries")} /> State boundary</label>
-        <label><input type="checkbox" checked={layers.districtBoundaries} onChange={() => toggleLayer(setLayers, "districtBoundaries")} /> District boundary</label>
+        <label><input type="checkbox" checked={layers.districtBoundaries} onChange={() => toggleLayer(setLayers, "districtBoundaries")} /> District boundary <small>z{DISTRICT_MIN_ZOOM}+</small></label>
         <label><input type="checkbox" checked={layers.labels} onChange={() => toggleLayer(setLayers, "labels")} /> Labels <small>z{LABEL_MIN_ZOOM}+</small></label>
       </div>
       <div className="map-basemap-control">
@@ -505,16 +539,16 @@ function buildLivingAtlasFeaturesUrl(where: string, objectIds: number[]) {
   return `${LIVING_ATLAS_DAMS_URL}?${params.toString()}`;
 }
 
-async function fetchAdminBoundaryLayer(url: string, where: string, outFields: string, signal: AbortSignal) {
-  const idResponse = await fetch(buildAdminIdsUrl(url, where), { signal });
+async function fetchAdminBoundaryLayer(url: string, where: string, outFields: string, batchSize: number, signal: AbortSignal) {
+  const idResponse = await fetchWithTimeout(buildAdminIdsUrl(url, where), signal);
   if (!idResponse.ok) throw new Error(`Boundary ID request failed with ${idResponse.status}`);
   const idData = (await idResponse.json()) as { objectIds?: number[] };
   const objectIds = idData.objectIds ?? [];
   const features: AdminBoundaryFeature[] = [];
   let skipped = 0;
   const batches = [];
-  for (let index = 0; index < objectIds.length; index += ADMIN_BOUNDARY_ID_BATCH_SIZE) {
-    batches.push(objectIds.slice(index, index + ADMIN_BOUNDARY_ID_BATCH_SIZE));
+  for (let index = 0; index < objectIds.length; index += batchSize) {
+    batches.push(objectIds.slice(index, index + batchSize));
   }
   for (let index = 0; index < batches.length; index += ADMIN_BOUNDARY_CONCURRENCY) {
     const chunk = batches.slice(index, index + ADMIN_BOUNDARY_CONCURRENCY);
@@ -534,7 +568,7 @@ async function fetchAdminFeatureBatch(
   signal: AbortSignal
 ): Promise<AdminBoundaryBatchResult> {
   try {
-    const response = await fetch(buildAdminFeaturesUrl(url, outFields, objectIds), { signal });
+    const response = await fetchWithTimeout(buildAdminFeaturesUrl(url, outFields, objectIds), signal);
     if (!response.ok) throw new Error(`Boundary feature request failed with ${response.status}`);
     const data = (await response.json()) as AdminBoundaryFeatureCollection;
     return { features: data.features ?? [], skipped: 0 };
@@ -570,6 +604,19 @@ function buildAdminFeaturesUrl(url: string, outFields: string, objectIds: number
     outSR: "4326"
   });
   return `${url}?${params.toString()}`;
+}
+
+async function fetchWithTimeout(url: string, parentSignal: AbortSignal) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), MAP_REQUEST_TIMEOUT_MS);
+  const abort = () => controller.abort();
+  parentSignal.addEventListener("abort", abort, { once: true });
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } finally {
+    window.clearTimeout(timeout);
+    parentSignal.removeEventListener("abort", abort);
+  }
 }
 
 function renderLivingAtlasPopup(properties: LivingAtlasProperties) {
