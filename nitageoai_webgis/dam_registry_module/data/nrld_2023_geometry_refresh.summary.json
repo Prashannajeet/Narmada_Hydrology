@@ -1,0 +1,32 @@
+{
+  "source": "https://cwc.gov.in/publication/nrld",
+  "publication_year": 2023,
+  "records": 3286,
+  "with_geometry": 3245,
+  "states": [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu & Kashmir",
+    "Karnataka",
+    "Kerala",
+    "Ladakh",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ]
+}

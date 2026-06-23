@@ -1,0 +1,31 @@
+{
+  "source": "https://cwc.gov.in/sites/default/files/nrld-2019.pdf",
+  "publication_year": 2019,
+  "records": 4887,
+  "with_geometry": 95,
+  "states": [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Odisha",
+    "Punjab",
+    "Sikkim",
+    "Tamil Nadu",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ]
+}

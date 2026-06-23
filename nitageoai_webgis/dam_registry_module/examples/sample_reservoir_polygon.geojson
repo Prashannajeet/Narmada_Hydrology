@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sample reservoir polygon",
+        "source": "NITA AI dam registry smoke test"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [79.74, 22.86],
+            [80.06, 22.88],
+            [80.12, 23.03],
+            [79.84, 23.07],
+            [79.74, 22.86]
+          ]
+        ]
+      }
+    }
+  ]
+}

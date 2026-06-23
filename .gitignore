@@ -1,0 +1,30 @@
+# Local Netlify folder
+.netlify
+
+# Local DEM mosaic app runtime files
+dem_mosaic_interface/.venv/
+dem_mosaic_interface/runs/
+dem_mosaic_interface/__pycache__/
+dem_mosaic_interface/dem_mosaic_test_*/
+dem_mosaic_interface/dem_mosaic_stream_test_*/
+dem_mosaic_interface/*.log
+
+# Local Streamlit secrets
+**/.streamlit/secrets.toml
+
+# Dependency and build outputs
+**/node_modules/
+**/.npm-cache/
+**/.next/
+**/dist/
+**/build/
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.pyc
+**/.vs/
+
+# Local environment files
+**/.env
+**/.env.*
+!**/.env.example

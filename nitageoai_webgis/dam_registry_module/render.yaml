@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: nita-dam-risk-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.backend.render
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nita-dam-risk-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: https://nita-dam-risk-register.onrender.com
+      - key: DATABASE_INIT_DIR
+        value: /app/database/init
+
+  - type: web
+    name: nita-dam-risk-register
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.streamlit.render
+    envVars:
+      - key: API_BASE_URL
+        value: https://nita-dam-risk-api.onrender.com
+      - key: DEMO_EMAIL
+        value: admin@nita.ai
+      - key: DEMO_PASSWORD
+        value: nita-admin
+      - key: MODULE_OPERATOR_NAME
+        value: Risk Register Administrator
+      - key: API_TIMEOUT_SECONDS
+        value: 120
+
+databases:
+  - name: nita-dam-risk-db
+    databaseName: nita_dam_registry
+    plan: free
