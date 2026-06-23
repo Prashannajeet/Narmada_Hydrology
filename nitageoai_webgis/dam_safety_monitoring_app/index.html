@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NITA AI Dam Safety and Monitoring App</title>
+    <meta
+      name="description"
+      content="NITA AI Dam Safety and Monitoring App for dam registry, risk register, field inspections, live reservoir storage, and safety intelligence."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="./" aria-label="NITA AI Dam Safety and Monitoring App">
+          <span class="brand-mark">N</span>
+          <span>
+            <strong>NITA AI</strong>
+            <small>Dam Safety and Monitoring</small>
+          </span>
+        </a>
+
+        <nav class="side-nav" aria-label="Dam safety modules">
+          <a class="active" href="#overview">Overview</a>
+          <a href="#modules">Modules</a>
+          <a href="#live">Live Monitoring</a>
+          <a href="#integration">Integration</a>
+        </nav>
+
+        <div class="operator-card">
+          <span>Secure Module</span>
+          <strong>JWT + Role Based Access</strong>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="hero" id="overview">
+          <div>
+            <p class="eyebrow">NITA AI Dam Safety Intelligence Platform</p>
+            <h1>Dam Safety and Monitoring App</h1>
+            <p class="lead">
+              A dedicated online entry point for dam registry, reservoir status,
+              geo-tagged inspections, risk register workflows, documents, and
+              integration-ready REST APIs.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://nita-dam-registry-dashboard.netlify.app/" target="_blank" rel="noopener">Open Dam Registry Dashboard</a>
+              <a class="button" href="https://nita-dam-risk-register.onrender.com/" target="_blank" rel="noopener">Open Risk Register</a>
+              <a class="button" href="https://nita-dam-risk-api.onrender.com/docs" target="_blank" rel="noopener">Open REST APIs</a>
+            </div>
+          </div>
+          <div class="status-panel" aria-label="System status">
+            <div><span>Registry</span><strong>Large Dam Inventory</strong></div>
+            <div><span>Monitoring</span><strong>Reservoir Live Storage</strong></div>
+            <div><span>Inspection</span><strong>Geo-Tagged Field Forms</strong></div>
+            <div><span>Safety</span><strong>Risk Register Workflow</strong></div>
+          </div>
+        </header>
+
+        <section class="module-grid" id="modules" aria-label="Dam safety modules">
+          <a class="module-card" href="https://nita-dam-registry-dashboard.netlify.app/" target="_blank" rel="noopener">
+            <span>01</span>
+            <h2>Dam Registry</h2>
+            <p>PostgreSQL/PostGIS-backed registry for dams, engineering metadata, reservoir polygons, documents, and GIS locations.</p>
+          </a>
+          <a class="module-card" href="https://nita-dam-risk-register.onrender.com/" target="_blank" rel="noopener">
+            <span>02</span>
+            <h2>Risk Register</h2>
+            <p>Risk records, severity classes, mitigation actions, review status, approval workflow, and audit traceability.</p>
+          </a>
+          <a class="module-card" href="https://nita-dam-risk-register.onrender.com/" target="_blank" rel="noopener">
+            <span>03</span>
+            <h2>Field Inspection</h2>
+            <p>Mobile-oriented geo-tagged inspection forms for cracks, seepage, gates, spillways, embankments, instruments, and remarks.</p>
+          </a>
+          <a class="module-card" href="https://nita-dam-risk-api.onrender.com/docs" target="_blank" rel="noopener">
+            <span>04</span>
+            <h2>Integration APIs</h2>
+            <p>JWT-secured REST API surface for AI defect detection, compliance, reporting, maintenance, and risk engine integration.</p>
+          </a>
+        </section>
+
+        <section class="insight-band" id="live">
+          <div>
+            <p class="eyebrow">Live Monitoring</p>
+            <h2>Reservoir storage, GIS map layers, and safety indicators stay linked.</h2>
+          </div>
+          <ul>
+            <li>WIMS-ready live storage links by reservoir name matching.</li>
+            <li>ESRI basemap integration with dam and reservoir layers.</li>
+            <li>State, district, and reservoir boundary layers prepared for operations.</li>
+          </ul>
+        </section>
+
+        <section class="integration-panel" id="integration">
+          <h2>Architecture</h2>
+          <div class="architecture-grid">
+            <div><span>Frontend</span><strong>Next.js / Streamlit module UI</strong></div>
+            <div><span>Backend</span><strong>FastAPI with JWT security</strong></div>
+            <div><span>Database</span><strong>PostgreSQL + PostGIS</strong></div>
+            <div><span>Deployment</span><strong>Docker + Render / Netlify entry app</strong></div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

@@ -12,7 +12,7 @@ services:
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
-        value: https://nita-dam-risk-register.onrender.com
+        value: https://nita-dam-risk-register.onrender.com,https://nita-dam-registry-dashboard.netlify.app
       - key: DATABASE_INIT_DIR
         value: /app/database/init
 

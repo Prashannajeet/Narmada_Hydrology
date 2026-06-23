@@ -16,6 +16,7 @@ dem_mosaic_interface/*.log
 **/node_modules/
 **/.npm-cache/
 **/.next/
+**/out/
 **/dist/
 **/build/
 **/.venv/
