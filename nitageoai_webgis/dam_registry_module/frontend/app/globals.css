@@ -639,6 +639,45 @@ button {
   box-shadow: 0 16px 35px rgba(15, 23, 42, 0.14);
 }
 
+.map-basemap-control {
+  position: absolute;
+  top: 150px;
+  left: 18px;
+  z-index: 520;
+  display: grid;
+  gap: 7px;
+  width: 178px;
+  padding: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.14);
+}
+
+.map-basemap-control strong {
+  color: #0f172a;
+  font-size: 13px;
+}
+
+.map-basemap-control button {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 6px;
+  padding: 7px 9px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: left;
+}
+
+.map-basemap-control button:hover,
+.map-basemap-control button.active {
+  border-color: rgba(14, 116, 144, 0.42);
+  background: #e6fffb;
+  color: #0f766e;
+}
+
 .map-zoom-buttons {
   position: absolute;
   top: 18px;

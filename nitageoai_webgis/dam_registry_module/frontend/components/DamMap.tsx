@@ -17,6 +17,33 @@ const ADMIN_BOUNDARY_ID_BATCH_SIZE = 3;
 const ADMIN_BOUNDARY_CONCURRENCY = 8;
 const RESERVOIR_MIN_ZOOM = 7;
 const LABEL_MIN_ZOOM = 10;
+const ARCGIS_BASEMAPS = {
+  topo: {
+    label: "Topographic",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Tiles &copy; Esri, USGS, NOAA"
+  },
+  imagery: {
+    label: "Imagery",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Tiles &copy; Esri, Maxar, Earthstar Geographics"
+  },
+  streets: {
+    label: "Streets",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Tiles &copy; Esri"
+  },
+  light: {
+    label: "Light Gray",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Tiles &copy; Esri"
+  },
+  national: {
+    label: "National Geographic",
+    url: "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+    attribution: "Tiles &copy; Esri, National Geographic"
+  }
+} as const;
 
 const riskColor: Record<string, string> = {
   critical: "#dc2626",
@@ -61,6 +88,7 @@ type LayerVisibility = {
   districtBoundaries: boolean;
   labels: boolean;
 };
+type ArcgisBasemapId = keyof typeof ARCGIS_BASEMAPS;
 
 export default function DamMap({
   dams,
@@ -80,6 +108,7 @@ export default function DamMap({
   const [districtBoundaries, setDistrictBoundaries] = useState<AdminBoundaryFeatureCollection | null>(null);
   const [boundaryStatus, setBoundaryStatus] = useState("Loading state and district boundaries...");
   const [zoom, setZoom] = useState(5);
+  const [basemap, setBasemap] = useState<ArcgisBasemapId>("topo");
   const [layers, setLayers] = useState<LayerVisibility>({
     reservoirs: true,
     dams: true,
@@ -91,6 +120,7 @@ export default function DamMap({
   const roundedZoom = Math.round(zoom);
   const showReservoirs = layers.reservoirs && roundedZoom >= RESERVOIR_MIN_ZOOM;
   const showLabels = layers.labels && roundedZoom >= LABEL_MIN_ZOOM;
+  const activeBasemap = ARCGIS_BASEMAPS[basemap];
 
   useEffect(() => {
     setZoom(stateFilter ? RESERVOIR_MIN_ZOOM : 5);
@@ -181,10 +211,7 @@ export default function DamMap({
         onZoomChange={setZoom}
       />
       <MapZoomButtons />
-      <TileLayer
-        attribution="Tiles &copy; Esri"
-        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
-      />
+      <TileLayer key={basemap} attribution={activeBasemap.attribution} url={activeBasemap.url} />
       {layers.districtBoundaries && districtBoundaries ? (
         <GeoJSON
           key={districtBoundaryKey}
@@ -272,6 +299,20 @@ export default function DamMap({
         <label><input type="checkbox" checked={layers.stateBoundaries} onChange={() => toggleLayer(setLayers, "stateBoundaries")} /> State boundary</label>
         <label><input type="checkbox" checked={layers.districtBoundaries} onChange={() => toggleLayer(setLayers, "districtBoundaries")} /> District boundary</label>
         <label><input type="checkbox" checked={layers.labels} onChange={() => toggleLayer(setLayers, "labels")} /> Labels <small>z{LABEL_MIN_ZOOM}+</small></label>
+      </div>
+      <div className="map-basemap-control">
+        <strong>ArcGIS Basemap</strong>
+        {(Object.entries(ARCGIS_BASEMAPS) as Array<[ArcgisBasemapId, (typeof ARCGIS_BASEMAPS)[ArcgisBasemapId]]>).map(([id, item]) => (
+          <button
+            key={id}
+            type="button"
+            className={basemap === id ? "active" : ""}
+            onMouseDown={(event) => event.stopPropagation()}
+            onClick={() => setBasemap(id)}
+          >
+            {item.label}
+          </button>
+        ))}
       </div>
       <div className="map-zoom-status">Zoom {roundedZoom}</div>
       <div className="living-atlas-status">
