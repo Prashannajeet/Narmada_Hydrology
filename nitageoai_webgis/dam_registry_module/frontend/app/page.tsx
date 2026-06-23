@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
 import {
   Activity,
@@ -121,6 +121,7 @@ const createDefaults = {
 
 export default function Page() {
   const [token, setToken] = useState<string | null>(null);
+  const autoLoginAttempted = useRef(false);
   const [role, setRole] = useState("viewer");
   const [dams, setDams] = useState<Dam[]>([]);
   const [selected, setSelected] = useState<Dam | null>(null);
@@ -131,7 +132,7 @@ export default function Page() {
   const [stateOptions, setStateOptions] = useState<string[]>([]);
   const [riskFilter, setRiskFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [message, setMessage] = useState("Sign in to load the registry");
+  const [message, setMessage] = useState("Loading registry access...");
   const [createOpen, setCreateOpen] = useState(false);
   const [createForm, setCreateForm] = useState(createDefaults);
   const [documentTitle, setDocumentTitle] = useState("");
@@ -144,6 +145,11 @@ export default function Page() {
     if (saved) {
       setToken(saved);
       setRole(savedRole ?? "viewer");
+      return;
+    }
+    if (!autoLoginAttempted.current) {
+      autoLoginAttempted.current = true;
+      void handleLogin();
     }
   }, []);
 
@@ -162,15 +168,24 @@ export default function Page() {
   const writable = ["admin", "engineer", "inspector"].includes(role);
 
   async function handleLogin() {
-    try {
-      const result = await login("admin@nita.ai", "nita-admin");
-      setToken(result.access_token);
-      setRole(result.user.role);
-      writeStoredValue(TOKEN_STORAGE_KEY, result.access_token);
-      writeStoredValue(ROLE_STORAGE_KEY, result.user.role);
-      setMessage(`Signed in as ${result.user.full_name}`);
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Login failed");
+    setMessage("Connecting to Dam Safety registry...");
+    for (let attempt = 1; attempt <= 2; attempt += 1) {
+      try {
+        const result = await login("admin@nita.ai", "nita-admin");
+        setToken(result.access_token);
+        setRole(result.user.role);
+        writeStoredValue(TOKEN_STORAGE_KEY, result.access_token);
+        writeStoredValue(ROLE_STORAGE_KEY, result.user.role);
+        setMessage(`Signed in as ${result.user.full_name}`);
+        return;
+      } catch (error) {
+        if (attempt === 1) {
+          setMessage("Waking the registry service...");
+          await wait(2500);
+          continue;
+        }
+        setMessage(error instanceof Error ? error.message : "Login failed");
+      }
     }
   }
 
@@ -485,7 +500,7 @@ export default function Page() {
             {token ? (
               <DamMap dams={dams} selectedDamId={selected?.dam_id} stateFilter={stateFilter} onSelect={setSelected} />
             ) : (
-              <div className="locked-map">Sign in to view protected dam assets</div>
+              <div className="locked-map">Loading protected dam assets...</div>
             )}
             <div className="map-legend">
               <strong>Legend</strong>
@@ -931,6 +946,10 @@ function formatDecimal(value: number) {
 
 function titleCase(value: string) {
   return value.replace(/_/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function wait(milliseconds: number) {
+  return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 }
 
 function normalizeSummaryName(value: string) {
