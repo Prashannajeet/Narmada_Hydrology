@@ -167,27 +167,6 @@ with forecast_tab:
         else:
             st.error("Google Flood API secrets are not fully configured yet.")
 
-        st.markdown("#### Add these secrets in Streamlit Cloud")
-        st.code(
-            """[google_flood]
-api_key = "YOUR_GOOGLE_FLOOD_API_KEY"
-cloud_project_id = "YOUR_GOOGLE_CLOUD_PROJECT_ID"
-base_url = "PASTE_OFFICIAL_GOOGLE_FLOOD_API_BASE_URL_AFTER_APPROVAL"
-include_non_quality_verified = "true"
-""",
-            language="toml",
-        )
-
-        st.markdown("#### Local development option")
-        st.code(
-            """$env:GOOGLE_FLOOD_API_KEY = "YOUR_GOOGLE_FLOOD_API_KEY"
-$env:GOOGLE_CLOUD_PROJECT_ID = "YOUR_GOOGLE_CLOUD_PROJECT_ID"
-$env:GOOGLE_FLOOD_BASE_URL = "PASTE_OFFICIAL_GOOGLE_FLOOD_API_BASE_URL_AFTER_APPROVAL"
-streamlit run streamlit_app.py
-""",
-            language="powershell",
-        )
-
         lat_default = float(node["snapped_latitude"] if pd.notna(node["snapped_latitude"]) else node["latitude"])
         lon_default = float(node["snapped_longitude"] if pd.notna(node["snapped_longitude"]) else node["longitude"])
         g_lat, g_lon, g_radius = st.columns([1, 1, 1])
