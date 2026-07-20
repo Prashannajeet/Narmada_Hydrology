@@ -1,0 +1,8 @@
+item,value
+topology_source,Narmada_B1_LS04G_Combined_SB22_Corridor_Attenuation.basin
+sb_sub_54_downstream,R_Sub_14
+r_sub_14_downstream,R_R_26
+r_r_26_downstream,R_R_9
+sb_sub_45_downstream,R_R_9
+expected_corridor,"SB_Sub_54 -> R_Sub_14 -> R_R_26 -> R_R_9, adjacent to SB_Sub_14 and SB_Sub_45 corridor"
+stale_stage98_wrong_route,SB_Sub_54 -> R_Sub_1
