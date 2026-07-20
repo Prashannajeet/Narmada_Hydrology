@@ -1,0 +1,7 @@
+{
+  "status": "READY_STAGE117_GOOGLE_FLOOD_LIVE_CONNECTORS",
+  "streamlit_app": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\streamlit_app.py",
+  "forecast_connectors": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\forecast_connectors.py",
+  "zip": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\narmada_stage112_streamlit_cloud_app.zip",
+  "base_url": "https://floodforecasting.googleapis.com"
+}

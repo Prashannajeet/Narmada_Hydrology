@@ -1,0 +1,5 @@
+provider,endpoint,credential_required,data_for_hms,model_use
+Open-Meteo,https://api.open-meteo.com/v1/forecast,No for basic public API,"Hourly/daily precipitation, probability, temperature, humidity, wind, soil moisture guidance",Forecast rainfall guidance and public dashboard rainfall outlook; requires spatial weighting/bias correction before HMS forcing
+GEOGLOWS,https://geoglows.ecmwf.int/api,No for public API,River discharge forecast by reach ID,Reservoir inflow forecast comparison and warning context
+Google Flood API,Google Flood Forecasting pilot/API,"Yes, pilot approval/API key",Flood forecast/alerts where available,Independent warning/context layer after approval
+GloFAS,Copernicus CEMS/GloFAS,"Yes, Copernicus credentials/licence",Global flood river forecast,Independent forecast comparison

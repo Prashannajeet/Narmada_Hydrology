@@ -43,3 +43,23 @@ SB_Sub_54 -> R_Sub_14 -> R_R_26 -> R_R_9
 ```
 
 The stale wrong route `SB_Sub_54 -> R_Sub_1` is documented only as a historical QA issue and is not used in this cloud dashboard.
+
+
+## Google Flood API secrets
+
+Google Flood Forecasting API access is currently limited to approved pilot
+participants. After approval, create or reuse a Google Cloud API key, enable
+the Flood Forecasting API in that Cloud project, then add secrets in Streamlit
+Cloud:
+
+```toml
+[google_flood]
+api_key = "YOUR_GOOGLE_FLOOD_API_KEY"
+cloud_project_id = "YOUR_GOOGLE_CLOUD_PROJECT_ID"
+base_url = "PASTE_OFFICIAL_GOOGLE_FLOOD_API_BASE_URL_AFTER_APPROVAL"
+include_non_quality_verified = "true"
+```
+
+In Streamlit Cloud, open the app, go to `Settings` -> `Secrets`, paste the TOML
+block, save, and reboot the app. Do not put the real key in GitHub or inside
+`streamlit_app.py`.

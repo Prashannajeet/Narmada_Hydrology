@@ -1,0 +1,7 @@
+{
+  "status": "READY_STAGE116_GOOGLE_FLOOD_SECRETS_SETUP",
+  "streamlit_app": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\streamlit_app.py",
+  "secrets_template": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\.streamlit\\secrets.example.toml",
+  "readme": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\README_STREAMLIT_CLOUD.md",
+  "zip": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\narmada_stage112_streamlit_cloud_app.zip"
+}

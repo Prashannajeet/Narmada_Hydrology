@@ -1,0 +1,8 @@
+{
+  "status": "READY_STAGE115_OPEN_METEO_RAINFALL_FORECAST",
+  "streamlit_app": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\streamlit_app.py",
+  "forecast_connectors": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_112_Advanced_Hydrology_Analytics_Webmap\\streamlit_cloud_app\\forecast_connectors.py",
+  "provider": "Open-Meteo rainfall",
+  "api_key_required": false,
+  "report": "D:\\01 Project\\Development\\HMS\\Narmada\\04_Calibration_Validation\\Stage_115_Open_Meteo_Rainfall_Forecast_Integration\\Stage115_Open_Meteo_Rainfall_Forecast_Integration_Report.md"
+}
