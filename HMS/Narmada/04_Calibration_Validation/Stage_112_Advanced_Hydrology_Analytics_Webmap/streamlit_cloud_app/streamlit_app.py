@@ -66,20 +66,207 @@ def read_nodes() -> pd.DataFrame:
     return pd.read_csv(RESERVOIR_NODES)
 
 
+def node_coordinates(node: pd.Series) -> tuple[float, float]:
+    lat = node["snapped_latitude"] if pd.notna(node.get("snapped_latitude")) else node["latitude"]
+    lon = node["snapped_longitude"] if pd.notna(node.get("snapped_longitude")) else node["longitude"]
+    return float(lat), float(lon)
+
+
+def sorted_forecast_nodes() -> pd.DataFrame:
+    nodes = read_nodes()
+    return nodes.sort_values(["forecast_priority_rank", "reservoir"], na_position="last")
+
+
+def render_main_forecast_bridge() -> None:
+    priority_nodes = sorted_forecast_nodes()
+    if priority_nodes.empty:
+        st.warning("Forecast node table is empty.")
+        return
+
+    with st.expander("Live forecast bridge: Google Flood API, GloFAS, GEOGLOWS and rainfall", expanded=True):
+        st.caption("Main-page API bridge. Secrets are read server-side only and are never displayed.")
+        selected_main = st.selectbox(
+            "Forecast control node",
+            priority_nodes["reservoir"].tolist(),
+            index=0,
+            key="main_forecast_control_node",
+        )
+        node = priority_nodes.loc[priority_nodes["reservoir"] == selected_main].iloc[0]
+        lat_default, lon_default = node_coordinates(node)
+
+        api_key = read_secret("google_flood", "api_key", "GOOGLE_FLOOD_API_KEY")
+        cloud_project_id = read_secret("google_flood", "cloud_project_id", "GOOGLE_CLOUD_PROJECT_ID")
+        google_base_url = read_secret(
+            "google_flood",
+            "base_url",
+            "GOOGLE_FLOOD_BASE_URL",
+            "https://floodforecasting.googleapis.com",
+        )
+        include_non_qv = read_secret(
+            "google_flood",
+            "include_non_quality_verified",
+            "GOOGLE_FLOOD_INCLUDE_NON_QV",
+            "true",
+        )
+        glofas_url = read_secret("copernicus", "url", "COPERNICUS_URL", "https://ewds.climate.copernicus.eu/api")
+        glofas_key = read_secret("copernicus", "key", "COPERNICUS_API_TOKEN")
+
+        k1, k2, k3, k4, k5 = st.columns(5)
+        k1.metric("Node", str(selected_main))
+        k2.metric("Google Flood", "Ready" if api_key and cloud_project_id else "Needs setup")
+        k3.metric("GloFAS", "Ready" if glofas_url and glofas_key else "Credential pending")
+        k4.metric("GEOGLOWS", "Public")
+        k5.metric("Open-Meteo", "Public")
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Latitude", f"{lat_default:.4f}")
+        c2.metric("Longitude", f"{lon_default:.4f}")
+        c3.metric("HMS element", str(node.get("hms_element", "NA")))
+        c4.metric("Upstream area", f"{float(node.get('upstream_area_sqkm', 0)):,.0f} sq.km")
+
+        source = st.radio(
+            "Main-page live source",
+            ["Google Flood API", "GloFAS", "GEOGLOWS", "Open-Meteo rainfall"],
+            horizontal=True,
+            key="main_live_source",
+        )
+
+        if source == "Google Flood API":
+            st.caption("Search Google Flood gauges/status around the selected Narmada control node.")
+            g1, g2, g3 = st.columns([1, 1, 1])
+            gf_latitude = g1.number_input("Latitude", value=lat_default, format="%.6f", key="main_gf_latitude")
+            gf_longitude = g2.number_input("Longitude", value=lon_default, format="%.6f", key="main_gf_longitude")
+            radius_deg = g3.slider(
+                "Search radius",
+                min_value=0.05,
+                max_value=1.00,
+                value=0.35,
+                step=0.05,
+                key="main_gf_radius_deg",
+            )
+            include_non_qv_bool = str(include_non_qv).lower() in ("1", "true", "yes", "y")
+            ga, gb = st.columns(2)
+            if ga.button("Find Google Flood gauges", key="main_find_google_flood_gauges"):
+                try:
+                    result = google_flood_search_gauges_by_area(
+                        api_key,
+                        gf_latitude,
+                        gf_longitude,
+                        radius_deg=radius_deg,
+                        include_non_quality_verified=include_non_qv_bool,
+                        base_url=google_base_url,
+                    )
+                    st.success(result.note)
+                    st.dataframe(result.data.head(200), use_container_width=True)
+                except Exception as exc:
+                    st.error(f"Google Flood gauge search failed: {exc}")
+            if gb.button("Latest Google Flood status", key="main_google_flood_status"):
+                try:
+                    result = google_flood_search_latest_status_by_area(
+                        api_key,
+                        gf_latitude,
+                        gf_longitude,
+                        radius_deg=radius_deg,
+                        include_non_quality_verified=include_non_qv_bool,
+                        base_url=google_base_url,
+                    )
+                    st.success(result.note)
+                    st.dataframe(result.data.head(200), use_container_width=True)
+                except Exception as exc:
+                    st.error(f"Google Flood status search failed: {exc}")
+            gauge_ids_text = st.text_input(
+                "Gauge IDs for forecast",
+                value="",
+                placeholder="paste comma-separated Google Flood gauge IDs",
+                key="main_google_flood_gauge_ids",
+            )
+            gauge_ids = [part.strip() for part in gauge_ids_text.split(",") if part.strip()]
+            if st.button("Get Google Flood forecast", key="main_google_flood_forecast"):
+                try:
+                    result = google_flood_query_forecasts(api_key, gauge_ids, base_url=google_base_url)
+                    st.success(result.note)
+                    st.dataframe(result.data.head(500), use_container_width=True)
+                    numeric_cols = result.data.select_dtypes(include="number").columns.tolist()
+                    if numeric_cols:
+                        st.line_chart(result.data[numeric_cols[: min(3, len(numeric_cols))]])
+                except Exception as exc:
+                    st.error(f"Google Flood forecast query failed: {exc}")
+
+        elif source == "GloFAS":
+            if glofas_key:
+                st.success("GloFAS/Copernicus credentials are configured. Production retrieval should run as a cached backend job because EWDS downloads can be asynchronous and heavy.")
+            else:
+                st.warning("GloFAS/Copernicus credentials are not configured yet. The main page will show readiness, but live GloFAS downloads need EWDS/CDS credentials and dataset licence acceptance.")
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "source": "GloFAS / CEMS EWDS",
+                            "node": selected_main,
+                            "latitude": lat_default,
+                            "longitude": lon_default,
+                            "status": "credential-ready" if glofas_key else "credential-pending",
+                            "recommended_use": "independent river forecast comparison and reservoir inflow context",
+                        }
+                    ]
+                ),
+                use_container_width=True,
+                hide_index=True,
+            )
+
+        elif source == "GEOGLOWS":
+            river_id = st.text_input(
+                "GEOGLOWS river ID",
+                value=str(node.get("geoglows_river_id", "") or ""),
+                key="main_geoglows_river_id",
+            )
+            ga, gb = st.columns(2)
+            if ga.button("Find GEOGLOWS river ID", key="main_find_geoglows"):
+                try:
+                    river_id = geoglows_get_river_id(lat_default, lon_default)
+                    st.success(f"Nearest GEOGLOWS river ID: {river_id}")
+                except Exception as exc:
+                    st.error(str(exc))
+            if river_id and gb.button("Fetch GEOGLOWS forecast", key="main_fetch_geoglows"):
+                try:
+                    result = geoglows_forecast(river_id)
+                    st.success(result.note)
+                    st.dataframe(result.data.head(200), use_container_width=True)
+                    numeric_cols = result.data.select_dtypes(include="number").columns.tolist()
+                    if numeric_cols:
+                        st.line_chart(result.data[numeric_cols[: min(3, len(numeric_cols))]])
+                except Exception as exc:
+                    st.error(f"GEOGLOWS forecast failed: {exc}")
+
+        else:
+            forecast_days = st.slider("Forecast days", min_value=1, max_value=16, value=7, key="main_open_meteo_days")
+            if st.button("Fetch Open-Meteo rainfall", key="main_fetch_open_meteo"):
+                try:
+                    result = open_meteo_forecast(lat_default, lon_default, forecast_days=forecast_days)
+                    st.success(result.note)
+                    if not result.daily.empty:
+                        daily_plot = result.daily.set_index("time")
+                        st.line_chart(daily_plot[[col for col in ["precipitation_sum", "precipitation_probability_max"] if col in daily_plot.columns]])
+                        st.dataframe(result.daily, use_container_width=True)
+                except Exception as exc:
+                    st.error(f"Open-Meteo rainfall fetch failed: {exc}")
+
+
 dashboard_tab, forecast_tab = st.tabs(["Command webmap", "Reservoir inflow forecast"])
 
 with dashboard_tab:
     if not HTML_PATH.exists():
         st.error(f"Dashboard HTML not found: {HTML_PATH.name}")
         st.stop()
-    components.html(HTML_PATH.read_text(encoding="utf-8"), height=980, scrolling=False)
+    render_main_forecast_bridge()
+    components.html(HTML_PATH.read_text(encoding="utf-8"), height=860, scrolling=False)
 
 with forecast_tab:
     st.markdown("### Nita AI & Geoanalytics - Reservoir inflow forecast integration")
     st.caption("Server-side forecast connectors for GEOGLOWS now, with Google Flood and GloFAS credential slots ready.")
 
     nodes = read_nodes()
-    priority_nodes = nodes.sort_values(["forecast_priority_rank", "reservoir"], na_position="last")
+    priority_nodes = sorted_forecast_nodes()
     selected = st.selectbox(
         "Reservoir / forecast node",
         priority_nodes["reservoir"].tolist(),
