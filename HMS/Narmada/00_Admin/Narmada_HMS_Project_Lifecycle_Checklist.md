@@ -690,3 +690,5 @@ Stage 84 LS03P compute completed. Compare file: `04_Calibration_Validation\Stage
 | QA-54 | Stage112 SB_Sub_54 dashboard topology correction | Complete | `04_Calibration_Validation\Stage_112_Advanced_Hydrology_Analytics_Webmap\stage112_sb54_topology_status.csv` | Dashboard switched from stale Stage98 topology to active LS04G basin topology; verified `SB_Sub_54 -> R_Sub_14 -> R_R_26 -> R_R_9` |
 
 | PUB-06 | Stage112 Streamlit Cloud app package | Complete | `04_Calibration_Validation\Stage_112_Advanced_Hydrology_Analytics_Webmap\streamlit_cloud_app` | Streamlit Cloud-ready wrapper created with entrypoint, requirements, config, embedded dashboard HTML, and deployment notes |
+
+| FRC-01 | Stage113 forecast API integration scaffold | Complete | `04_Calibration_Validation\Stage_113_Forecast_API_Integration` | GEOGLOWS live connector scaffold, GloFAS/Google Flood credential placeholders, reservoir forecast node table, and Streamlit forecast tab prepared |

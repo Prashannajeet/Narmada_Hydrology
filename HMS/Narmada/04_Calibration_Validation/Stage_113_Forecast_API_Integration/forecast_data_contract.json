@@ -1,0 +1,18 @@
+{
+  "generated": "2026-07-20T15:41:18",
+  "target": "reservoir inflow forecast for HMS dashboard",
+  "canonical_forecast_record": {
+    "provider": "GEOGLOWS|GLOFAS|GOOGLE_FLOOD",
+    "reservoir": "string",
+    "hms_element": "string",
+    "provider_location_id": "string",
+    "issue_time": "ISO-8601",
+    "valid_time": "ISO-8601",
+    "lead_hours": "number",
+    "flow_cumec": "number",
+    "ensemble_member": "string or null",
+    "quantile": "mean|p05|p25|p50|p75|p95|null",
+    "return_period_status": "normal|bankfull|2yr|5yr|20yr|unknown",
+    "license_attribution": "string"
+  }
+}

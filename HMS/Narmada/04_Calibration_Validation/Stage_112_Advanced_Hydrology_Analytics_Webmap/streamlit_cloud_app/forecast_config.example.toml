@@ -1,0 +1,13 @@
+# Copy values into Streamlit Cloud secrets, not into committed code.
+
+[google_flood]
+api_key = "YOUR_GOOGLE_FLOOD_API_KEY"
+cloud_project_id = "YOUR_GOOGLE_CLOUD_PROJECT_ID"
+
+[copernicus]
+url = "https://ewds.climate.copernicus.eu/api"
+key = "YOUR_COPERNICUS_API_TOKEN"
+
+[forecast]
+default_provider = "GEOGLOWS"
+bias_correction = "planned_after_observed_inflow_validation"

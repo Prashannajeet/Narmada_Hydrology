@@ -545,3 +545,9 @@ The corrected HMS branch `Narmada_B1_LS04G_Combined_SB22_Corridor_Attenuation.ba
 Rule for future basin projects: dashboard topology must be generated from the active HMS basin file used for the run, not from older exported topology CSVs. If a subbasin appears far outside its drainage position, first compare the visualization source against the active `.basin` file before changing hydrologic parameters.
 
 Reference output: `04_Calibration_Validation\Stage_112_Advanced_Hydrology_Analytics_Webmap\stage112_sb54_topology_status.csv`.
+
+## Stage113 Forecast Integration Note
+
+Forecast integration must not bypass local HMS calibration. GEOGLOWS, GloFAS, and Google Flood forecasts should enter the workflow as external inflow/alert evidence, then be bias checked against observed CWC/reservoir inflow before reservoir routing decisions. GEOGLOWS is the quickest public API path; GloFAS requires Copernicus credentials and should be treated as an independent comparison source; Google Flood API requires pilot access and an API key.
+
+Reference output: `04_Calibration_Validation\Stage_113_Forecast_API_Integration`.

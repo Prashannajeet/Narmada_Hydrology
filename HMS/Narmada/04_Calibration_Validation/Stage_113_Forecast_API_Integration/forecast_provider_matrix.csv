@@ -1,0 +1,4 @@
+provider,access,forecast_horizon,best_use_in_narmada_app,integration_status,credential_needed
+GEOGLOWS ECMWF Streamflow Service,"Public REST API, no app secret required for basic queries",15-day ensemble/forecast products,Immediate reservoir inflow forecast reference and return-period context,scaffold_ready,No for basic public API
+GloFAS / CEMS EWDS,Copernicus EWDS/CDS API and licence acceptance; not recommended as sole time-critical path,Lead times up to 30 days depending product selection,"Independent ensemble comparison, design/medium-range warning evidence",credential_placeholder,Copernicus account/API token
+Google Flood Forecasting API,Pilot/waitlist access; API key and enabled Google Cloud project required after approval,Hydrologic forecasts up to 7 days with flood status products,Flood status and external warning overlay where approved gauges/hybas exist,access_placeholder,Google API key plus Flood Forecasting API access
