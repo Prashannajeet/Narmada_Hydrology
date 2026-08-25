@@ -1,0 +1,6 @@
+work/__pycache__/
+work/*_pages/
+work/pdf_pages/
+work/chambal_page_images/
+work/chambal_contact_sheets/
+work/*.pyc

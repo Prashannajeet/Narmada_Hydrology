@@ -1,0 +1,1455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lower Narmada and Tapi Design Flood Calculator | NITA AI GeoAnalytics</title>
+  <style>
+    :root {
+      --bg: #f5f6f1;
+      --ink: #20251f;
+      --muted: #5c655c;
+      --line: #cbd4c8;
+      --panel: #fff;
+      --soft: #edf3ea;
+      --accent: #245f73;
+      --accent2: #8b5c22;
+      --warn: #9a3412;
+      --shadow: 0 18px 44px rgba(32, 37, 31, 0.1);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px clamp(12px, 2vw, 24px);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 250, 0.88);
+      backdrop-filter: blur(10px);
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 10px;
+      color: var(--ink);
+      font-weight: 750;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6f9fd4, #75a9a1 52%, #f0ad98);
+      box-shadow: 0 8px 20px rgba(93, 118, 154, 0.22);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+    }
+
+    .brand-name {
+      font-size: 12px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-line {
+      color: var(--muted);
+      font-size: 9.5px;
+      font-weight: 650;
+      line-height: 1;
+    }
+
+    .site-nav a {
+      color: #526b86;
+      text-decoration: none;
+      padding: 5px 8px;
+      border: 1px solid rgba(190, 199, 224, 0.7);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, 0.7);
+      line-height: 1;
+    }
+
+    .site-nav a:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+      background: var(--sky);
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(36, 95, 115, 0.1), rgba(36, 95, 115, 0) 330px),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      padding: 28px clamp(16px, 3vw, 38px) 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.1;
+      letter-spacing: 0;
+      max-width: 920px;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .badges {
+      display: grid;
+      gap: 8px;
+      justify-items: end;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    main {
+      padding: 22px clamp(16px, 3vw, 38px) 34px;
+      display: grid;
+      grid-template-columns: minmax(310px, 440px) minmax(0, 1fr);
+      gap: 22px;
+    }
+
+    .panel, .metric, .note {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .inputs {
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+      align-self: start;
+      position: sticky;
+      top: 14px;
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+    }
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    legend {
+      padding: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      min-width: 0;
+    }
+
+    input, select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      padding: 9px 10px;
+      font: inherit;
+    }
+
+    input:focus, select:focus, button:focus {
+      outline: 3px solid rgba(36, 95, 115, 0.22);
+      outline-offset: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      color: var(--accent);
+      background: transparent;
+    }
+
+    .results {
+      min-width: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      padding: 15px;
+      min-width: 0;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 7px;
+      font-size: clamp(19px, 2.3vw, 30px);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .metric em {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-style: normal;
+      line-height: 1.35;
+    }
+
+    .chart-panel {
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .chart-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .axis, .gridline {
+      stroke: #aeb9aa;
+      stroke-width: 1;
+    }
+
+    .gridline { opacity: 0.45; }
+
+    .hydro {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .unit {
+      fill: none;
+      stroke: var(--accent2);
+      stroke-width: 2;
+      stroke-dasharray: 6 5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .formula {
+      fill: none;
+      stroke: var(--warn);
+      stroke-width: 2;
+      stroke-dasharray: 2 5;
+    }
+
+    .peak-dot {
+      fill: var(--accent);
+      stroke: white;
+      stroke-width: 3;
+    }
+
+    .label {
+      fill: var(--muted);
+      font-size: 12px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .key {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .line-key {
+      width: 24px;
+      height: 0;
+      border-top: 3px solid var(--accent);
+    }
+
+    .line-key.unit-key {
+      border-top-color: var(--accent2);
+      border-top-style: dashed;
+    }
+
+    .line-key.formula-key {
+      border-top-color: var(--warn);
+      border-top-style: dotted;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .data-section {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .note, .data-card {
+      padding: 15px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .note strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+    }
+
+    .data-card h3 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+
+    .data-card ul {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .data-card table {
+      display: table;
+      max-height: none;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .data-card th, .data-card td {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      text-align: left;
+    }
+
+    table {
+      width: 100%;
+      display: block;
+      max-height: 310px;
+      overflow-y: auto;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    thead, tbody, tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      font-size: 13px;
+    }
+
+    th:first-child, td:first-child { text-align: left; }
+
+    th {
+      background: var(--soft);
+      color: var(--muted);
+      position: sticky;
+      top: 0;
+    }
+
+    :root {
+      --bg: #f7f9fb;
+      --ink: #24313a;
+      --muted: #667784;
+      --line: #d9e3e8;
+      --panel: #fffefd;
+      --soft: #eef6f4;
+      --accent: #5f91a7;
+      --accent2: #d3a08f;
+      --warn: #c57961;
+    }
+
+    body {
+      background: linear-gradient(180deg, rgba(95, 145, 167, 0.14), rgba(238, 246, 244, 0.36) 340px, var(--bg) 620px), var(--bg);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    header {
+      padding: 24px clamp(16px, 3vw, 34px) 16px;
+    }
+
+    h1 {
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 650;
+    }
+
+    header p, .note, .data-card {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    main {
+      padding-top: 18px;
+      gap: 16px;
+    }
+
+    .panel, .result-card, .note, .data-card {
+      box-shadow: 0 10px 30px rgba(36, 49, 58, 0.05);
+    }
+
+    legend, h2 {
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    h3, .data-card h3 {
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    label, .badge, .legend, .meta {
+      font-size: 12px;
+    }
+
+    input, select, button {
+      font-size: 13px;
+      border-radius: 7px;
+    }
+
+    button {
+      background: #5f91a7;
+      border-color: #5f91a7;
+      color: #ffffff;
+    }
+
+    .metric strong {
+      font-size: clamp(17px, 1.8vw, 24px);
+      font-weight: 650;
+    }
+
+    .metric span, .result-card span {
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    th, td, .data-card th, .data-card td {
+      padding: 7px 8px;
+      font-size: 12px;
+    }
+
+    .label {
+      font-size: 10.5px;
+    }
+
+    /* Shared pastel NITA AI GeoAnalytics theme, matched to the HMS model tool */
+    :root {
+      --bg: #f8f7fb;
+      --ink: #263247;
+      --muted: #657288;
+      --line: #d9dcec;
+      --panel: #fffdfa;
+      --soft: #eef7ff;
+      --accent: #6f9fd4;
+      --accent2: #f0ad98;
+      --accent-2: #f0ad98;
+      --warn: #d88491;
+      --mint: #dff4ec;
+      --aqua: #dff5f7;
+      --sky: #e4f0ff;
+      --lavender: #eee8fb;
+      --butter: #fff1c9;
+      --peach: #ffe7da;
+      --rose: #fde4eb;
+      --shadow: 0 16px 34px rgba(62, 75, 102, 0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(223, 244, 236, 0.78), transparent 28%),
+        radial-gradient(circle at 92% 6%, rgba(255, 231, 218, 0.72), transparent 26%),
+        linear-gradient(135deg, rgba(228, 240, 255, 0.8), rgba(238, 232, 251, 0.48) 42%, rgba(255, 253, 250, 0.86) 76%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    header {
+      background: linear-gradient(90deg, rgba(223, 245, 247, 0.72), rgba(255, 241, 201, 0.52), rgba(253, 228, 235, 0.56));
+      border-bottom-color: rgba(164, 176, 205, 0.62);
+    }
+
+    .badge,
+    .legend,
+    .line-key {
+      background: rgba(255, 253, 250, 0.82);
+      border-color: rgba(185, 190, 218, 0.8);
+      color: #53627a;
+      box-shadow: 0 8px 20px rgba(93, 107, 137, 0.06);
+    }
+
+    .dot {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
+    .panel,
+    .result-card,
+    .note,
+    .data-card,
+    fieldset {
+      background: linear-gradient(180deg, rgba(255, 253, 250, 0.97), rgba(248, 251, 255, 0.9));
+      border-color: rgba(202, 205, 229, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .metric {
+      background: linear-gradient(180deg, rgba(228, 240, 255, 0.72), rgba(255, 253, 250, 0.96));
+      border-color: rgba(202, 205, 229, 0.92);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    .metric:nth-child(2) { background: linear-gradient(180deg, var(--mint), rgba(255, 253, 250, 0.96)); }
+    .metric:nth-child(3) { background: linear-gradient(180deg, var(--peach), rgba(255, 253, 250, 0.96)); }
+    .metric:nth-child(4) { background: linear-gradient(180deg, var(--lavender), rgba(255, 253, 250, 0.96)); }
+
+    input,
+    select {
+      background: rgba(255, 253, 250, 0.96);
+      border-color: rgba(188, 196, 222, 0.95);
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid rgba(111, 159, 212, 0.28);
+      border-color: var(--accent);
+    }
+
+    button {
+      background: linear-gradient(135deg, #6f9fd4, #82c7bf);
+      border-color: rgba(91, 137, 190, 0.95);
+      color: #ffffff;
+      box-shadow: 0 10px 18px rgba(111, 159, 212, 0.18);
+    }
+
+    .chart {
+      background: linear-gradient(180deg, rgba(238, 247, 255, 0.96), rgba(255, 253, 250, 0.98));
+      border-color: rgba(190, 199, 224, 0.96);
+    }
+
+    .gridline {
+      stroke: #c7d4e6;
+      opacity: 0.58;
+    }
+
+    .axis {
+      stroke: #738098;
+    }
+
+    .hydro {
+      stroke: #5f91c7;
+    }
+
+    .unit {
+      stroke: #d8947e;
+    }
+
+    .peak-dot {
+      fill: #d88491;
+      stroke: #fffdfa;
+    }
+
+    .result-card:nth-child(1) { background: linear-gradient(180deg, var(--sky), rgba(255, 253, 250, 0.96)); }
+    .result-card:nth-child(2) { background: linear-gradient(180deg, var(--mint), rgba(255, 253, 250, 0.96)); }
+    .result-card:nth-child(3) { background: linear-gradient(180deg, var(--peach), rgba(255, 253, 250, 0.96)); }
+    .result-card:nth-child(4) { background: linear-gradient(180deg, var(--lavender), rgba(255, 253, 250, 0.96)); }
+
+    th {
+      background: linear-gradient(90deg, rgba(228, 240, 255, 0.94), rgba(238, 232, 251, 0.86));
+      color: #516079;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 241, 201, 0.52);
+    }
+
+    /* Desktop fit mode for embedded and presentation use */
+    @media (min-width: 1100px) and (min-height: 650px) {
+      :root {
+        --ink: #1f2b3d;
+        --muted: #4f5f74;
+        --line: #cfd6ea;
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr);
+        font-size: 13px;
+        line-height: 1.3;
+      }
+
+      .site-nav {
+        padding: 5px 10px;
+        gap: 5px;
+        font-size: 10.5px;
+      }
+
+      .site-nav a {
+        padding: 4px 6px;
+      }
+
+      header {
+        padding: 9px 14px 8px;
+        gap: 10px;
+      }
+
+      h1 {
+        font-size: clamp(18px, 1.8vw, 25px);
+        line-height: 1.08;
+      }
+
+      header p {
+        margin-top: 4px;
+        max-width: 1060px;
+        font-size: 11.5px;
+        line-height: 1.28;
+        color: #405167;
+      }
+
+      .badges {
+        gap: 5px;
+      }
+
+      .badge {
+        padding: 4px 7px;
+        font-size: 10.5px;
+      }
+
+      main {
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        padding: 8px 10px 10px;
+        gap: 9px;
+        grid-template-columns: 354px minmax(0, 1fr);
+      }
+
+      .inputs {
+        position: static;
+        height: 100%;
+        min-height: 0;
+        max-height: none;
+        overflow: hidden;
+        padding: 9px;
+        gap: 7px;
+        align-self: stretch;
+      }
+
+      fieldset {
+        gap: 6px;
+      }
+
+      legend {
+        font-size: 12px;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+
+      label,
+      .badge,
+      .legend {
+        font-size: 10.5px;
+        line-height: 1.14;
+        color: #46586e;
+      }
+
+      .grid {
+        gap: 5px 7px;
+      }
+
+      input,
+      select,
+      button {
+        min-height: 26px;
+        padding: 5px 7px;
+        font-size: 11.5px;
+        line-height: 1.15;
+        border-color: #bcc8df;
+      }
+
+      .actions {
+        gap: 6px;
+      }
+
+      button {
+        padding: 6px 9px;
+      }
+
+      .results {
+        min-height: 0;
+        overflow: hidden;
+        gap: 8px;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) 340px;
+        grid-template-rows: 64px minmax(0, 1fr) 108px;
+        grid-template-areas:
+          "cards cards"
+          "chart table"
+          "notes table";
+      }
+
+      .cards {
+        grid-area: cards;
+        gap: 8px;
+      }
+
+      .metric {
+        padding: 8px 10px;
+      }
+
+      .metric span,
+      .result-card span {
+        font-size: 9.5px;
+        color: #485a70;
+      }
+
+      .metric strong {
+        margin-top: 4px;
+        font-size: clamp(15px, 1.25vw, 20px);
+        color: #1f2b3d;
+      }
+
+      .metric em {
+        margin-top: 4px;
+        font-size: 10px;
+        line-height: 1.18;
+        color: #516176;
+      }
+
+      .chart-panel {
+        grid-area: chart;
+        min-height: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        gap: 7px;
+        padding: 10px;
+      }
+
+      .chart-head {
+        margin-bottom: 0;
+        gap: 8px;
+      }
+
+      h2 {
+        font-size: 14px;
+      }
+
+      .chart-head p {
+        font-size: 11px;
+        color: #495a70;
+      }
+
+      #chart {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        border: 1px solid rgba(190, 199, 224, 0.96);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(238, 247, 255, 0.96), rgba(255, 253, 250, 0.98));
+        overflow: hidden;
+      }
+
+      .legend {
+        margin-top: 0;
+        gap: 8px;
+        font-size: 10.5px;
+      }
+
+      .line-key {
+        width: 18px;
+      }
+
+      .label {
+        font-size: 10px;
+        fill: #4d5d72;
+      }
+
+      .notes {
+        grid-area: notes;
+        min-height: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .note {
+        padding: 8px;
+        font-size: 10.5px;
+        line-height: 1.22;
+        color: #4a5b70;
+        overflow: hidden;
+      }
+
+      .note strong {
+        margin-bottom: 3px;
+        font-size: 11.5px;
+      }
+
+      .data-section {
+        display: none;
+      }
+
+      .results > table {
+        grid-area: table;
+        min-height: 0;
+        max-height: none;
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      th,
+      td {
+        padding: 5px 7px;
+        font-size: 10.5px;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      main { grid-template-columns: 1fr; }
+      .inputs {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header { grid-template-columns: 1fr; }
+      .badges { justify-items: start; }
+      .cards, .notes, .grid, .data-section { grid-template-columns: 1fr; }
+      .chart-head { display: grid; }
+      .chart-head p { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="NITA AI GeoAnalytics navigation">
+    <strong class="brand"><span class="brand-mark">NITA</span><span class="brand-copy"><span class="brand-name">NITA AI</span><span class="brand-line">GeoAnalytics</span></span></strong>
+    <a href="index.html">Home</a>
+    <a href="hms-narmada-model-tool.html">Narmada</a>
+    <a href="betwa-hydrograph-app.html">Betwa</a>
+    <a href="chambal-hydrograph-app.html">Chambal</a>
+    <a href="narmada-tapi-hydrograph-app.html">Upper 3(c)</a>
+    <a href="lower-narmada-tapi-hydrograph-app.html">Lower 3(b)</a>
+  </nav>
+  <header>
+    <div>
+      <h1>Lower Narmada and Tapi Design Flood Calculator</h1>
+      <p>Prototype based on CWC subzone 3(b): physiographic inputs, one-hour synthetic unit hydrograph, 25/50/100-year rainfall, phi-index loss, base flow, design hydrograph, and report flood-peak formulae for bridge catchment screening.</p>
+    </div>
+    <div class="badges">
+      <span class="badge"><span class="dot"></span> Subzone 3(b) workflow</span>
+      <span class="badge">Includes Q25/Q50/Q100 formula check</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel inputs" aria-label="Hydrology inputs">
+      <fieldset>
+        <legend>Project and catchment</legend>
+        <label>
+          Project or site name
+          <input id="project" value="Bridge No. 485/4 - worked example">
+        </label>
+        <div class="grid">
+          <label>
+            Catchment area, A (sq km)
+            <input id="area" type="number" min="1" step="0.01" value="285">
+          </label>
+          <label>
+            Longest stream, L (km)
+            <input id="length" type="number" min="1" step="0.01" value="34.45">
+          </label>
+          <label>
+            Length to C.G., Lc (km)
+            <input id="centroid" type="number" min="1" step="0.01" value="14.75">
+          </label>
+          <label>
+            Equivalent slope, S (m/km)
+            <input id="slope" type="number" min="0.01" step="0.01" value="2.48">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Synthetic unit hydrograph</legend>
+        <div class="grid">
+          <label>
+            Lag coefficient, Ct
+            <input id="ct" type="number" min="0.01" step="0.01" value="0.70">
+          </label>
+          <label>
+            Peak coefficient, Cp
+            <input id="cp" type="number" min="0.01" step="0.01" value="2.10">
+          </label>
+          <label>
+            Unit duration (hr)
+            <input id="uhDuration" type="number" min="0.25" step="0.25" value="1">
+          </label>
+          <label>
+            Base time factor
+            <input id="baseFactor" type="number" min="2" step="0.1" value="3.5">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Storm and return period</legend>
+        <div class="grid">
+          <label>
+            Return period
+            <select id="returnPeriod">
+              <option value="25">25 year</option>
+              <option value="50" selected>50 year</option>
+              <option value="100">100 year</option>
+            </select>
+          </label>
+          <label>
+            Dam importance
+            <select id="damClass">
+              <option value="ordinary">Ordinary / small storage</option>
+              <option value="significant" selected>Significant hazard</option>
+              <option value="major">Major / high hazard</option>
+            </select>
+          </label>
+          <label>
+            25-year 24-hr rainfall, R25 (cm)
+            <input id="rain25" type="number" min="1" step="0.1" value="18.0">
+          </label>
+          <label>
+            50-year 24-hr rainfall, R50 (cm)
+            <input id="rain50" type="number" min="1" step="0.1" value="21.0">
+          </label>
+          <label>
+            100-year 24-hr rainfall, R100 (cm)
+            <input id="rain100" type="number" min="1" step="0.1" value="24.0">
+          </label>
+          <label>
+            Areal reduction factor
+            <input id="arealFactor" type="number" min="0.1" max="1.2" step="0.01" value="0.90">
+          </label>
+          <label>
+            Phi-index loss (mm/hr)
+            <input id="loss" type="number" min="0" step="0.1" value="2.5">
+          </label>
+          <label>
+            Base flow (cumec)
+            <input id="baseflow" type="number" min="0" step="0.01" value="14.25">
+          </label>
+          <label>
+            Storm peaking
+            <select id="stormShape">
+              <option value="front">Early peak</option>
+              <option value="middle" selected>Middle peak</option>
+              <option value="late">Late peak</option>
+            </select>
+          </label>
+          <label>
+            Formula comparison
+            <select id="formulaMode">
+              <option value="show" selected>Show report formula</option>
+              <option value="hide">Hide formula line</option>
+            </select>
+          </label>
+          <label>
+            Formula calibration factor
+            <input id="formulaFactor" type="number" min="0.1" step="0.01" value="1.04">
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button id="calculate" type="button">Calculate flood</button>
+        <button id="sample" class="secondary" type="button">Reload report example</button>
+      </div>
+    </section>
+
+    <section class="results" aria-live="polite">
+      <div class="cards">
+        <article class="metric">
+          <span>SUG design peak</span>
+          <strong id="peakFlood">-</strong>
+          <em>Hydrograph convolution plus base flow</em>
+        </article>
+        <article class="metric">
+          <span>Report formula peak</span>
+          <strong id="formulaPeak">-</strong>
+          <em>Q25/Q50/Q100 equation</em>
+        </article>
+        <article class="metric">
+          <span>Time to peak</span>
+          <strong id="timePeak">-</strong>
+          <em>From start of design storm</em>
+        </article>
+        <article class="metric">
+          <span>Effective rainfall</span>
+          <strong id="effectiveRain">-</strong>
+          <em>After areal factor and phi-index</em>
+        </article>
+      </div>
+
+      <section class="panel chart-panel">
+        <div class="chart-head">
+          <h2 id="chartTitle">Design flood hydrograph</h2>
+          <p id="chartMeta">Awaiting calculation</p>
+        </div>
+        <svg id="chart" viewBox="0 0 860 390" role="img" aria-label="Design flood hydrograph chart"></svg>
+        <div class="legend" aria-label="Chart legend">
+          <span class="key"><span class="line-key"></span> SUG design flood</span>
+          <span class="key"><span class="line-key unit-key"></span> Unit hydrograph shape</span>
+          <span class="key"><span class="line-key formula-key"></span> Formula peak</span>
+        </div>
+      </section>
+
+      <div class="notes">
+        <article class="note">
+          <strong id="formulaNoteTitle">Formula check</strong>
+          <span id="formulaNote">The report gives separate regression formulae for 25-, 50-, and 100-year flood peaks using A, L, Lc, slope, and 24-hour rainfall.</span>
+        </article>
+        <article class="note">
+          <strong>Design-use note</strong>
+          <span id="damNote">For future dam projects, use this as a screening and method setup tool. Final design should verify subzone coefficients, rainfall maps, areal reduction, loss rate, base flow, routing, and dam-safety design flood criteria.</span>
+        </article>
+      </div>
+
+      <section class="data-section" aria-label="Report data and approach coverage">
+        <article class="data-card">
+          <h3>Storm Events Display</h3>
+          <ul>
+            <li>Report figures include unit hydrograph, design flood hydrograph, storm duration conversion, and areal-to-point rainfall ratios.</li>
+            <li>This app displays critical rainfall sequence behavior through the selected storm peaking mode.</li>
+            <li>All bridge No. 485/4 event ordinates from scanned annexures are not fully digitized yet.</li>
+          </ul>
+        </article>
+        <article class="data-card">
+          <h3>SUG Relationship Parameters</h3>
+          <table>
+            <tbody>
+              <tr><th>Physiography</th><td>A, L, Lc, equivalent slope</td></tr>
+              <tr><th>SUG</th><td>Ct, Cp, tp, qp, base time</td></tr>
+              <tr><th>Storm</th><td>R25, R50, R100, areal factor</td></tr>
+              <tr><th>Loss/base flow</th><td>Phi-index, base flow</td></tr>
+              <tr><th>Formula check</th><td>Q25, Q50, Q100 with calibration factor</td></tr>
+            </tbody>
+          </table>
+        </article>
+        <article class="data-card">
+          <h3>Approaches Covered</h3>
+          <ul>
+            <li>Included: SUG rainfall-excess convolution.</li>
+            <li>Included: report-derived flood formula comparison for 25-, 50-, and 100-year peaks.</li>
+            <li>Not yet included: full storm-event database, observed UG plots, routing, PMF, and HFL/rating-curve module.</li>
+          </ul>
+        </article>
+      </section>
+
+      <table aria-label="Hydrograph ordinates">
+        <thead>
+          <tr>
+            <th>Hour</th>
+            <th>UH ordinate</th>
+            <th>Rain excess</th>
+            <th>Flood ordinate</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    const ids = [
+      "project", "area", "length", "centroid", "slope", "ct", "cp", "uhDuration",
+      "baseFactor", "returnPeriod", "damClass", "rain25", "rain50", "rain100",
+        "arealFactor", "loss", "baseflow", "stormShape", "formulaMode", "formulaFactor"
+    ];
+    const el = Object.fromEntries(ids.map((id) => [id, document.getElementById(id)]));
+    const fmt = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
+    const fmt1 = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 1 });
+
+    function num(id) {
+      return Number(el[id].value) || 0;
+    }
+
+    function inputs() {
+      return {
+        project: el.project.value.trim() || "Lower Narmada and Tapi site",
+        area: Math.max(1, num("area")),
+        length: Math.max(1, num("length")),
+        centroid: Math.max(1, num("centroid")),
+        slope: Math.max(0.01, num("slope")),
+        ct: Math.max(0.01, num("ct")),
+        cp: Math.max(0.01, num("cp")),
+        uhDuration: Math.max(0.25, num("uhDuration")),
+        baseFactor: Math.max(2, num("baseFactor")),
+        returnPeriod: el.returnPeriod.value,
+        damClass: el.damClass.value,
+        rainfall: { 25: num("rain25"), 50: num("rain50"), 100: num("rain100") },
+        arealFactor: Math.max(0.1, num("arealFactor")),
+        loss: Math.max(0, num("loss")),
+        baseflow: Math.max(0, num("baseflow")),
+        stormShape: el.stormShape.value,
+        formulaMode: el.formulaMode.value,
+        formulaFactor: Math.max(0.1, num("formulaFactor"))
+      };
+    }
+
+    function unitHydrograph(input) {
+      const basinTerm = (input.length * input.centroid) / Math.sqrt(input.slope);
+      const lag = input.ct * Math.pow(basinTerm, 0.33);
+      const tp = Math.max(input.uhDuration, lag + input.uhDuration / 2);
+      const qpEstimate = 2.78 * input.cp * input.area / tp;
+      const baseTime = Math.max(tp * input.baseFactor, tp + input.uhDuration * 4);
+      const dt = input.uhDuration;
+      const alpha = 3.15;
+      const beta = tp / alpha;
+      const count = Math.ceil(baseTime / dt) + 1;
+      const raw = [];
+
+      for (let i = 0; i < count; i += 1) {
+        const t = i * dt;
+        const q = t <= 0 ? 0 : Math.pow(t, alpha) * Math.exp(-t / beta);
+        raw.push({ t, q });
+      }
+
+      const rawPeak = Math.max(...raw.map((d) => d.q));
+      let shaped = raw.map((d) => ({ t: d.t, q: rawPeak ? d.q / rawPeak * qpEstimate : 0 }));
+      const targetVolume = input.area * 10000;
+      const actualVolume = shaped.reduce((sum, d) => sum + d.q * dt * 3600, 0);
+      const scale = actualVolume > 0 ? targetVolume / actualVolume : 1;
+      shaped = shaped.map((d) => ({ t: d.t, q: d.q * scale }));
+      const qp = Math.max(...shaped.map((d) => d.q));
+      const tpActual = shaped.reduce((best, d) => d.q > best.q ? d : best, shaped[0]).t;
+      return { ordinates: shaped, lag, tp: tpActual, baseTime, qp };
+    }
+
+    function floodFormula(input) {
+      const A = input.area;
+      const L = input.length;
+      const Lc = input.centroid;
+      const S = input.slope;
+      const R = input.rainfall[input.returnPeriod];
+      if (input.returnPeriod === "25") {
+        return input.formulaFactor * 1.0196 * Math.pow(A, 0.9412) * Math.pow(L, -0.3366) * Math.pow(Lc, -0.1009) * Math.pow(S, 0.0568) * Math.pow(R, 1.0088);
+      }
+      if (input.returnPeriod === "50") {
+        return input.formulaFactor * 1.1327 * Math.pow(A, 0.9418) * Math.pow(L, -0.3525) * Math.pow(Lc, -0.0864) * Math.pow(S, 0.0521) * Math.pow(R, 1.0735);
+      }
+      return input.formulaFactor * 1.1038 * Math.pow(A, 0.9458) * Math.pow(L, -0.3451) * Math.pow(Lc, -0.0877) * Math.pow(S, 0.0556) * Math.pow(R, 1.0685);
+    }
+
+    function rainfallExcess(input, uh) {
+      const designRainMm = input.rainfall[input.returnPeriod] * 10;
+      const arealRain = designRainMm * input.arealFactor;
+      const duration = Math.max(input.uhDuration, Math.min(24, Math.max(1.1 * uh.tp, uh.baseTime * 0.65)));
+      const steps = Math.max(1, Math.ceil(duration / input.uhDuration));
+      const peakIndex = input.stormShape === "front" ? Math.floor(steps * 0.3) : input.stormShape === "late" ? Math.floor(steps * 0.7) : Math.floor(steps * 0.5);
+      const weights = [];
+      for (let i = 0; i < steps; i += 1) {
+        weights.push(Math.pow(0.72, Math.abs(i - peakIndex)));
+      }
+      const totalWeight = weights.reduce((sum, d) => sum + d, 0);
+      return weights.map((w, i) => {
+        const gross = totalWeight ? arealRain * w / totalWeight : 0;
+        const excess = Math.max(0, gross - input.loss * input.uhDuration);
+        return { t: i * input.uhDuration, gross, excess };
+      });
+    }
+
+    function convolve(input, uh, excess) {
+      const dt = input.uhDuration;
+      const n = uh.ordinates.length + excess.length + 2;
+      const flood = Array.from({ length: n }, (_, i) => ({
+        t: i * dt,
+        q: input.baseflow,
+        uh: uh.ordinates[i]?.q || 0,
+        rain: excess[i]?.excess || 0
+      }));
+
+      for (let r = 0; r < excess.length; r += 1) {
+        const cm = excess[r].excess / 10;
+        for (let u = 0; u < uh.ordinates.length; u += 1) {
+          flood[r + u].q += uh.ordinates[u].q * cm;
+        }
+      }
+      return flood;
+    }
+
+    function draw(flood, uh, input, formulaPeak) {
+      const svg = document.getElementById("chart");
+      const width = 860;
+      const height = 390;
+      const margin = { top: 18, right: 26, bottom: 46, left: 72 };
+      const innerW = width - margin.left - margin.right;
+      const innerH = height - margin.top - margin.bottom;
+      const maxT = Math.max(...flood.map((d) => d.t), 1);
+      const maxQ = Math.max(...flood.map((d) => d.q), formulaPeak, input.baseflow + 1);
+      const maxUh = Math.max(...uh.ordinates.map((d) => d.q), 1);
+      const x = (t) => margin.left + (t / maxT) * innerW;
+      const y = (q) => margin.top + innerH - (q / maxQ) * innerH;
+      const yUh = (q) => margin.top + innerH - (q / maxUh) * innerH;
+      const path = (data, value, yFn) => data.map((d, i) => `${i ? "L" : "M"} ${x(d.t).toFixed(1)} ${yFn(value(d)).toFixed(1)}`).join(" ");
+      const peak = flood.reduce((best, d) => d.q > best.q ? d : best, flood[0]);
+      let out = "";
+
+      for (let i = 0; i <= 5; i += 1) {
+        const q = maxQ * i / 5;
+        const yy = y(q);
+        out += `<line class="gridline" x1="${margin.left}" y1="${yy}" x2="${width - margin.right}" y2="${yy}"></line>`;
+        out += `<text class="label" x="${margin.left - 10}" y="${yy + 4}" text-anchor="end">${fmt.format(q)}</text>`;
+      }
+
+      for (let i = 0; i <= 6; i += 1) {
+        const t = maxT * i / 6;
+        const xx = x(t);
+        out += `<line class="gridline" x1="${xx}" y1="${margin.top}" x2="${xx}" y2="${height - margin.bottom}"></line>`;
+        out += `<text class="label" x="${xx}" y="${height - 18}" text-anchor="middle">${fmt1.format(t)}</text>`;
+      }
+
+      out += `<line class="axis" x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}"></line>`;
+      out += `<line class="axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}"></line>`;
+      out += `<path class="unit" d="${path(uh.ordinates, (d) => d.q, yUh)}"></path>`;
+      out += `<path class="hydro" d="${path(flood, (d) => d.q, y)}"></path>`;
+      if (input.formulaMode === "show") {
+        out += `<line class="formula" x1="${margin.left}" y1="${y(formulaPeak)}" x2="${width - margin.right}" y2="${y(formulaPeak)}"></line>`;
+      }
+      out += `<circle class="peak-dot" cx="${x(peak.t)}" cy="${y(peak.q)}" r="6"></circle>`;
+      out += `<text class="label" x="${Math.min(width - 155, x(peak.t) + 12)}" y="${Math.max(25, y(peak.q) - 10)}">Peak ${fmt.format(peak.q)} cumec</text>`;
+      out += `<text class="label" x="${width / 2}" y="${height - 2}" text-anchor="middle">Time from storm start (hr)</text>`;
+      out += `<text class="label" transform="translate(16 ${height / 2}) rotate(-90)" text-anchor="middle">Discharge (cumec)</text>`;
+      svg.innerHTML = out;
+    }
+
+    function renderRows(flood, uh, excess) {
+      document.getElementById("rows").innerHTML = flood.slice(0, 60).map((d, i) => `
+        <tr>
+          <td>${fmt1.format(d.t)}</td>
+          <td>${fmt1.format(uh.ordinates[i]?.q || 0)}</td>
+          <td>${fmt1.format(excess[i]?.excess || 0)}</td>
+          <td>${fmt1.format(d.q)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function damNote(input) {
+      if (input.damClass === "major") {
+        return "Major or high-hazard dams should not rely only on Q25/Q50/Q100 screening. Use this result alongside governing dam-safety flood criteria, including rarer design flood or PMF checks where required.";
+      }
+      if (input.damClass === "significant") {
+        return "Significant hazard projects should compare the selected flood with consequence-based criteria and a rarer sensitivity case before final spillway sizing.";
+      }
+      return "Ordinary or small storage projects can use this as an early screening estimate, subject to verification of site hydrology and applicable design standards.";
+    }
+
+    function calculate() {
+      const input = inputs();
+      const uh = unitHydrograph(input);
+      const excess = rainfallExcess(input, uh);
+      const flood = convolve(input, uh, excess);
+      const peak = flood.reduce((best, d) => d.q > best.q ? d : best, flood[0]);
+      const formulaPeak = floodFormula(input);
+      const totalExcess = excess.reduce((sum, d) => sum + d.excess, 0);
+      const diff = formulaPeak ? ((peak.q - formulaPeak) / formulaPeak) * 100 : 0;
+
+      document.getElementById("peakFlood").textContent = `${fmt.format(peak.q)} cumec`;
+      document.getElementById("formulaPeak").textContent = `${fmt.format(formulaPeak)} cumec`;
+      document.getElementById("timePeak").textContent = `${fmt1.format(peak.t)} hr`;
+      document.getElementById("effectiveRain").textContent = `${fmt1.format(totalExcess)} mm`;
+      document.getElementById("chartTitle").textContent = `${input.project} hydrograph`;
+      document.getElementById("chartMeta").textContent = `${input.returnPeriod}-year storm, A=${fmt1.format(input.area)} sq km, R=${fmt1.format(input.rainfall[input.returnPeriod])} cm`;
+      document.getElementById("formulaNoteTitle").textContent = `${input.returnPeriod}-year formula comparison`;
+      document.getElementById("formulaNote").textContent = `Report-derived formula peak is ${fmt.format(formulaPeak)} cumec. The SUG hydrograph peak is ${Math.abs(diff).toFixed(1)}% ${diff >= 0 ? "higher" : "lower"} than the formula estimate. The calibration factor is exposed because the scanned formula line is partially ambiguous.`;
+      document.getElementById("damNote").textContent = damNote(input);
+
+      draw(flood, uh, input, formulaPeak);
+      renderRows(flood, uh, excess);
+    }
+
+    document.getElementById("calculate").addEventListener("click", calculate);
+    document.getElementById("sample").addEventListener("click", () => {
+      el.project.value = "Bridge No. 485/4 - worked example";
+      el.area.value = "285";
+      el.length.value = "34.45";
+      el.centroid.value = "14.75";
+      el.slope.value = "2.48";
+      el.ct.value = "0.70";
+      el.cp.value = "2.10";
+      el.uhDuration.value = "1";
+      el.baseFactor.value = "3.5";
+      el.returnPeriod.value = "50";
+      el.damClass.value = "significant";
+      el.rain25.value = "18.0";
+      el.rain50.value = "21.0";
+      el.rain100.value = "24.0";
+      el.arealFactor.value = "0.90";
+      el.loss.value = "2.5";
+      el.baseflow.value = "14.25";
+      el.stormShape.value = "middle";
+      el.formulaMode.value = "show";
+      el.formulaFactor.value = "1.04";
+      calculate();
+    });
+
+    function applyUrlParameters() {
+      const params = new URLSearchParams(window.location.search);
+      const mapping = {
+        project: "project",
+        area: "area",
+        length: "length",
+        centroid: "centroid",
+        slope: "slope"
+      };
+      Object.entries(mapping).forEach(([param, id]) => {
+        if (params.has(param) && el[id]) {
+          el[id].value = params.get(param);
+        }
+      });
+    }
+
+    ids.forEach((id) => el[id].addEventListener("change", calculate));
+    applyUrlParameters();
+    calculate();
+  </script>
+</body>
+</html>

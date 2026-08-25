@@ -1,0 +1,2369 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UHC Subzone Ollama Lab</title>
+  <style>
+    :root {
+      --bg: #f6fbff;
+      --ink: #1d2b3f;
+      --muted: #62718a;
+      --line: #d7e3f2;
+      --panel: #ffffff;
+      --panel-soft: #f9fcff;
+      --accent: #3f8fd2;
+      --accent-strong: #2267a9;
+      --accent2: #ff9f8c;
+      --mint: #d9f8ef;
+      --sky: #dff0ff;
+      --lavender: #efe8ff;
+      --butter: #fff4cf;
+      --peach: #ffe6df;
+      --aqua: #d9f7ff;
+      --green: #18966b;
+      --red: #c45538;
+      --shadow: 0 14px 34px rgba(41, 72, 108, 0.1);
+      --shadow-soft: 0 8px 22px rgba(41, 72, 108, 0.07);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background:
+        linear-gradient(180deg, rgba(217, 247, 255, 0.86) 0, rgba(246, 251, 255, 0.96) 360px),
+        linear-gradient(90deg, rgba(255, 244, 207, 0.52), rgba(239, 232, 255, 0.36) 46%, rgba(217, 248, 239, 0.44)),
+        var(--bg);
+    }
+
+    a { color: inherit; }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      min-height: 40px;
+      padding: 0.58rem 0.85rem;
+      color: #ffffff;
+      background: linear-gradient(135deg, #3f8fd2, #41b8aa);
+      box-shadow: 0 10px 18px rgba(63, 143, 210, 0.2);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      color: var(--accent-strong);
+      background: #ffffff;
+      border: 1px solid rgba(63, 143, 210, 0.28);
+      box-shadow: none;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px clamp(14px, 2vw, 26px);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 8px;
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #3f8fd2, #41b8aa 52%, #ff9f8c);
+      box-shadow: 0 8px 20px rgba(63, 143, 210, 0.22);
+    }
+
+    .site-nav a,
+    .nav-chip,
+    .status-pill {
+      color: #405d7a;
+      text-decoration: none;
+      padding: 6px 9px;
+      border: 1px solid rgba(172, 204, 235, 0.75);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      line-height: 1;
+      font-weight: 750;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 5px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .dot.online { background: var(--green); }
+
+    .wrap {
+      width: 95vw;
+      margin: 0 auto;
+      padding: 22px 0 34px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.6fr);
+      gap: 16px;
+      align-items: stretch;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel,
+    .panel,
+    .metric,
+    .mini-card {
+      min-width: 0;
+      border: 1px solid rgba(202, 205, 229, 0.92);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 252, 255, 0.94));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-panel {
+      padding: 24px;
+      background: linear-gradient(135deg, #dff0ff, #ffffff 54%, #d9f8ef);
+      border-color: rgba(154, 200, 235, 0.9);
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height: 1.05;
+      max-width: 780px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .hero-panel p {
+      max-width: 820px;
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+
+    .map-visual {
+      min-height: 230px;
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(52deg, transparent 0 30%, rgba(255,255,255,0.68) 30% 32%, transparent 32%),
+        linear-gradient(135deg, #fff4cf 0 22%, #d9f8ef 22% 48%, #bfe5ff 48% 60%, #efe8ff 60% 100%);
+      border: 1px solid rgba(154, 200, 235, 0.9);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .map-visual::before {
+      content: "";
+      position: absolute;
+      left: -12%;
+      top: 44%;
+      width: 130%;
+      height: 28px;
+      transform: rotate(-10deg);
+      background: #3f8fd2;
+      box-shadow: 0 0 0 14px rgba(63, 143, 210, 0.18);
+    }
+
+    .subzone {
+      position: absolute;
+      border: 2px dashed rgba(38, 50, 71, 0.6);
+      border-radius: 43% 51% 47% 45%;
+      background: rgba(255,255,255,0.22);
+    }
+
+    .subzone.a { left: 12%; top: 17%; width: 42%; height: 52%; }
+    .subzone.b { right: 12%; top: 30%; width: 34%; height: 42%; }
+
+    .pin {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 6px 13px rgba(0,0,0,0.22);
+    }
+
+    .pin.one { left: 29%; top: 42%; }
+    .pin.two { left: 60%; top: 55%; background: #82c7bf; }
+    .pin.three { left: 74%; top: 28%; background: #6f9fd4; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      padding: 15px;
+      min-height: 104px;
+    }
+
+    .metric:nth-child(1) { background: linear-gradient(180deg, #dff0ff, #ffffff); }
+    .metric:nth-child(2) { background: linear-gradient(180deg, #d9f8ef, #ffffff); }
+    .metric:nth-child(3) { background: linear-gradient(180deg, #ffe6df, #ffffff); }
+    .metric:nth-child(4) { background: linear-gradient(180deg, #efe8ff, #ffffff); }
+
+    .metric span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .metric small {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 340px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .main-grid > * {
+      min-width: 0;
+    }
+
+    .main-grid > aside.panel {
+      position: sticky;
+      top: 58px;
+    }
+
+    .full-map-panel {
+      margin-bottom: 16px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .map-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .map-toggles {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .map-toggles label {
+      display: inline-flex;
+      grid-template-columns: none;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 6px 8px;
+      border: 1px solid rgba(190, 199, 224, 0.82);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, 0.74);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .map-toggles input {
+      width: auto;
+      margin: 0;
+    }
+
+    .geometry-map {
+      width: 100%;
+      height: min(56vh, 540px);
+      min-height: 420px;
+      display: block;
+      border: 1px solid rgba(202, 205, 229, 0.92);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(63,143,210,0.08) 1px, transparent 1px),
+        linear-gradient(rgba(63,143,210,0.08) 1px, transparent 1px),
+        linear-gradient(180deg, #f9fcff, #e7fbf5);
+      background-size: 48px 48px, 48px 48px, auto;
+      overflow: hidden;
+    }
+
+    .geometry-map svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .map-basin {
+      stroke: rgba(38, 50, 71, 0.5);
+      stroke-width: 1.15;
+      cursor: pointer;
+      transition: fill 120ms ease, stroke-width 120ms ease;
+    }
+
+    .map-basin.upper { fill: rgba(104, 174, 235, 0.36); }
+    .map-basin.lower { fill: rgba(255, 159, 140, 0.38); }
+    .map-basin.filtered-out { opacity: 0.18; }
+    .map-basin.selected {
+      fill: rgba(255, 198, 79, 0.78);
+      stroke: #b36b00;
+      stroke-width: 2.4;
+    }
+
+    .map-basin:hover {
+      stroke: #263247;
+      stroke-width: 2;
+    }
+
+    .map-reach {
+      fill: none;
+      stroke: rgba(29, 43, 63, 0.44);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      pointer-events: none;
+    }
+
+    .map-site {
+      fill: #2267a9;
+      stroke: #fffdfa;
+      stroke-width: 1.8;
+      cursor: pointer;
+    }
+
+    .map-label {
+      fill: #263247;
+      font-size: 10px;
+      font-weight: 800;
+      paint-order: stroke;
+      stroke: rgba(255, 253, 250, 0.82);
+      stroke-width: 3;
+      pointer-events: none;
+    }
+
+    .map-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .legend-swatch {
+      display: inline-block;
+      width: 20px;
+      height: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(38, 50, 71, 0.28);
+      margin-right: 5px;
+      vertical-align: -1px;
+    }
+
+    .legend-swatch.upper { background: rgba(104, 174, 235, 0.5); }
+    .legend-swatch.lower { background: rgba(255, 159, 140, 0.55); }
+    .legend-swatch.selected { background: rgba(255, 198, 79, 0.78); }
+
+    .map-readout {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .map-readout div {
+      min-height: 70px;
+      padding: 11px;
+      border: 1px solid rgba(202, 205, 229, 0.82);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .map-readout span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .map-readout strong {
+      display: block;
+      margin-top: 6px;
+      overflow-wrap: anywhere;
+      line-height: 1.25;
+    }
+
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(180deg, #ffffff, #f4f9ff);
+    }
+
+    .panel-head h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #1b4064;
+    }
+
+    .panel-head p {
+      margin: 4px 0 0;
+      font-size: 13px;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    select, textarea, input {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid rgba(190, 199, 224, 0.9);
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--ink);
+      padding: 10px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.45;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .mini-card {
+      padding: 13px;
+      text-decoration: none;
+      color: inherit;
+      min-height: 104px;
+      cursor: default;
+      background: linear-gradient(180deg, #ffffff, #f7fbff);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-card h3 {
+      margin-bottom: 7px;
+      font-size: 15px;
+      color: #1b4064;
+    }
+
+    .mini-card p {
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .result-tile {
+      min-height: 78px;
+      padding: 11px;
+      border: 1px solid rgba(202, 205, 229, 0.82);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #ffffff, #f8fcff);
+    }
+
+    .result-tile span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .result-tile strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 20px;
+      line-height: 1.15;
+      color: #1b4064;
+    }
+
+    .hydrograph-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .chart-box {
+      min-height: 285px;
+      border: 1px solid rgba(202, 205, 229, 0.9);
+      border-radius: 8px;
+      background: linear-gradient(180deg, #f9fcff, #ffffff);
+      padding: 10px;
+    }
+
+    #hydrographCanvas {
+      display: block;
+      width: 100%;
+      height: 250px;
+    }
+
+    .note {
+      margin: 8px 0 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .reference-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .reference-actions button {
+      min-height: 46px;
+      padding: 0.55rem 0.7rem;
+    }
+
+    .compact-controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .analysis-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .analysis-stack > * {
+      min-width: 0;
+    }
+
+    .module-panel {
+      margin-bottom: 0 !important;
+    }
+
+    .narmada-brain-panel {
+      grid-column: 1;
+    }
+
+    .design-panel {
+      grid-column: 2;
+      grid-row: auto;
+    }
+
+    .reference-panel {
+      grid-column: 1;
+    }
+
+    .dataset-panel {
+      grid-column: 1 / -1;
+    }
+
+    .analysis-chat {
+      grid-column: 1 / -1;
+    }
+
+    .design-panel .scenario-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .design-panel .result-grid,
+    .reference-panel .result-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .design-panel .hydrograph-wrap {
+      grid-template-columns: 1fr;
+    }
+
+    .design-panel #hydrographCanvas {
+      height: 220px;
+    }
+
+    .design-panel .chart-box {
+      min-height: 255px;
+    }
+
+    .dataset-panel .panel-body {
+      padding-top: 12px;
+    }
+
+    .table-scroll {
+      max-height: 360px;
+      overflow: auto;
+      border: 1px solid rgba(202, 205, 229, 0.9);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .table-scroll table {
+      border: 0;
+      border-radius: 0;
+    }
+
+    .reference-panel table,
+    .dataset-panel table {
+      font-size: 12px;
+    }
+
+    .ordinates-scroll {
+      max-height: 124px;
+      margin-top: 10px;
+    }
+
+    .ordinates-scroll th,
+    .ordinates-scroll td {
+      padding: 6px 8px;
+      font-size: 11px;
+    }
+
+    .reference-panel .note {
+      padding: 8px 10px;
+      border: 1px solid rgba(215, 227, 242, 0.9);
+      border-radius: 8px;
+      background: #f9fcff;
+    }
+
+    tr.selectable {
+      cursor: pointer;
+    }
+
+    tr.selectable:hover td {
+      background: rgba(228, 240, 255, 0.52);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid rgba(202, 205, 229, 0.9);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 13px;
+      background: var(--panel);
+    }
+
+    th, td {
+      padding: 9px 10px;
+      border-bottom: 1px solid rgba(202, 205, 229, 0.72);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    th {
+      color: #ffffff;
+      background: linear-gradient(135deg, #3f8fd2, #41b8aa);
+      font-size: 12px;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: rgba(246, 251, 255, 0.66);
+    }
+
+    .chat {
+      display: grid;
+      grid-template-rows: minmax(260px, 1fr) auto;
+      min-height: 510px;
+      background: linear-gradient(180deg, #ffffff, #f8fcff);
+    }
+
+    .messages {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      max-height: 460px;
+      overflow: auto;
+      background: linear-gradient(180deg, rgba(249, 252, 255, 0.96), rgba(255, 255, 255, 0.98));
+    }
+
+    .message {
+      max-width: 820px;
+      padding: 11px 12px;
+      border: 1px solid rgba(202, 205, 229, 0.8);
+      border-radius: 8px;
+      background: #ffffff;
+      line-height: 1.48;
+      white-space: pre-wrap;
+      box-shadow: 0 6px 16px rgba(41, 72, 108, 0.06);
+    }
+
+    .message.user {
+      justify-self: end;
+      color: #ffffff;
+      background: linear-gradient(135deg, #3f8fd2, #41b8aa);
+      border-color: transparent;
+    }
+
+    .message.system {
+      justify-self: stretch;
+      color: #405d7a;
+      background: rgba(223, 240, 255, 0.74);
+    }
+
+    .composer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid var(--line);
+      background: #ffffff;
+    }
+
+    .composer textarea {
+      min-height: 74px;
+      margin: 0;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+      background: rgba(228, 240, 255, 0.78);
+      border-radius: 5px;
+      padding: 1px 4px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .main-grid,
+      .analysis-stack,
+      .hydrograph-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .main-grid > aside.panel {
+        position: static;
+      }
+
+      .grid,
+      .mini-grid,
+      .scenario-grid,
+      .design-panel .scenario-grid,
+      .result-grid,
+      .design-panel .result-grid,
+      .reference-panel .result-grid,
+      .reference-actions,
+      .compact-controls,
+      .map-readout {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .narmada-brain-panel,
+      .design-panel,
+      .reference-panel,
+      .dataset-panel,
+      .analysis-chat {
+        grid-column: 1;
+      }
+    }
+
+    @media (min-width: 981px) {
+      body {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .site-nav {
+        min-height: 46px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+      }
+
+      .wrap {
+        width: 95vw;
+        height: calc(100vh - 46px);
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: minmax(420px, 0.88fr) minmax(0, 1.12fr);
+        grid-template-rows: 72px 62px minmax(0, 1fr);
+        grid-template-areas:
+          "hero hero"
+          "metrics metrics"
+          "map work";
+        gap: 10px;
+        overflow: hidden;
+      }
+
+      .hero {
+        grid-area: hero;
+        grid-template-columns: 1fr;
+        gap: 0;
+        margin: 0;
+        min-height: 0;
+      }
+
+      .hero-panel {
+        padding: 11px 14px;
+      }
+
+      .hero h1 {
+        margin-bottom: 4px;
+        font-size: 23px;
+        line-height: 1.05;
+      }
+
+      .hero-panel p {
+        max-width: none;
+        font-size: 12px;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .map-visual {
+        display: none;
+      }
+
+      .grid {
+        grid-area: metrics;
+        margin: 0;
+        gap: 8px;
+        min-height: 0;
+      }
+
+      .metric {
+        min-height: 0;
+        padding: 8px 10px;
+      }
+
+      .metric span {
+        margin-bottom: 4px;
+        font-size: 11px;
+      }
+
+      .metric strong {
+        font-size: 18px;
+      }
+
+      .metric small {
+        display: none;
+      }
+
+      .full-map-panel {
+        grid-area: map;
+        height: 100%;
+        min-height: 0;
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .full-map-panel .panel-head {
+        padding: 10px 12px;
+      }
+
+      .full-map-panel .panel-body {
+        min-height: 0;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr) auto;
+        padding: 10px;
+      }
+
+      .map-toolbar {
+        gap: 8px;
+      }
+
+      .map-toggles {
+        gap: 6px;
+      }
+
+      .map-toggles label {
+        padding: 5px 7px;
+        font-size: 12px;
+      }
+
+      .map-legend {
+        margin: 0 0 8px;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .geometry-map {
+        height: auto;
+        min-height: 0;
+      }
+
+      .map-readout {
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .map-readout div {
+        min-height: 54px;
+        padding: 8px;
+      }
+
+      .map-readout span {
+        font-size: 10px;
+      }
+
+      .map-readout strong {
+        margin-top: 4px;
+        font-size: 13px;
+      }
+
+      .main-grid {
+        grid-area: work;
+        height: 100%;
+        min-height: 0;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 10px;
+        align-items: stretch;
+        overflow: hidden;
+      }
+
+      .main-grid > aside.panel {
+        position: static;
+        height: 100%;
+        min-height: 0;
+        overflow: auto;
+      }
+
+      .main-grid > aside.panel .panel-head,
+      .module-panel .panel-head,
+      .analysis-chat .panel-head {
+        padding: 10px 12px;
+      }
+
+      .panel-head h2 {
+        font-size: 17px;
+      }
+
+      .panel-head p {
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .panel-body {
+        padding: 12px;
+      }
+
+      label {
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      select,
+      textarea,
+      input {
+        padding: 8px 9px;
+      }
+
+      textarea {
+        min-height: 82px;
+      }
+
+      .analysis-stack {
+        height: 100%;
+        min-height: 0;
+        display: block;
+        overflow: auto;
+        padding-right: 4px;
+      }
+
+      .analysis-stack > .module-panel,
+      .analysis-stack > .analysis-chat {
+        margin-bottom: 10px !important;
+      }
+
+      .mini-grid {
+        display: none;
+      }
+
+      .mini-card {
+        min-height: 76px;
+        padding: 10px 12px;
+      }
+
+      .mini-card h3 {
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+
+      .mini-card p {
+        font-size: 12px;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .compact-controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .scenario-grid {
+        gap: 8px;
+      }
+
+      .result-grid {
+        gap: 8px;
+        margin: 8px 0;
+      }
+
+      .result-tile {
+        min-height: 64px;
+        padding: 9px 10px;
+      }
+
+      .result-tile strong {
+        font-size: 18px;
+      }
+
+      .table-scroll {
+        max-height: 230px;
+      }
+
+      th,
+      td {
+        padding: 7px 8px;
+      }
+
+      .design-panel #hydrographCanvas {
+        height: 170px;
+      }
+
+      .design-panel .chart-box {
+        min-height: 205px;
+      }
+
+      .note {
+        font-size: 11px;
+      }
+
+      .reference-actions button {
+        min-height: 38px;
+      }
+
+      .chat {
+        min-height: 360px;
+      }
+
+      .messages {
+        max-height: 300px;
+      }
+
+      .composer textarea {
+        min-height: 56px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid,
+      .mini-grid,
+      .scenario-grid,
+      .design-panel .scenario-grid,
+      .result-grid,
+      .design-panel .result-grid,
+      .reference-panel .result-grid,
+      .reference-actions,
+      .compact-controls,
+      .map-readout,
+      .composer {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="UHC Ollama Lab navigation">
+    <strong class="brand"><span class="brand-mark">NA</span><span>UHC Subzone Ollama Lab</span></strong>
+    <span class="nav-chip">Narmada HMS absorbed</span>
+    <span class="nav-chip">SUG brain native</span>
+    <span class="nav-chip">Rainfall QA integrated</span>
+    <span class="status-pill"><i id="statusDot" class="dot"></i><span id="serverStatus">Checking Ollama</span></span>
+    <span class="status-pill">Model <strong id="modelName">-</strong></span>
+  </nav>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-panel">
+        <h1>Local LLM Test App For UHC Subzone Hydrology</h1>
+        <p>This independent app loads the existing UHC Subzone hydrology artifacts, builds compact basin context, and sends selected facts to Ollama. It is meant to test whether a local LLM can help review SUG assumptions, HMS sub-basin parameters, map readiness, and design-flood workflows.</p>
+      </div>
+      <div class="map-visual" aria-label="Stylized basin and subzone map">
+        <div class="subzone a"></div>
+        <div class="subzone b"></div>
+        <div class="pin one"></div>
+        <div class="pin two"></div>
+        <div class="pin three"></div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Project metrics">
+      <article class="metric"><span>HMS Sub-Basins</span><strong id="mSubbasins">-</strong><small>Active Narmada HMS dataset loaded from local JS.</small></article>
+      <article class="metric"><span>Reaches / Junctions</span><strong id="mNetwork">-</strong><small>Network entities available for model review.</small></article>
+      <article class="metric"><span>GIS Area</span><strong id="mArea">-</strong><small>Total GIS polygon area across retained sub-basins.</small></article>
+      <article class="metric"><span>Spatial App Layers</span><strong id="mLayers">-</strong><small>Betwa and Chambal boundary, drainage, sites, dams.</small></article>
+    </section>
+
+    <section class="panel full-map-panel" aria-label="Full width Narmada HMS geometry map">
+      <div class="panel-head map-toolbar">
+        <div>
+          <h2>Narmada HMS Geometry Map</h2>
+          <p>Full-width local map of sub-basin polygons, reach links, labels, and HMS junction/site points.</p>
+        </div>
+        <div class="map-toggles" aria-label="Map layer controls">
+          <label><input id="showMapBasins" type="checkbox" checked> Basins</label>
+          <label><input id="showMapReaches" type="checkbox" checked> Reaches</label>
+          <label><input id="showMapSites" type="checkbox" checked> Sites</label>
+          <label><input id="showMapLabels" type="checkbox" checked> Labels</label>
+          <button id="fitMapBtn" type="button" class="secondary">Fit All</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="map-legend">
+          <span><i class="legend-swatch upper"></i>Upper/eastern candidate</span>
+          <span><i class="legend-swatch lower"></i>Lower/western candidate</span>
+          <span><i class="legend-swatch selected"></i>Selected basin</span>
+          <span id="mapGeometryCount">-</span>
+        </div>
+        <div id="geometryMap" class="geometry-map" role="img" aria-label="Narmada HMS sub-basin geometry map"></div>
+        <div class="map-readout" aria-live="polite">
+          <div><span>Map Selection</span><strong id="mapSelection">-</strong></div>
+          <div><span>Coordinates</span><strong id="mapCoords">-</strong></div>
+          <div><span>Geometry</span><strong id="mapGeometry">-</strong></div>
+          <div><span>Linked Basin</span><strong id="mapLinked">-</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <aside class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Context Builder</h2>
+            <p>Select a local artifact and ask Ollama to reason over it.</p>
+          </div>
+        </div>
+        <div class="panel-body">
+          <label>Model
+            <select id="modelSelect"><option>Loading models...</option></select>
+          </label>
+          <label>Analysis target
+            <select id="targetSelect">
+              <option value="project">Whole UHC Subzone project</option>
+              <option value="hms">Narmada HMS model dataset</option>
+              <option value="largest">Largest HMS sub-basins</option>
+              <option value="chambal">Chambal map and SUG readiness</option>
+              <option value="betwa">Betwa map and SUG readiness</option>
+              <option value="selected">Selected HMS sub-basin</option>
+              <option value="reference">Reference rainfall and PMP review</option>
+              <option value="narmadaBrain">Narmada HMS + SUG brain</option>
+            </select>
+          </label>
+          <label>Selected HMS sub-basin
+            <select id="subbasinSelect"></select>
+          </label>
+          <label>Question template
+            <select id="questionSelect">
+              <option value="review">Review hydrological assumptions and risks</option>
+              <option value="workflow">Generate GIS and modelling workflow</option>
+              <option value="qa">Create validation QA checklist</option>
+              <option value="handoff">Explain how to integrate into NITA AI</option>
+              <option value="sql">Suggest PostGIS schema and queries</option>
+              <option value="sugbrain">Review Narmada SUG model brain</option>
+            </select>
+          </label>
+          <label>Extra instruction
+            <textarea id="extraText">Be specific. Separate known local facts from assumptions. Keep recommendations suitable for engineering screening, not statutory final design.</textarea>
+          </label>
+          <div class="actions">
+            <button id="askBtn" type="button">Ask Ollama</button>
+            <button id="contextBtn" type="button" class="secondary">Preview Context</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="analysis-stack">
+        <div class="mini-grid">
+          <div class="mini-card">
+            <h3>Narmada HMS + SUG</h3>
+            <p>Absorbed into this page: sub-basin parameters, SUG coefficients, peak response, and LLM review context.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Rainfall Intelligence</h3>
+            <p>Observed event, PMP maxima, station QA, and zone assignment are now part of the prompt brain.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Design Flood Screening</h3>
+            <p>Run rainfall-loss-baseflow scenarios here, then ask the local model to critique the result.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Local LLM Analyst</h3>
+            <p>Ollama receives compact facts and computed values directly from this holistic app.</p>
+          </div>
+        </div>
+
+        <div class="panel module-panel narmada-brain-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Narmada HMS + SUG Brain</h2>
+              <p>Native sub-basin screening absorbed from the Narmada app, without opening external pages.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="compact-controls">
+              <label>Search sub-basin
+                <input id="narmadaSearch" placeholder="Sub-7">
+              </label>
+              <label>Region view
+                <select id="narmadaRegion">
+                  <option value="all">All Narmada HMS</option>
+                  <option value="upper">Upper/eastern</option>
+                  <option value="lower">Lower/western</option>
+                </select>
+              </label>
+              <label>Rank by
+                <select id="narmadaSort">
+                  <option value="peak">Computed flood peak</option>
+                  <option value="area">GIS area</option>
+                  <option value="qp">SUG unit peak</option>
+                  <option value="tp">SUG time to peak</option>
+                  <option value="slope">Flowpath slope</option>
+                  <option value="name">Name</option>
+                </select>
+              </label>
+              <label>Brain action
+                <button id="narmadaAskBtn" type="button">Ask About Narmada SUG</button>
+              </label>
+            </div>
+            <div class="result-grid" aria-label="Narmada SUG brain indicators">
+              <div class="result-tile"><span>Filtered Basins</span><strong id="nFiltered">-</strong></div>
+              <div class="result-tile"><span>Largest Area</span><strong id="nLargest">-</strong></div>
+              <div class="result-tile"><span>Highest Unit Peak</span><strong id="nUnitPeak">-</strong></div>
+              <div class="result-tile"><span>Highest Scenario Peak</span><strong id="nFloodPeak">-</strong></div>
+            </div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Sub-basin</th><th>Region</th><th>Area</th><th>Ct / Cp</th><th>Tp</th><th>Unit Qp</th><th>Scenario Peak</th></tr></thead>
+                <tbody id="narmadaRows"></tbody>
+              </table>
+            </div>
+            <p class="note">Click a row to make that sub-basin the active flood-screening target. The ranking uses the current rainfall and loss inputs from this page.</p>
+          </div>
+        </div>
+
+        <div class="panel module-panel design-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Design Flood Screening</h2>
+              <p>Compute a quick SUG-based runoff scenario for the selected HMS sub-basin.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="scenario-grid">
+              <label>Return period
+                <select id="returnPeriod">
+                  <option value="25">25 year</option>
+                  <option value="50">50 year</option>
+                  <option value="100" selected>100 year</option>
+                  <option value="500">500 year</option>
+                </select>
+              </label>
+              <label>Storm rainfall (mm)
+                <input id="rainfallMm" type="number" min="0" step="1" value="180">
+              </label>
+              <label>Storm duration (hr)
+                <input id="durationHr" type="number" min="0.5" step="0.5" value="6">
+              </label>
+              <label>Areal reduction factor
+                <input id="arealFactor" type="number" min="0" max="1.5" step="0.01" value="0.92">
+              </label>
+              <label>Loss rate (mm/hr)
+                <input id="lossRate" type="number" min="0" step="0.5" value="3">
+              </label>
+              <label>Baseflow (cumec/sq.km)
+                <input id="baseflowRate" type="number" min="0" step="0.01" value="0.04">
+              </label>
+              <label>Storm centering
+                <select id="stormCentering">
+                  <option value="front">Early burst</option>
+                  <option value="middle" selected>Centered burst</option>
+                  <option value="late">Late burst</option>
+                </select>
+              </label>
+              <label>Hydrograph shape
+                <select id="hydroShape">
+                  <option value="curvilinear" selected>SUG curvilinear</option>
+                  <option value="triangular">SUG triangular check</option>
+                </select>
+              </label>
+              <label>Step (hr)
+                <input id="timeStepHr" type="number" min="0.25" max="6" step="0.25" value="1">
+              </label>
+            </div>
+            <div class="actions">
+              <button id="computeBtn" type="button">Compute Scenario</button>
+              <button id="scenarioAskBtn" type="button" class="secondary">Ask Ollama To Analyze Scenario</button>
+            </div>
+            <div class="result-grid" aria-label="Scenario results">
+              <div class="result-tile"><span>Effective Rainfall</span><strong id="rEffective">-</strong></div>
+              <div class="result-tile"><span>Peak Flow</span><strong id="rPeak">-</strong></div>
+              <div class="result-tile"><span>Time To Peak</span><strong id="rTp">-</strong></div>
+              <div class="result-tile"><span>Runoff Volume</span><strong id="rVolume">-</strong></div>
+            </div>
+            <div class="hydrograph-wrap">
+              <div class="chart-box">
+                <canvas id="hydrographCanvas" width="760" height="300" aria-label="Computed hydrograph chart"></canvas>
+                <p class="note">Data-based screening: rainfall is converted to effective rainfall by time block, then routed through the selected basin's stored SUG ordinates. Use calibrated HEC-HMS/approved methods for final design.</p>
+                <div class="table-scroll ordinates-scroll">
+                  <table>
+                    <thead><tr><th>Time hr</th><th>Rain mm</th><th>Eff. mm</th><th>Flow cumec</th></tr></thead>
+                    <tbody id="hydroRows"></tbody>
+                  </table>
+                </div>
+              </div>
+              <table>
+                <thead><tr><th>Selected SUG Parameter</th><th>Value</th></tr></thead>
+                <tbody id="sugRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel module-panel reference-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Reference Rainfall Intelligence</h2>
+              <p>Integrated from visualization reference 019f59c9-e4fe-7732-83d6-05e5022fff79.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="result-grid" aria-label="Reference rainfall indicators">
+              <div class="result-tile"><span>Observed Event Max</span><strong id="refObserved">-</strong></div>
+              <div class="result-tile"><span>PMP 72hr Max</span><strong id="refPmp">-</strong></div>
+              <div class="result-tile"><span>Station QA</span><strong id="refStations">-</strong></div>
+              <div class="result-tile"><span>PMP Zones</span><strong id="refZones">-</strong></div>
+            </div>
+            <div class="reference-actions">
+              <button id="useObservedBtn" type="button" class="secondary">Use Observed Event</button>
+              <button id="usePmp24Btn" type="button" class="secondary">Use 24hr PMP</button>
+              <button id="usePmp72Btn" type="button" class="secondary">Use 72hr PMP</button>
+            </div>
+            <p class="note">The reference review flags extreme no-go station totals for audit and confirms PMP hourly pattern closure. Use these buttons to push reference rainfall into the screening scenario, then ask Ollama to review the result.</p>
+            <table style="margin-top: 12px">
+              <thead><tr><th>Reference Item</th><th>Value</th><th>LLM Use</th></tr></thead>
+              <tbody id="referenceRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel module-panel dataset-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Local Dataset Snapshot</h2>
+              <p>Computed in-browser from existing files in this project.</p>
+            </div>
+          </div>
+          <div class="panel-body">
+            <table>
+              <thead><tr><th>Item</th><th>Value</th><th>Note</th></tr></thead>
+              <tbody id="snapshotRows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel chat analysis-chat">
+          <div class="panel-head">
+            <div>
+              <h2>Ollama Analysis Console</h2>
+              <p>Responses use selected local context plus your extra instruction.</p>
+            </div>
+          </div>
+          <div id="messages" class="messages">
+            <div class="message system">Ready. Select a target and ask Ollama to review this project context.</div>
+          </div>
+          <form id="composer" class="composer">
+            <textarea id="promptInput" placeholder="Ask a follow-up about the selected basin, SUG parameters, GIS layers, or integration path..."></textarea>
+            <button id="sendBtn" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script src="../outputs/hms-narmada-model-data.js"></script>
+  <script src="../outputs/chambal-betwa-spatial-data.js"></script>
+  <script>
+    const OLLAMA = "http://127.0.0.1:11434";
+    const HMS = window.HMS_NARMADA_DATA || {};
+    const SPATIAL = window.UHC_BASIN_SPATIAL_DATA || {};
+    const subbasins = HMS.subbasins || [];
+    const basinGeoJson = HMS.basinGeoJson || { type: "FeatureCollection", features: [] };
+    const junctionSites = HMS.junctionSites || [];
+    const REFERENCE = {
+      id: "019f59c9-e4fe-7732-83d6-05e5022fff79",
+      sourcePath: "C:/Users/Welcome/.codex/visualizations/2026/07/13/019f59c9-e4fe-7732-83d6-05e5022fff79",
+      files: [
+        "narmada-model-input-review.html",
+        "imd-hms-rainfall-graphs.html",
+        "narmada-cwc-station-map.html",
+        "narmada-current-future-station-map.html",
+        "narmada-dem-outcome-map.html",
+        "joined-area-map.html"
+      ],
+      observed: {
+        eventLabel: "06-09 Jul 2025",
+        subbasins: 51,
+        maxTotalMm: 443.3,
+        minTotalMm: 217.4,
+        avgTotalMm: 324.4,
+        top: [
+          { subbasin: "SB_Sub_23", totalMm: 443.3, maxHourMm: 54.9 },
+          { subbasin: "SB_Sub_32", totalMm: 439.6, maxHourMm: 56.3 },
+          { subbasin: "SB_Sub_13", totalMm: 437.9, maxHourMm: 53.6 },
+          { subbasin: "SB_Sub_11", totalMm: 430.4, maxHourMm: 51.2 },
+          { subbasin: "SB_Sub_30", totalMm: 426.8, maxHourMm: 53.1 }
+        ]
+      },
+      pmp: {
+        closureErrorMm: 0,
+        hyetographRows: 14688,
+        scenarios: [
+          { name: "PMP_24hr_average_arf", durationHr: 24, maxTotalMm: 696.7, maxHourMm: 90.6 },
+          { name: "PMP_24hr_envelope_arf", durationHr: 24, maxTotalMm: 704.8, maxHourMm: 91.6 },
+          { name: "PMP_48hr_average_arf", durationHr: 48, maxTotalMm: 1284.0, maxHourMm: 224.7 },
+          { name: "PMP_48hr_envelope_arf", durationHr: 48, maxTotalMm: 1284.0, maxHourMm: 244.6 },
+          { name: "PMP_72hr_average_arf", durationHr: 72, maxTotalMm: 1660.0, maxHourMm: 231.2 },
+          { name: "PMP_72hr_envelope_arf", durationHr: 72, maxTotalMm: 1660.0, maxHourMm: 255.4 }
+        ],
+        top72: [
+          { subbasin: "SB_Sub_51", zone: "104M", totalMm: 1660.0, maxHourMm: 126.2 },
+          { subbasin: "SB_Sub_53", zone: "104L", totalMm: 1538.8, maxHourMm: 255.4 },
+          { subbasin: "SB_Sub_52", zone: "104M", totalMm: 1411.6, maxHourMm: 107.3 },
+          { subbasin: "SB_Subbasin_2", zone: "104L", totalMm: 1395.6, maxHourMm: 231.7 }
+        ]
+      },
+      stationQa: {
+        accepted: 26,
+        rejected: 12,
+        rejectedReason: "period_total_gt_6000_mm",
+        auditStations: ["Barwani", "Mandleshwar", "Khalghat", "Kogaon", "Amgaon", "Barmanghat", "Handia", "Hoshangabad"]
+      },
+      zones: [
+        { zone: "104L", subbasins: 3 },
+        { zone: "104M", subbasins: 40 },
+        { zone: "104U", subbasins: 8 }
+      ]
+    };
+    const chatHistory = [{
+      role: "system",
+      content: "You are a local hydrology and GIS analyst running through Ollama. Analyze only the provided UHC Subzone context. Be concise, engineering-focused, and careful about uncertainty. Do not claim to run HEC-HMS or verify scanned CWC coefficients unless explicitly provided."
+    }];
+    let currentScenario = null;
+    let rainfallSource = "Manual input";
+
+    const $ = (id) => document.getElementById(id);
+    const fmt = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 1 });
+    const fmt0 = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
+
+    function layerCount(basin, layer) {
+      return SPATIAL.basins?.[basin]?.layers?.[layer]?.features?.length || 0;
+    }
+
+    function totalSpatialLayers() {
+      return ["betwa", "chambal"].reduce((sum, basin) => {
+        const layers = SPATIAL.basins?.[basin]?.layers || {};
+        return sum + Object.values(layers).filter(layer => layer?.features?.length).length;
+      }, 0);
+    }
+
+    function selectedSubbasin() {
+      return subbasins.find(s => s.name === $("subbasinSelect").value) || subbasins[0] || {};
+    }
+
+    function subbasinLine(s) {
+      return `${s.name}: region=${s.region}, A=${fmt.format(s.gisAreaSqKm || 0)} sq.km, L=${fmt.format(s.longestFlowpathKm || 0)} km, Lc=${fmt.format(s.centroidalFlowpathKm || 0)} km, slope=${fmt.format(s.sug?.slopeMPerKm || 0)} m/km, Ct/Cp=${s.sug?.ct}/${s.sug?.cp}, Tp=${fmt.format(s.sug?.timeToPeakHr || 0)} hr, unit peak=${fmt.format(s.sug?.unitPeakCumec || 0)} cumec.`;
+    }
+
+    function basinArea(s) {
+      return Number(s.sug?.areaSqKm || s.gisAreaSqKm || s.hmsAreaSqKm || 0);
+    }
+
+    function slopeMPerKm(s) {
+      return Number(s.sug?.slopeMPerKm || (Number(s.longestFlowpathSlope) || 0) * 1000 || 0);
+    }
+
+    function geometryFeatures() {
+      return basinGeoJson.features || [];
+    }
+
+    function flattenCoordinates(geometry) {
+      if (!geometry) return [];
+      const rings = [];
+      if (geometry.type === "Polygon") {
+        geometry.coordinates.forEach(ring => rings.push(ring));
+      } else if (geometry.type === "MultiPolygon") {
+        geometry.coordinates.forEach(poly => poly.forEach(ring => rings.push(ring)));
+      }
+      return rings;
+    }
+
+    function mapBounds() {
+      const coords = [];
+      geometryFeatures().forEach(feature => {
+        flattenCoordinates(feature.geometry).forEach(ring => ring.forEach(point => coords.push(point)));
+      });
+      subbasins.forEach(s => coords.push([Number(s.lon), Number(s.lat)]));
+      junctionSites.forEach(site => coords.push([Number(site.lon), Number(site.lat)]));
+      const xs = coords.map(point => point[0]).filter(Number.isFinite);
+      const ys = coords.map(point => point[1]).filter(Number.isFinite);
+      return {
+        minX: Math.min(...xs),
+        maxX: Math.max(...xs),
+        minY: Math.min(...ys),
+        maxY: Math.max(...ys)
+      };
+    }
+
+    function projector(width, height, bounds) {
+      const pad = 34;
+      const spanX = Math.max(0.001, bounds.maxX - bounds.minX);
+      const spanY = Math.max(0.001, bounds.maxY - bounds.minY);
+      const scale = Math.min((width - pad * 2) / spanX, (height - pad * 2) / spanY);
+      const mapW = spanX * scale;
+      const mapH = spanY * scale;
+      const ox = (width - mapW) / 2;
+      const oy = (height - mapH) / 2;
+      return ([lon, lat]) => {
+        const x = ox + (lon - bounds.minX) * scale;
+        const y = oy + (bounds.maxY - lat) * scale;
+        return [x, y];
+      };
+    }
+
+    function polygonPath(geometry, project) {
+      return flattenCoordinates(geometry).map(ring => {
+        return ring.map((point, index) => {
+          const [x, y] = project(point);
+          return `${index ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(" ") + " Z";
+      }).join(" ");
+    }
+
+    function basinByMapName(name) {
+      return subbasins.find(s => s.name === name || String(s.basinId) === String(name)) || {};
+    }
+
+    function selectedMapBasinName() {
+      return selectedSubbasin().name;
+    }
+
+    function visibleMapNames() {
+      return new Set(filteredNarmadaRows().map(s => s.name));
+    }
+
+    function mapGeometryContext() {
+      return `Geometry map context: local HMS basinGeoJson contains ${geometryFeatures().length} polygon features, ${subbasins.length} HMS sub-basin records, ${HMS.reachCount || "-"} reach records, and ${junctionSites.length || HMS.junctionCount || 0} junction/site points. The map is rendered directly inside the Ollama lab from local geometry data and is synchronized with the selected SUG/flood-screening basin.`;
+    }
+
+    function renderGeometryMap() {
+      if (!$("geometryMap")) return;
+      const width = 1280;
+      const height = 620;
+      const bounds = mapBounds();
+      const project = projector(width, height, bounds);
+      const showBasins = $("showMapBasins").checked;
+      const showReaches = $("showMapReaches").checked;
+      const showSites = $("showMapSites").checked;
+      const showLabels = $("showMapLabels").checked;
+      const selectedName = selectedMapBasinName();
+      const visibleNames = visibleMapNames();
+      const basinParts = showBasins ? geometryFeatures().map(feature => {
+        const name = feature.properties?.name || feature.properties?.basinId || "";
+        const basin = basinByMapName(name);
+        const cleanName = basin.name || name;
+        const region = basin.region || "lower";
+        const selected = cleanName === selectedName;
+        const filteredOut = visibleNames.size && !visibleNames.has(cleanName);
+        return `<path class="map-basin ${region} ${selected ? "selected" : ""} ${filteredOut ? "filtered-out" : ""}" data-name="${cleanName}" d="${polygonPath(feature.geometry, project)}"><title>${cleanName}</title></path>`;
+      }).join("") : "";
+
+      const reachParts = showReaches ? subbasins.map(s => {
+        const downstream = subbasins.find(d => d.linkNo === s.downstreamLinkNo);
+        if (!downstream || !Number.isFinite(Number(s.lon)) || !Number.isFinite(Number(downstream.lon))) return "";
+        const [x1, y1] = project([Number(s.lon), Number(s.lat)]);
+        const [x2, y2] = project([Number(downstream.lon), Number(downstream.lat)]);
+        return `<path class="map-reach" d="M${x1.toFixed(1)},${y1.toFixed(1)} L${x2.toFixed(1)},${y2.toFixed(1)}"></path>`;
+      }).join("") : "";
+
+      const siteParts = showSites ? junctionSites.map(site => {
+        if (!Number.isFinite(Number(site.lon)) || !Number.isFinite(Number(site.lat))) return "";
+        const [x, y] = project([Number(site.lon), Number(site.lat)]);
+        return `<circle class="map-site" data-site="${site.name || "HMS site"}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.2"><title>${site.name || "HMS site"}</title></circle>`;
+      }).join("") : "";
+
+      const labelParts = showLabels ? subbasins.map(s => {
+        if (!visibleNames.has(s.name) && visibleNames.size) return "";
+        const [x, y] = project([Number(s.lon), Number(s.lat)]);
+        return `<text class="map-label" x="${x.toFixed(1)}" y="${(y - 7).toFixed(1)}" text-anchor="middle">${s.name.replace("Sub-", "")}</text>`;
+      }).join("") : "";
+
+      $("geometryMap").innerHTML = `<svg viewBox="0 0 ${width} ${height}" aria-label="Narmada HMS geometry">${reachParts}${basinParts}${siteParts}${labelParts}</svg>`;
+      $("mapGeometryCount").textContent = `${geometryFeatures().length} polygons / ${junctionSites.length || HMS.junctionCount || 0} sites`;
+      renderMapReadout();
+      [...document.querySelectorAll(".map-basin")].forEach(path => path.addEventListener("click", () => {
+        const basin = subbasins.find(s => s.name === path.dataset.name);
+        if (!basin) return;
+        $("subbasinSelect").value = basin.name;
+        $("targetSelect").value = "narmadaBrain";
+        computeScenario();
+      }));
+    }
+
+    function renderMapReadout() {
+      const basin = selectedSubbasin();
+      $("mapSelection").textContent = basin.name || "-";
+      $("mapCoords").textContent = basin.lat && basin.lon ? `${fmt.format(basin.lat)}, ${fmt.format(basin.lon)}` : "-";
+      $("mapGeometry").textContent = `${fmt.format(basinArea(basin))} sq.km, ${basin.region || "-"} region`;
+      $("mapLinked").textContent = basin.downstreamLinkNo >= 0 ? `Downstream link ${basin.downstreamLinkNo}` : "Outlet or not assigned";
+    }
+
+    function valueNumber(id, fallback) {
+      const value = Number($(id).value);
+      return Number.isFinite(value) ? value : fallback;
+    }
+
+    function adjustedPeakTime(baseTp, centering) {
+      const shifts = { front: 0.86, middle: 1, late: 1.14 };
+      return Math.max(0.25, baseTp * (shifts[centering] || 1));
+    }
+
+    function stormBlockOrder(count, centering) {
+      const centerRatio = centering === "front" ? 0.28 : centering === "late" ? 0.72 : 0.5;
+      const center = Math.max(0, Math.min(count - 1, Math.round((count - 1) * centerRatio)));
+      const order = [center];
+      for (let offset = 1; order.length < count; offset += 1) {
+        if (center - offset >= 0) order.push(center - offset);
+        if (center + offset < count) order.push(center + offset);
+      }
+      return order.slice(0, count);
+    }
+
+    function buildHyetograph(inputs) {
+      const count = Math.max(1, Math.ceil(inputs.durationHr / Math.max(0.25, inputs.stepHr)));
+      const intervalHr = inputs.durationHr / count;
+      const exponent = inputs.returnPeriod === "500" ? 0.54 : inputs.returnPeriod === "25" ? 0.68 : 0.62;
+      const increments = [];
+      let previous = 0;
+      for (let i = 1; i <= count; i += 1) {
+        const cumulative = inputs.rainfallMm * Math.pow(i / count, exponent);
+        increments.push(Math.max(0, cumulative - previous));
+        previous = cumulative;
+      }
+      const rankedDepths = increments.sort((a, b) => b - a);
+      const order = stormBlockOrder(count, inputs.stormCentering);
+      const grossDepths = Array(count).fill(0);
+      rankedDepths.forEach((depth, index) => {
+        grossDepths[order[index]] = depth;
+      });
+      return grossDepths.map((grossMm, index) => {
+        const effectiveMm = Math.max(0, grossMm * inputs.arealFactor - inputs.lossRate * intervalHr);
+        return {
+          index,
+          startHr: Number((index * intervalHr).toFixed(3)),
+          endHr: Number(((index + 1) * intervalHr).toFixed(3)),
+          midHr: (index + 0.5) * intervalHr,
+          durationHr: intervalHr,
+          grossMm,
+          effectiveMm
+        };
+      });
+    }
+
+    function unitHydrographValue(t, tp, baseTime, unitPeak, shape) {
+      if (t <= 0 || t >= baseTime || unitPeak <= 0) return 0;
+      if (shape === "triangular") {
+        const ratio = t <= tp ? t / Math.max(tp, 0.01) : (baseTime - t) / Math.max(baseTime - tp, 0.01);
+        return unitPeak * Math.max(0, Math.min(1, ratio));
+      }
+      if (t <= tp) {
+        const ratio = Math.max(0.001, t / Math.max(tp, 0.01));
+        return unitPeak * Math.pow(ratio, 2.35) * Math.exp(2.35 * (1 - ratio));
+      }
+      const recession = (t - tp) / Math.max(baseTime - tp, 0.01);
+      const taper = Math.max(0, (baseTime - t) / Math.max(baseTime - tp, 0.01));
+      return unitPeak * Math.exp(-2.1 * recession) * Math.pow(taper, 0.35);
+    }
+
+    function scenarioInputsFromPage() {
+      return {
+        rainfallMm: valueNumber("rainfallMm", 0),
+        durationHr: Math.max(0.1, valueNumber("durationHr", 1)),
+        arealFactor: Math.max(0, valueNumber("arealFactor", 1)),
+        lossRate: Math.max(0, valueNumber("lossRate", 0)),
+        baseflowRate: Math.max(0, valueNumber("baseflowRate", 0)),
+        returnPeriod: $("returnPeriod").value,
+        stormCentering: $("stormCentering").value,
+        hydroShape: $("hydroShape").value,
+        stepHr: Math.max(0.25, valueNumber("timeStepHr", 1))
+      };
+    }
+
+    function computeScenarioForBasin(basin, overrides = {}) {
+      const sug = basin.sug || {};
+      const inputs = { ...scenarioInputsFromPage(), ...overrides };
+      const area = basinArea(basin);
+      const hyetograph = buildHyetograph(inputs);
+      const effectiveRainfallMm = hyetograph.reduce((sum, row) => sum + row.effectiveMm, 0);
+      const unitPeak = Number(sug.unitPeakCumec || 0);
+      const tp = adjustedPeakTime(Number(sug.timeToPeakHr || 1), inputs.stormCentering);
+      const baseTime = Math.max(tp + inputs.stepHr, Number(sug.baseTimeHr || tp * 3));
+      const baseflow = inputs.baseflowRate * area;
+      const rows = [];
+      const endTime = inputs.durationHr + baseTime;
+      let volumeMcm = 0;
+      for (let t = 0; t <= endTime + 0.0001; t += inputs.stepHr) {
+        const directFlow = hyetograph.reduce((sum, block) => {
+          const elapsed = t - block.midHr;
+          return sum + unitHydrographValue(elapsed, tp, baseTime, unitPeak, inputs.hydroShape) * (block.effectiveMm / 10);
+        }, 0);
+        rows.push({
+          timeHr: Number(t.toFixed(2)),
+          rainfallMm: hyetograph.find(block => t >= block.startHr && t < block.endHr)?.grossMm || 0,
+          effectiveRainfallMm: hyetograph.find(block => t >= block.startHr && t < block.endHr)?.effectiveMm || 0,
+          directFlowCumec: directFlow,
+          flowCumec: baseflow + directFlow
+        });
+      }
+      for (let i = 1; i < rows.length; i += 1) {
+        const previous = rows[i - 1];
+        const row = rows[i];
+        volumeMcm += ((previous.flowCumec + row.flowCumec) / 2) * ((row.timeHr - previous.timeHr) * 3600) / 1000000;
+      }
+      const peakRow = rows.reduce((peak, row) => row.flowCumec > peak.flowCumec ? row : peak, rows[0] || { timeHr: 0, flowCumec: baseflow, directFlowCumec: 0 });
+      const directPeak = Math.max(0, peakRow.directFlowCumec || 0);
+      const peakFlow = peakRow.flowCumec || baseflow;
+      const directRunoffMcm = effectiveRainfallMm * area / 1000;
+      const unitVolumeMcmPerCm = rows.reduce((sum, row, index) => {
+        if (!index) return 0;
+        const previous = rows[index - 1];
+        const q1 = unitHydrographValue(previous.timeHr, tp, baseTime, unitPeak, inputs.hydroShape);
+        const q2 = unitHydrographValue(row.timeHr, tp, baseTime, unitPeak, inputs.hydroShape);
+        return sum + ((q1 + q2) / 2) * ((row.timeHr - previous.timeHr) * 3600) / 1000000;
+      }, 0);
+      return {
+        basinName: basin.name || "selected basin",
+        region: basin.region || "-",
+        returnPeriod: inputs.returnPeriod,
+        rainfallSource,
+        areaSqKm: area,
+        rainfallMm: inputs.rainfallMm,
+        durationHr: inputs.durationHr,
+        arealFactor: inputs.arealFactor,
+        lossRate: inputs.lossRate,
+        baseflowRate: inputs.baseflowRate,
+        effectiveRainfallMm,
+        unitPeak,
+        peakFlow,
+        directPeak,
+        baseflow,
+        timeToPeakHr: peakRow.timeHr,
+        unitTimeToPeakHr: tp,
+        baseTimeHr: baseTime,
+        endTimeHr: endTime,
+        volumeMcm,
+        directRunoffMcm,
+        unitVolumeMcmPerCm,
+        hydroShape: inputs.hydroShape,
+        stormCentering: inputs.stormCentering,
+        hyetograph,
+        rows
+      };
+    }
+
+    function computeScenario() {
+      const basin = selectedSubbasin();
+      currentScenario = computeScenarioForBasin(basin);
+      renderScenario();
+      renderNarmadaBrain();
+      renderGeometryMap();
+      return currentScenario;
+    }
+
+    function scenarioContext() {
+      const s = currentScenario || computeScenario();
+      const sample = s.rows
+        .filter((_, index) => index % Math.max(1, Math.ceil(s.rows.length / 8)) === 0)
+        .slice(0, 8)
+        .map(row => `${fmt.format(row.timeHr)} hr=${fmt0.format(row.flowCumec)} cumec`)
+        .join("; ");
+      return `Current computed design-flood screening scenario:
+Sub-basin: ${s.basinName}, region=${s.region}, area=${fmt.format(s.areaSqKm)} sq.km.
+Rainfall: ${s.returnPeriod}-year depth ${fmt.format(s.rainfallMm)} mm over ${fmt.format(s.durationHr)} hr, source=${s.rainfallSource}, areal factor=${fmt.format(s.arealFactor)}, loss=${fmt.format(s.lossRate)} mm/hr.
+Effective rainfall after block losses: ${fmt.format(s.effectiveRainfallMm)} mm.
+SUG inputs: unit peak=${fmt.format(s.unitPeak)} cumec per cm effective rainfall, SUG Tp=${fmt.format(s.unitTimeToPeakHr)} hr, base time=${fmt.format(s.baseTimeHr)} hr, shape=${s.hydroShape}, storm centering=${s.stormCentering}.
+Computed outputs from routed hyetograph: direct peak=${fmt0.format(s.directPeak)} cumec, baseflow=${fmt0.format(s.baseflow)} cumec, total peak=${fmt0.format(s.peakFlow)} cumec at ${fmt.format(s.timeToPeakHr)} hr, hydrograph volume=${fmt.format(s.volumeMcm)} MCM, direct runoff volume=${fmt.format(s.directRunoffMcm)} MCM.
+Sample hydrograph ordinates: ${sample}.`;
+    }
+
+    function renderScenario() {
+      const s = currentScenario;
+      if (!s) return;
+      $("rEffective").textContent = `${fmt.format(s.effectiveRainfallMm)} mm`;
+      $("rPeak").textContent = `${fmt0.format(s.peakFlow)} cumec`;
+      $("rTp").textContent = `${fmt.format(s.timeToPeakHr)} hr`;
+      $("rVolume").textContent = `${fmt.format(s.volumeMcm)} MCM`;
+      $("sugRows").innerHTML = [
+        ["Sub-basin", s.basinName],
+        ["Region", s.region],
+        ["Area", `${fmt.format(s.areaSqKm)} sq.km`],
+        ["Ct / Cp", `${selectedSubbasin().sug?.ct || "-"} / ${selectedSubbasin().sug?.cp || "-"}`],
+        ["Unit peak", `${fmt.format(s.unitPeak)} cumec per cm`],
+        ["SUG time to peak", `${fmt.format(s.unitTimeToPeakHr)} hr`],
+        ["Routed peak time", `${fmt.format(s.timeToPeakHr)} hr`],
+        ["Baseflow added", `${fmt0.format(s.baseflow)} cumec`],
+        ["Direct runoff peak", `${fmt0.format(s.directPeak)} cumec`],
+        ["Direct runoff volume", `${fmt.format(s.directRunoffMcm)} MCM`],
+        ["Base time", `${fmt.format(s.baseTimeHr)} hr`]
+      ].map(row => `<tr><td>${row[0]}</td><td><strong>${row[1]}</strong></td></tr>`).join("");
+      const sampleRows = s.hyetograph.map(block => {
+        const flowRow = s.rows.reduce((best, row) => Math.abs(row.timeHr - block.endHr) < Math.abs(best.timeHr - block.endHr) ? row : best, s.rows[0]);
+        return `<tr><td>${fmt.format(block.endHr)}</td><td>${fmt.format(block.grossMm)}</td><td>${fmt.format(block.effectiveMm)}</td><td><strong>${fmt0.format(flowRow.flowCumec)}</strong></td></tr>`;
+      }).join("");
+      $("hydroRows").innerHTML = sampleRows || "<tr><td colspan=\"4\">No rainfall blocks computed.</td></tr>";
+      drawHydrograph(s);
+    }
+
+    function drawHydrograph(s) {
+      const canvas = $("hydrographCanvas");
+      const ctx = canvas.getContext("2d");
+      const width = canvas.width;
+      const height = canvas.height;
+      const pad = { left: 58, right: 18, top: 22, bottom: 42 };
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#fffdfa";
+      ctx.fillRect(0, 0, width, height);
+      const maxQ = Math.max(1, ...s.rows.map(row => row.flowCumec));
+      const maxT = Math.max(1, s.endTimeHr || s.baseTimeHr);
+      const maxRain = Math.max(1, ...s.hyetograph.map(row => row.grossMm));
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const x = (t) => pad.left + (t / maxT) * plotW;
+      const y = (q) => height - pad.bottom - (q / maxQ) * (height - pad.top - pad.bottom);
+
+      ctx.strokeStyle = "rgba(101, 114, 136, 0.18)";
+      ctx.lineWidth = 1;
+      ctx.fillStyle = "#657288";
+      ctx.font = "12px Segoe UI, Arial";
+      for (let i = 0; i <= 4; i += 1) {
+        const q = maxQ * i / 4;
+        const yy = y(q);
+        ctx.beginPath();
+        ctx.moveTo(pad.left, yy);
+        ctx.lineTo(width - pad.right, yy);
+        ctx.stroke();
+        ctx.fillText(fmt0.format(q), 8, yy + 4);
+      }
+
+      s.hyetograph.forEach(block => {
+        const xx = x(block.startHr);
+        const ww = Math.max(2, (block.durationHr / maxT) * plotW - 1);
+        const hh = Math.max(1, (block.grossMm / maxRain) * Math.min(72, plotH * 0.34));
+        ctx.fillStyle = "rgba(65, 184, 170, 0.34)";
+        ctx.fillRect(xx, pad.top, ww, hh);
+        const eh = Math.max(0, (block.effectiveMm / maxRain) * Math.min(72, plotH * 0.34));
+        ctx.fillStyle = "rgba(63, 143, 210, 0.38)";
+        ctx.fillRect(xx, pad.top, ww, eh);
+      });
+
+      ctx.strokeStyle = "#263247";
+      ctx.beginPath();
+      ctx.moveTo(pad.left, pad.top);
+      ctx.lineTo(pad.left, height - pad.bottom);
+      ctx.lineTo(width - pad.right, height - pad.bottom);
+      ctx.stroke();
+
+      ctx.beginPath();
+      s.rows.forEach((row, index) => {
+        const xx = x(row.timeHr);
+        const yy = y(row.flowCumec);
+        if (index === 0) ctx.moveTo(xx, yy);
+        else ctx.lineTo(xx, yy);
+      });
+      ctx.strokeStyle = "#6f9fd4";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.lineTo(x(s.rows[s.rows.length - 1]?.timeHr || maxT), height - pad.bottom);
+      ctx.lineTo(pad.left, height - pad.bottom);
+      ctx.closePath();
+      ctx.fillStyle = "rgba(111, 159, 212, 0.16)";
+      ctx.fill();
+
+      ctx.fillStyle = "#263247";
+      ctx.font = "700 12px Segoe UI, Arial";
+      ctx.fillText("Flow (cumec)", 8, 16);
+      ctx.fillText("Time (hr)", width - 78, height - 10);
+      ctx.fillStyle = "#2a8b82";
+      ctx.fillText("Rainfall blocks", pad.left + 8, 16);
+      ctx.fillStyle = "#b94a22";
+      ctx.beginPath();
+      ctx.arc(x(s.timeToPeakHr), y(s.peakFlow), 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillText(`${fmt0.format(s.peakFlow)} cumec`, x(s.timeToPeakHr) + 8, y(s.peakFlow) - 8);
+    }
+
+    function referenceContext() {
+      const pmpRows = REFERENCE.pmp.scenarios
+        .map(row => `${row.name}: duration=${row.durationHr} hr, max total=${fmt.format(row.maxTotalMm)} mm, max hour=${fmt.format(row.maxHourMm)} mm`)
+        .join("\n");
+      const observedRows = REFERENCE.observed.top
+        .map(row => `${row.subbasin}: total=${fmt.format(row.totalMm)} mm, max hour=${fmt.format(row.maxHourMm)} mm`)
+        .join("\n");
+      const zoneRows = REFERENCE.zones.map(row => `${row.zone}=${row.subbasins} subbasins`).join(", ");
+      return `Reference visualization: ${REFERENCE.id}.
+Source folder: ${REFERENCE.sourcePath}.
+Files reviewed: ${REFERENCE.files.join(", ")}.
+Observed event rainfall (${REFERENCE.observed.eventLabel}): ${REFERENCE.observed.subbasins} subbasins, max=${fmt.format(REFERENCE.observed.maxTotalMm)} mm, min=${fmt.format(REFERENCE.observed.minTotalMm)} mm, average=${fmt.format(REFERENCE.observed.avgTotalMm)} mm.
+Top observed subbasin rainfall:
+${observedRows}
+PMP scenarios with ARF:
+${pmpRows}
+PMP QA: ${fmt.format(REFERENCE.pmp.hyetographRows)} hourly hyetograph rows, closure error=${fmt.format(REFERENCE.pmp.closureErrorMm)} mm.
+PMP zone assignment: ${zoneRows}.
+Station QA: accepted=${REFERENCE.stationQa.accepted}, rejected=${REFERENCE.stationQa.rejected}, rejection reason=${REFERENCE.stationQa.rejectedReason}; retained audit stations include ${REFERENCE.stationQa.auditStations.join(", ")}.
+Interpretation rule: use this reference as rainfall/PMP evidence and QA context for local LLM review. It does not replace hydrologic computation, calibration, IMD/CWC source validation, or HEC-HMS execution.`;
+    }
+
+    function applyReferenceRainfall(type) {
+      const lookup = {
+        observed: {
+          rainfallMm: REFERENCE.observed.maxTotalMm,
+          durationHr: 72,
+          returnPeriod: "25",
+          source: `Reference observed event ${REFERENCE.observed.eventLabel}, max subbasin total`
+        },
+        pmp24: {
+          rainfallMm: REFERENCE.pmp.scenarios.find(row => row.name === "PMP_24hr_envelope_arf").maxTotalMm,
+          durationHr: 24,
+          returnPeriod: "500",
+          source: "Reference PMP 24hr envelope with ARF"
+        },
+        pmp72: {
+          rainfallMm: REFERENCE.pmp.scenarios.find(row => row.name === "PMP_72hr_envelope_arf").maxTotalMm,
+          durationHr: 72,
+          returnPeriod: "500",
+          source: "Reference PMP 72hr envelope with ARF"
+        }
+      };
+      const selected = lookup[type];
+      if (!selected) return;
+      $("rainfallMm").value = selected.rainfallMm;
+      $("durationHr").value = selected.durationHr;
+      $("returnPeriod").value = selected.returnPeriod;
+      rainfallSource = selected.source;
+      computeScenario();
+      addMessage("system", `Applied rainfall input from ${selected.source}: ${fmt.format(selected.rainfallMm)} mm over ${fmt.format(selected.durationHr)} hr.`);
+    }
+
+    function renderReference() {
+      $("refObserved").textContent = `${fmt.format(REFERENCE.observed.maxTotalMm)} mm`;
+      $("refPmp").textContent = `${fmt0.format(Math.max(...REFERENCE.pmp.scenarios.map(row => row.maxTotalMm)))} mm`;
+      $("refStations").textContent = `${REFERENCE.stationQa.accepted} / ${REFERENCE.stationQa.rejected}`;
+      $("refZones").textContent = REFERENCE.zones.map(row => row.zone).join(", ");
+      const rows = [
+        ["Observed event", `${fmt.format(REFERENCE.observed.avgTotalMm)} mm avg, ${fmt.format(REFERENCE.observed.maxTotalMm)} mm max`, "Compare manual design rainfall against recent event range."],
+        ["PMP envelope", `${fmt0.format(REFERENCE.pmp.scenarios[5].maxTotalMm)} mm over 72 hr`, "Stress-test selected sub-basin hydrograph under PMF/PMP style rainfall."],
+        ["Hyetograph QA", `${fmt0.format(REFERENCE.pmp.hyetographRows)} rows, ${fmt.format(REFERENCE.pmp.closureErrorMm)} mm closure error`, "Ask the LLM to check temporal-pattern readiness and missing validation."],
+        ["Station QA", `${REFERENCE.stationQa.accepted} accepted, ${REFERENCE.stationQa.rejected} no-go`, "Keep rejected extremes visible for audit; do not use blindly."],
+        ["Zone assignment", REFERENCE.zones.map(row => `${row.zone}: ${row.subbasins}`).join(", "), "Review whether selected HMS sub-basin should inherit 104L/104M/104U assumptions."]
+      ];
+      $("referenceRows").innerHTML = rows.map(row => `<tr><td>${row[0]}</td><td><strong>${row[1]}</strong></td><td>${row[2]}</td></tr>`).join("");
+    }
+
+    function filteredNarmadaRows() {
+      const q = $("narmadaSearch").value.trim().toLowerCase();
+      const region = $("narmadaRegion").value;
+      const sort = $("narmadaSort").value;
+      const rows = subbasins.filter(s => {
+        const matchesText = !q || String(s.name).toLowerCase().includes(q);
+        const matchesRegion = region === "all" || s.region === region;
+        return matchesText && matchesRegion;
+      });
+      rows.sort((a, b) => {
+        if (sort === "area") return basinArea(b) - basinArea(a);
+        if (sort === "qp") return (b.sug?.unitPeakCumec || 0) - (a.sug?.unitPeakCumec || 0);
+        if (sort === "tp") return (b.sug?.timeToPeakHr || 0) - (a.sug?.timeToPeakHr || 0);
+        if (sort === "slope") return slopeMPerKm(b) - slopeMPerKm(a);
+        if (sort === "peak") return computeScenarioForBasin(b).peakFlow - computeScenarioForBasin(a).peakFlow;
+        return String(a.name).localeCompare(String(b.name), undefined, { numeric: true });
+      });
+      return rows;
+    }
+
+    function narmadaBrainContext() {
+      const rows = filteredNarmadaRows();
+      const top = rows.slice(0, 10).map(s => {
+        const result = computeScenarioForBasin(s);
+        return `${s.name}: region=${s.region}, area=${fmt.format(basinArea(s))} sq.km, Ct/Cp=${s.sug?.ct}/${s.sug?.cp}, SUG Tp=${fmt.format(s.sug?.timeToPeakHr || 0)} hr, unit Qp=${fmt.format(s.sug?.unitPeakCumec || 0)} cumec, current scenario peak=${fmt0.format(result.peakFlow)} cumec, effective rainfall=${fmt.format(result.effectiveRainfallMm)} mm.`;
+      }).join("\n");
+      const selected = selectedSubbasin();
+      return `Absorbed Narmada HMS + SUG model brain:
+The app no longer depends on opening the older Narmada SUG pages. It directly uses the local HMS_NARMADA_DATA sub-basin records, SUG coefficients, rainfall-loss-baseflow inputs, and computed screening outputs.
+${mapGeometryContext()}
+Filtered Narmada rows visible to user: ${rows.length}.
+Active sub-basin: ${subbasinLine(selected)}.
+Current ranking sample:
+${top || "No filtered rows."}
+Use this as internal app context for hydrology review, model QA, basin prioritization, and next-step recommendations.`;
+    }
+
+    function renderNarmadaBrain() {
+      if (!$("narmadaRows")) return;
+      const rows = filteredNarmadaRows();
+      const largest = [...rows].sort((a, b) => basinArea(b) - basinArea(a))[0];
+      const highestUnit = [...rows].sort((a, b) => (b.sug?.unitPeakCumec || 0) - (a.sug?.unitPeakCumec || 0))[0];
+      const rankedFlood = rows.map(s => ({ basin: s, result: computeScenarioForBasin(s) })).sort((a, b) => b.result.peakFlow - a.result.peakFlow);
+      const highestFlood = rankedFlood[0];
+      $("nFiltered").textContent = fmt0.format(rows.length);
+      $("nLargest").textContent = largest ? `${largest.name} (${fmt0.format(basinArea(largest))})` : "-";
+      $("nUnitPeak").textContent = highestUnit ? `${highestUnit.name} (${fmt0.format(highestUnit.sug?.unitPeakCumec || 0)})` : "-";
+      $("nFloodPeak").textContent = highestFlood ? `${highestFlood.basin.name} (${fmt0.format(highestFlood.result.peakFlow)})` : "-";
+      $("narmadaRows").innerHTML = rankedFlood.slice(0, 30).map(({ basin, result }) => {
+        const sug = basin.sug || {};
+        return `<tr class="selectable" data-name="${basin.name}"><td>${basin.name}</td><td>${basin.region || "-"}</td><td>${fmt.format(basinArea(basin))}</td><td>${fmt.format(sug.ct || 0)} / ${fmt.format(sug.cp || 0)}</td><td>${fmt.format(sug.timeToPeakHr || 0)} hr</td><td>${fmt0.format(sug.unitPeakCumec || 0)}</td><td><strong>${fmt0.format(result.peakFlow)}</strong></td></tr>`;
+      }).join("");
+      [...document.querySelectorAll("#narmadaRows tr")].forEach(tr => tr.addEventListener("click", () => {
+        $("subbasinSelect").value = tr.dataset.name;
+        $("targetSelect").value = "narmadaBrain";
+        computeScenario();
+      }));
+    }
+
+    function projectContext() {
+      return `Project: UHC Subzone Hydrology Apps.
+Purpose: browser prototypes for synthetic unit hydrograph and flood return-period screening based on scanned CWC Flood Estimation Reports.
+Applications: Betwa subzone 1(c), Chambal subzone 1(b), Upper Narmada/Tapi subzone 3(c), Lower Narmada/Tapi subzone 3(b), and Narmada HMS model workspace.
+Current method coverage: SUG rainfall-excess convolution, return-period rainfall input, loss rate, areal reduction, baseflow, storm peaking controls, formula comparison panels, HMS sub-basin browsing, SUG parameter table, basin-wise peak-flood screening, and OpenLayers map.
+Known limitations: scanned reports, incomplete digitized historical storm tables, incomplete observed UG/RUG calibration datasets, no native HEC-HMS execution, no DSS output reading, no reservoir/channel routing, PMF, dam-break, or HFL/rating modules.
+HMS facts: ${HMS.subbasinCount || subbasins.length} sub-basins, ${HMS.reachCount || "-"} reaches, ${HMS.junctionCount || "-"} junctions, total GIS area ${fmt.format(HMS.totalGisAreaSqKm || 0)} sq.km, total HMS workbook area ${fmt.format(HMS.totalHmsAreaSqKm || 0)} sq.km.`;
+    }
+
+    function hmsContext() {
+      const upper = subbasins.filter(s => s.region === "upper").length;
+      const lower = subbasins.filter(s => s.region === "lower").length;
+      const maxArea = [...subbasins].sort((a, b) => (b.gisAreaSqKm || 0) - (a.gisAreaSqKm || 0))[0];
+      const maxPeak = [...subbasins].sort((a, b) => (b.sug?.unitPeakCumec || 0) - (a.sug?.unitPeakCumec || 0))[0];
+      return `${projectContext()}
+HMS integration: polygon geometry area is used for flood estimation; workbook area is shown separately because it is much smaller for the available HMS dataset.
+Region defaults: lower/western candidate sub-basins use subzone 3(b), Ct=0.70, Cp=2.10. Upper/eastern candidate sub-basins use subzone 3(c), Ct=0.72, Cp=2.05.
+Region counts: upper=${upper}, lower=${lower}.
+Largest basin: ${maxArea ? subbasinLine(maxArea) : "not available"}
+Highest unit peak: ${maxPeak ? subbasinLine(maxPeak) : "not available"}`;
+    }
+
+    function largestContext() {
+      const rows = [...subbasins].sort((a, b) => (b.gisAreaSqKm || 0) - (a.gisAreaSqKm || 0)).slice(0, 8);
+      return `Largest HMS sub-basins by GIS polygon area:\n${rows.map(subbasinLine).join("\n")}`;
+    }
+
+    function basinContext(name) {
+      const basin = SPATIAL.basins?.[name] || {};
+      const label = basin.label || name;
+      const layers = basin.layers || {};
+      const scope = name === "chambal"
+        ? "Chambal is ready for first map-dashboard conversion with 6 sub-basin polygon records and drainage lines. Usable polygon names include Kuno, Parbati, Kalisindh, Chambal Upper 1, Chambal Upper 2, and Mej."
+        : "Betwa is ready for basin-level mapping but not true sub-basin polygon selection. It has one basin polygon, drainage lines, and useful GD site records such as Betwa, Kurwai, Neemkheda, and Kuakhedi.";
+      return `Basin target: ${label}.
+${scope}
+Local spatial layer counts:
+- boundary: ${layers.boundary?.features?.length || 0}
+- drainage: ${layers.drainage?.features?.length || 0}
+- GD sites: ${layers.gdSites?.features?.length || 0}
+- raingauges: ${layers.raingauges?.features?.length || 0}
+- dams: ${layers.dams?.features?.length || 0}
+- districts: ${layers.districts?.features?.length || 0}
+Filtering rule: Task 3/4/5 support layers are filtered by authoritative basin boundary polygons; Geotagging is excluded; do not rely on basin-name attributes alone.`;
+    }
+
+    function contextForTarget() {
+      const target = $("targetSelect").value;
+      if (target === "hms") return hmsContext();
+      if (target === "largest") return largestContext();
+      if (target === "chambal") return basinContext("chambal");
+      if (target === "betwa") return basinContext("betwa");
+      if (target === "selected") return `Selected HMS sub-basin:\n${subbasinLine(selectedSubbasin())}\n\n${projectContext()}`;
+      if (target === "reference") return `${referenceContext()}\n\n${projectContext()}`;
+      if (target === "narmadaBrain") return `${narmadaBrainContext()}\n\n${projectContext()}`;
+      return projectContext();
+    }
+
+    function taskInstruction() {
+      const value = $("questionSelect").value;
+      const instructions = {
+        review: "Review hydrological assumptions, model risks, and decision-use limitations.",
+        workflow: "Generate a practical GIS and modelling workflow from raw layers to design hydrograph output.",
+        qa: "Create a validation QA checklist for coefficients, geometry, rainfall, loss rates, and hydrograph outputs.",
+        handoff: "Explain how this can be integrated into the NITA AI local LLM platform as an analyst module.",
+        sql: "Suggest a PostGIS schema and example queries to store basins, reaches, gauges, SUG parameters, and outputs.",
+        sugbrain: "Review the absorbed Narmada HMS + SUG model brain, explain the selected basin response, and recommend how to improve it as a holistic local LLM hydrology module."
+      };
+      return instructions[value] || instructions.review;
+    }
+
+    function buildPrompt(extraFollowup = "") {
+      return `Use the following local project context.
+
+${contextForTarget()}
+
+${scenarioContext()}
+
+${referenceContext()}
+
+${narmadaBrainContext()}
+
+${mapGeometryContext()}
+
+Task: ${taskInstruction()}
+Extra instruction: ${$("extraText").value}
+${extraFollowup ? `Follow-up question: ${extraFollowup}` : ""}
+
+Return a concise but useful engineering response with:
+1. Key interpretation.
+2. Concrete next steps.
+3. Data or validation gaps.
+4. How Ollama/local LLM can assist without replacing hydrologic computation.`;
+    }
+
+    function addMessage(role, text) {
+      const node = document.createElement("div");
+      node.className = `message ${role}`;
+      node.textContent = text;
+      $("messages").appendChild(node);
+      $("messages").scrollTop = $("messages").scrollHeight;
+      return node;
+    }
+
+    async function refreshOllama() {
+      try {
+        const response = await fetch(`${OLLAMA}/api/tags`);
+        if (!response.ok) throw new Error("Ollama unavailable");
+        const payload = await response.json();
+        const models = payload.models || [];
+        $("statusDot").className = "dot online";
+        $("serverStatus").textContent = "Ollama online";
+        $("modelName").textContent = models[0]?.name || "No model";
+        $("modelSelect").innerHTML = models.map(model => `<option value="${model.name}">${model.name} (${model.details?.parameter_size || "model"})</option>`).join("") || "<option>No models installed</option>";
+      } catch (error) {
+        $("statusDot").className = "dot";
+        $("serverStatus").textContent = "Ollama offline";
+        $("modelName").textContent = "-";
+        $("modelSelect").innerHTML = "<option>Ollama offline</option>";
+      }
+    }
+
+    async function askOllama(prompt) {
+      const model = $("modelSelect").value;
+      if (!model || model.includes("offline") || model.includes("No models")) {
+        addMessage("system", "Ollama is not ready or no model is selected.");
+        return;
+      }
+      addMessage("user", prompt);
+      chatHistory.push({ role: "user", content: prompt });
+      const pending = addMessage("assistant", "Thinking locally with Ollama...");
+      $("sendBtn").disabled = true;
+      $("askBtn").disabled = true;
+      $("scenarioAskBtn").disabled = true;
+      try {
+        const response = await fetch(`${OLLAMA}/api/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model,
+            messages: chatHistory,
+            stream: false,
+            options: { temperature: 0.2, num_predict: 650 }
+          })
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        const answer = payload.message?.content || "No response text returned.";
+        pending.textContent = answer;
+        chatHistory.push({ role: "assistant", content: answer });
+      } catch (error) {
+        pending.textContent = `Could not reach Ollama: ${error.message}`;
+      } finally {
+        $("sendBtn").disabled = false;
+        $("askBtn").disabled = false;
+        $("scenarioAskBtn").disabled = false;
+      }
+    }
+
+    function renderSnapshot() {
+      $("mSubbasins").textContent = HMS.subbasinCount || subbasins.length || "-";
+      $("mNetwork").textContent = `${HMS.reachCount || "-"} / ${HMS.junctionCount || "-"}`;
+      $("mArea").textContent = `${fmt0.format(HMS.totalGisAreaSqKm || 0)} sq.km`;
+      $("mLayers").textContent = totalSpatialLayers();
+
+      const rows = [
+        ["Project apps", "5", "Betwa, Chambal, Upper 3(c), Lower 3(b), Narmada HMS"],
+        ["Betwa boundary/drainage", `${layerCount("betwa", "boundary")} / ${layerCount("betwa", "drainage")}`, "Basin level mapping, not true sub-basin selection"],
+        ["Chambal boundary/drainage", `${layerCount("chambal", "boundary")} / ${layerCount("chambal", "drainage")}`, "Ready for first map-dashboard conversion"],
+        ["Betwa GD / RG / dams", `${layerCount("betwa", "gdSites")} / ${layerCount("betwa", "raingauges")} / ${layerCount("betwa", "dams")}`, "Filtered point layers"],
+        ["Chambal GD / RG / dams", `${layerCount("chambal", "gdSites")} / ${layerCount("chambal", "raingauges")} / ${layerCount("chambal", "dams")}`, "Filtered point layers"],
+        ["HMS source", HMS.source || "HMS.zip", "Sub-basins, reaches, junctions and physiographic parameters"]
+      ];
+      $("snapshotRows").innerHTML = rows.map(row => `<tr><td>${row[0]}</td><td><strong>${row[1]}</strong></td><td>${row[2]}</td></tr>`).join("");
+    }
+
+    function initSubbasins() {
+      const rows = [...subbasins].sort((a, b) => String(a.name).localeCompare(String(b.name), undefined, { numeric: true }));
+      $("subbasinSelect").innerHTML = rows.map(s => `<option value="${s.name}">${s.name} - ${s.region || "region"} - ${fmt.format(s.gisAreaSqKm || 0)} sq.km</option>`).join("");
+    }
+
+    $("askBtn").addEventListener("click", () => askOllama(buildPrompt()));
+    $("contextBtn").addEventListener("click", () => addMessage("system", buildPrompt()));
+    $("computeBtn").addEventListener("click", computeScenario);
+    $("useObservedBtn").addEventListener("click", () => applyReferenceRainfall("observed"));
+    $("usePmp24Btn").addEventListener("click", () => applyReferenceRainfall("pmp24"));
+    $("usePmp72Btn").addEventListener("click", () => applyReferenceRainfall("pmp72"));
+    $("narmadaAskBtn").addEventListener("click", () => {
+      $("targetSelect").value = "narmadaBrain";
+      $("questionSelect").value = "sugbrain";
+      computeScenario();
+      askOllama(buildPrompt("Act as the app brain for the absorbed Narmada HMS + SUG module. Interpret the active sub-basin, compare it with the current ranked basins, identify hydrologic risks, and suggest the next implementation steps inside this single local LLM app."));
+    });
+    ["narmadaSearch", "narmadaRegion", "narmadaSort"].forEach(id => {
+      $(id).addEventListener("input", renderNarmadaBrain);
+      $(id).addEventListener("change", renderNarmadaBrain);
+    });
+    $("scenarioAskBtn").addEventListener("click", () => {
+      computeScenario();
+      askOllama(buildPrompt("Analyze the computed design-flood screening scenario. Comment on plausibility, peak-flow drivers, validation checks, and what should be done before using it for engineering decisions."));
+    });
+    $("subbasinSelect").addEventListener("change", computeScenario);
+    ["showMapBasins", "showMapReaches", "showMapSites", "showMapLabels"].forEach(id => {
+      $(id).addEventListener("change", renderGeometryMap);
+    });
+    $("fitMapBtn").addEventListener("click", renderGeometryMap);
+    ["returnPeriod", "rainfallMm", "durationHr", "arealFactor", "lossRate", "baseflowRate", "stormCentering", "hydroShape", "timeStepHr"].forEach(id => {
+      $(id).addEventListener("input", computeScenario);
+      $(id).addEventListener("change", computeScenario);
+    });
+    $("composer").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const text = $("promptInput").value.trim();
+      if (!text) return;
+      $("promptInput").value = "";
+      askOllama(buildPrompt(text));
+    });
+
+    initSubbasins();
+    renderSnapshot();
+    renderReference();
+    computeScenario();
+    renderNarmadaBrain();
+    renderGeometryMap();
+    refreshOllama();
+    setInterval(refreshOllama, 12000);
+  </script>
+</body>
+</html>

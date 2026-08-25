@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NITA AI & GEOANALYTICS Hydrology Workspace</title>
+  <style>
+    :root {
+      --bg: #f5f6f1;
+      --ink: #1f261f;
+      --muted: #5d665c;
+      --line: #cfd7c8;
+      --panel: #fff;
+      --accent: #176b61;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px clamp(14px, 2vw, 26px);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 250, 0.88);
+      backdrop-filter: blur(10px);
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .site-nav .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 10px;
+      color: var(--ink);
+      font-weight: 750;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6f9fd4, #75a9a1 52%, #f0ad98);
+      box-shadow: 0 8px 20px rgba(93, 118, 154, 0.22);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+    }
+
+    .brand-name {
+      font-size: 12px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-line {
+      color: var(--muted);
+      font-size: 9.5px;
+      font-weight: 650;
+      line-height: 1;
+    }
+
+    .site-nav a {
+      color: #526b86;
+      text-decoration: none;
+      padding: 5px 8px;
+      border: 1px solid rgba(190, 199, 224, 0.7);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, 0.7);
+      line-height: 1;
+    }
+
+    .site-nav a:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+      background: var(--sky);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, rgba(23, 107, 97, 0.1), transparent 320px), var(--bg);
+      color: var(--ink);
+    }
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #5f91c7;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      font-size: 17px;
+      color: #4f5f74;
+    }
+
+    .brand-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .brand-strip article {
+      padding: 14px;
+      border: 1px solid rgba(190, 199, 224, 0.76);
+      border-radius: 8px;
+      background: rgba(255, 253, 250, 0.82);
+      box-shadow: 0 10px 24px rgba(93, 118, 154, 0.08);
+    }
+
+    .brand-strip strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #263247;
+      font-size: 13px;
+    }
+
+    .brand-strip span {
+      color: #657288;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .visual-showcase {
+      margin-top: 24px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-size: 18px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      max-width: 460px;
+      color: #657288;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.9fr 0.9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .scene-card {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      min-height: 238px;
+      overflow: hidden;
+      border: 1px solid rgba(202, 205, 229, 0.92);
+      border-radius: 8px;
+      background: rgba(255, 253, 250, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .scene-card.featured {
+      min-height: 286px;
+    }
+
+    .scene-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      display: block;
+    }
+
+    .scene-caption {
+      display: grid;
+      gap: 4px;
+      padding: 12px 13px 13px;
+      border-top: 1px solid rgba(217, 220, 236, 0.8);
+      background: linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(248, 247, 251, 0.96));
+    }
+
+    .scene-caption strong {
+      color: #263247;
+      font-size: 13px;
+    }
+
+    .scene-caption span {
+      color: #657288;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 780px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .card {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      border-color: var(--accent);
+    }
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+    .card span {
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .button {
+      justify-self: start;
+      padding: 9px 12px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: white;
+      font-size: 14px;
+    }
+    :root {
+      --bg: #f7f9fb;
+      --ink: #24313a;
+      --muted: #667784;
+      --line: #d9e3e8;
+      --panel: #fffefd;
+      --accent: #5f91a7;
+    }
+
+    body {
+      background: linear-gradient(180deg, rgba(95, 145, 167, 0.14), rgba(238, 246, 244, 0.36) 340px, var(--bg) 620px), var(--bg);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    main {
+      padding: 36px 0;
+    }
+
+    h1 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 650;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    .card {
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(36, 49, 58, 0.05);
+    }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .card span {
+      font-size: 14px;
+    }
+
+    .button {
+      background: #5f91a7;
+      font-size: 13px;
+      border-radius: 7px;
+    }
+
+    /* Shared pastel NITA AI GeoAnalytics theme, matched to the HMS model tool */
+    :root {
+      --bg: #f8f7fb;
+      --ink: #263247;
+      --muted: #657288;
+      --line: #d9dcec;
+      --panel: #fffdfa;
+      --accent: #6f9fd4;
+      --accent2: #f0ad98;
+      --mint: #dff4ec;
+      --sky: #e4f0ff;
+      --lavender: #eee8fb;
+      --butter: #fff1c9;
+      --peach: #ffe7da;
+      --rose: #fde4eb;
+      --shadow: 0 16px 34px rgba(62, 75, 102, 0.08);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 0%, rgba(223, 244, 236, 0.78), transparent 28%),
+        radial-gradient(circle at 92% 6%, rgba(255, 231, 218, 0.72), transparent 26%),
+        linear-gradient(135deg, rgba(228, 240, 255, 0.8), rgba(238, 232, 251, 0.48) 42%, rgba(255, 253, 250, 0.86) 76%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 253, 250, 0.97), rgba(248, 251, 255, 0.9));
+      border-color: rgba(202, 205, 229, 0.92);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: var(--accent);
+    }
+
+    .card:nth-child(1) { background: linear-gradient(180deg, var(--sky), rgba(255, 253, 250, 0.96)); }
+    .card:nth-child(2) { background: linear-gradient(180deg, var(--mint), rgba(255, 253, 250, 0.96)); }
+    .card:nth-child(3) { background: linear-gradient(180deg, var(--peach), rgba(255, 253, 250, 0.96)); }
+    .card:nth-child(4) { background: linear-gradient(180deg, var(--lavender), rgba(255, 253, 250, 0.96)); }
+    .card:nth-child(5) { background: linear-gradient(180deg, var(--butter), rgba(255, 253, 250, 0.96)); }
+    .card:nth-child(1)::before { background: #7aa7d9; }
+    .card:nth-child(2)::before { background: #88cdb8; }
+    .card:nth-child(3)::before { background: #f0ad98; }
+    .card:nth-child(4)::before { background: #c1a7e8; }
+    .card:nth-child(5)::before { background: #f3cc6f; }
+
+    .card:hover {
+      border-color: rgba(111, 159, 212, 0.95);
+      transform: translateY(-1px);
+    }
+
+    .button {
+      background: linear-gradient(135deg, #6f9fd4, #82c7bf);
+      color: #ffffff;
+      box-shadow: 0 10px 18px rgba(111, 159, 212, 0.18);
+    }
+
+    @media (max-width: 760px) {
+      .grid, .brand-strip { grid-template-columns: 1fr; }
+      .section-heading { display: grid; }
+      .scene-grid { grid-template-columns: 1fr; }
+      .scene-card, .scene-card.featured { min-height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="NITA AI GeoAnalytics navigation">
+    <strong class="brand"><span class="brand-mark">NITA</span><span class="brand-copy"><span class="brand-name">NITA AI</span><span class="brand-line">GeoAnalytics</span></span></strong>
+    <a href="index.html">Home</a>
+    <a href="hms-narmada-model-tool.html">Narmada</a>
+    <a href="betwa-hydrograph-app.html">Betwa</a>
+    <a href="chambal-hydrograph-app.html">Chambal</a>
+    <a href="narmada-tapi-hydrograph-app.html">Upper 3(c)</a>
+    <a href="lower-narmada-tapi-hydrograph-app.html">Lower 3(b)</a>
+  </nav>
+  <main>
+    <p class="eyebrow">AI, Geospatial Intelligence and Water Analytics</p>
+    <h1>NITA AI &amp; GEOANALYTICS (OPC) PVT LTD</h1>
+    <p class="hero-copy">An industry-forward geospatial AI company transforming hydrology, flood estimation, dam planning and basin intelligence into decision-ready digital workspaces for engineers, planners and water-resource agencies.</p>
+    <section class="brand-strip" aria-label="Company capabilities">
+      <article><strong>AI-enabled hydrology</strong><span>Unit hydrograph modelling, design flood screening, rainfall analysis and return-period workflows.</span></article>
+      <article><strong>Geospatial decision systems</strong><span>Basin boundaries, GD sites, drainage, dams and field datasets integrated into interactive map dashboards.</span></article>
+      <article><strong>Engineering intelligence</strong><span>Report-derived methods converted into transparent, editable and presentation-ready planning tools.</span></article>
+    </section>
+    <section class="visual-showcase" aria-label="3D hydrology scene gallery">
+      <div class="section-heading">
+        <h2>Realistic 3D Basin Intelligence</h2>
+        <p>Presentation visuals for river hydrology, flood inundation, hydrograph interpretation and future dam-planning workflows.</p>
+      </div>
+      <div class="scene-grid">
+        <article class="scene-card featured">
+          <img src="assets/narmada-3d-hydrology-scene.png" alt="Realistic 3D Narmada basin hydrology scene with reservoir, dam, drainage overlays and hydrograph curves">
+          <div class="scene-caption">
+            <strong>Narmada basin model view</strong>
+            <span>Sub-basin hydrology, reservoir context, HMS-linked drainage and unit hydrograph response in one planning frame.</span>
+          </div>
+        </article>
+        <article class="scene-card">
+          <img src="assets/chambal-3d-flood-inundation-scene.png" alt="Realistic 3D Chambal river flood inundation scene with ravine terrain and hydrograph analysis overlays">
+          <div class="scene-caption">
+            <strong>Chambal flood inundation</strong>
+            <span>Floodplain spread, GD-site interpretation and routed flood response for return-period review.</span>
+          </div>
+        </article>
+        <article class="scene-card">
+          <img src="assets/betwa-3d-hydrology-scene.png" alt="Realistic 3D Betwa basin hydrology scene with rainfall runoff overlays and design flood hydrograph curves">
+          <div class="scene-caption">
+            <strong>Betwa design flood planning</strong>
+            <span>Rainfall-runoff conversion, SUG hydrographs and project screening context for future structures.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="grid" aria-label="Available applications">
+      <a class="card" href="hms-narmada-model-tool.html">
+        <h2>Narmada Model Workspace</h2>
+        <span>Browse HMS sub-basins, reaches, junctions, physiographic parameters, basin-wise unit hydrographs, and peak-flood screening results.</span>
+        <span class="button">Open HMS model tool</span>
+      </a>
+      <a class="card" href="betwa-hydrograph-app.html">
+        <h2>Betwa Subzone 1(c)</h2>
+        <span>Synthetic unit hydrograph, design storm, return-period rainfall, and design flood hydrograph calculator.</span>
+        <span class="button">Open Betwa app</span>
+      </a>
+      <a class="card" href="chambal-hydrograph-app.html">
+        <h2>Chambal Subzone 1(b)</h2>
+        <span>Chambal report workflow with Rly. Br. 221 worked-example defaults, SUG relationships, and return-period flood checks.</span>
+        <span class="button">Open Chambal app</span>
+      </a>
+      <a class="card" href="lower-narmada-tapi-hydrograph-app.html">
+        <h2>Lower Narmada and Tapi Subzone 3(b)</h2>
+        <span>Synthetic unit hydrograph calculator with bridge No. 485/4 defaults and report-derived flood formula comparison.</span>
+        <span class="button">Open Lower Narmada and Tapi app</span>
+      </a>
+      <a class="card" href="narmada-tapi-hydrograph-app.html">
+        <h2>Upper Narmada and Tapi Subzone 3(c)</h2>
+        <span>Synthetic unit hydrograph calculator with report Q25/Q50/Q100 flood formula comparison.</span>
+        <span class="button">Open Narmada and Tapi app</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
