@@ -1098,6 +1098,46 @@
       }
     }
 
+    @media (min-width: 1380px) and (min-height: 650px) {
+      header,
+      main {
+        padding-left: clamp(14px, 1.4vw, 26px);
+        padding-right: clamp(14px, 1.4vw, 26px);
+      }
+
+      main {
+        grid-template-columns: minmax(292px, 340px) minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .results {
+        grid-template-columns: minmax(500px, 1.42fr) minmax(420px, 1.06fr) minmax(190px, 0.42fr);
+        gap: 10px;
+      }
+
+      .map-panel,
+      .chart-panel {
+        padding: 10px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .metric strong {
+        font-size: clamp(14px, 0.95vw, 18px);
+      }
+
+      .results > table {
+        font-size: 9.4px;
+      }
+
+      th,
+      td {
+        padding: 4px 5px;
+      }
+    }
+
     @media (max-width: 1050px) {
       main {
         grid-template-columns: 1fr;

@@ -1203,6 +1203,10 @@
 
       main > .panel[aria-label="Sub-basin hydrograph and peak flood screening"] {
         grid-area: flood;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        min-height: 0;
+        overflow: hidden;
       }
 
       main > .panel[aria-label="SUG parameters for all sub-basins"] {
@@ -1331,18 +1335,23 @@
       }
 
       .flood-dashboard {
-        height: calc(100% - 43px);
+        height: auto;
         min-height: 0;
         grid-template-columns: minmax(208px, 0.82fr) minmax(350px, 1.45fr) minmax(232px, 0.96fr);
         gap: 8px;
         margin-top: 7px;
         align-items: stretch;
+        overflow: hidden;
       }
 
       .flood-column {
         min-height: 0;
         gap: 7px;
         overflow: hidden;
+      }
+
+      .flood-column:nth-child(3) {
+        grid-template-rows: auto auto minmax(0, 1fr);
       }
 
       .parameter-stack {
@@ -1400,6 +1409,7 @@
         min-height: 0;
         max-height: none;
         height: 100%;
+        overflow-y: auto;
       }
 
       main > .panel[aria-label="SUG parameters for all sub-basins"] {
@@ -1421,6 +1431,53 @@
       .note ul {
         gap: 3px;
         padding-left: 15px;
+      }
+    }
+
+    @media (min-width: 1440px) and (min-height: 760px) {
+      header,
+      main {
+        padding-left: clamp(14px, 1.35vw, 24px);
+        padding-right: clamp(14px, 1.35vw, 24px);
+      }
+
+      main {
+        grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+        grid-template-rows: 54px minmax(0, 1fr) 148px;
+        gap: 10px;
+      }
+
+      .workspace {
+        grid-template-columns: minmax(246px, 0.42fr) minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .map-shell,
+      main > .panel[aria-label="Sub-basin hydrograph and peak flood screening"] {
+        padding: 10px;
+      }
+
+      .flood-dashboard {
+        grid-template-columns: minmax(220px, 0.72fr) minmax(430px, 1.6fr) minmax(230px, 0.82fr);
+        gap: 10px;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .cards {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .metric strong {
+        font-size: clamp(17px, 1.25vw, 23px);
+      }
+
+      .map-readout {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .response-card strong {
+        font-size: clamp(14px, 1vw, 17px);
       }
     }
   </style>
