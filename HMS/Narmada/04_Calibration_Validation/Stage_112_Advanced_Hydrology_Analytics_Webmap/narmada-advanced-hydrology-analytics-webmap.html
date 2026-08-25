@@ -241,7 +241,7 @@ function drawChart(svg, series, opts={}) {
     ${majorY.map(v=>`<text x="${m.l-7}" y="${y(v).toFixed(1)+4}" text-anchor="end" fill="#65777b" font-size="10">${fmt(v,0)}</text>`).join("")}
     <text x="${m.l}" y="12" fill="#65777b" font-size="11">LS04G simulated flow (cumec)</text>
     <text x="${w-m.r}" y="${h-2}" text-anchor="end" fill="#65777b" font-size="10">${DATA.simulation.source} | ${DATA.simulation.interval_minutes} min</text>
-    <text x="${x(peak[0])+8}" y="${Math.max(18,y(peak[1])-8)}" fill="#183238" font-size="11">Peak ${fmt(peak[1],0)} at ${formatTimeLabel(peak[0])}</text>`;
+    <text x="${x(peak[0])+8}" y="${Math.max(18,y(peak[1])-8)}" fill="#183238" font-size="11">Peak ${fmt(peak[1],0)} at ${formatSimTime(peak[0], true)}</text>`;
 }
 
 function niceCeil(value) {
@@ -343,7 +343,7 @@ function showFeature(feature) {
   const hkey = link.key, hydro = link.series;
   $("stripTitle").textContent = hkey ? `${selectedKey} - ${hkey} LS04G simulated hydrograph` : `${selectedKey} - hydrology profile`;
   const fs = hkey ? DATA.flowSummary[hkey] : null;
-  $("stripPeak").textContent = fs ? `LS04G simulated peak ${fmt(fs.ls04g_peak_cumec,0)} cumec at ${fs.ls04g_peak_hour!==undefined ? formatTimeLabel(fs.ls04g_peak_hour) : "NA"}` : link.note;
+  $("stripPeak").textContent = fs ? `LS04G simulated peak ${fmt(fs.ls04g_peak_cumec,0)} cumec at ${fs.ls04g_peak_hour!==undefined ? formatSimTime(fs.ls04g_peak_hour, true) : "NA"}` : link.note;
   drawChart($("miniChart"), hydro, {color:"#1b75bb", props:p});
   renderDetails(p, hkey, hydro, link.note);
 }
@@ -432,7 +432,7 @@ $("search").addEventListener("change", e => {
 
 $("priorityList").innerHTML = DATA.priorityElements.map(el => {
   const fs = DATA.flowSummary[el] || {};
-  return `<button data-key="${el}"><strong>${el}</strong><br><span class="feature-type">Peak ${fmt(fs.ls04g_peak_cumec,0)} cumec, ${fs.ls04g_peak_hour!==undefined ? formatTimeLabel(fs.ls04g_peak_hour) : "time NA"}, volume ${fmt(fs.ls04g_volume_mcm,1)} MCM</span></button>`;
+  return `<button data-key="${el}"><strong>${el}</strong><br><span class="feature-type">Peak ${fmt(fs.ls04g_peak_cumec,0)} cumec, ${fs.ls04g_peak_hour!==undefined ? formatSimTime(fs.ls04g_peak_hour, true) : "time NA"}, volume ${fmt(fs.ls04g_volume_mcm,1)} MCM</span></button>`;
 }).join("");
 $("priorityList").addEventListener("click", e => {
   const btn = e.target.closest("button");
