@@ -126,7 +126,7 @@
       <div class="legend-row"><span class="swatch" style="background:#51a351"></span> Rainfall stations</div>
     </div>
     <div class="bottom-strip">
-      <div class="mini-title"><span id="stripTitle">Selected model hydrograph</span><span id="stripPeak"></span></div>
+      <div class="mini-title"><span id="stripTitle">Selected LS04G simulated hydrograph</span><span id="stripPeak"></span></div>
       <svg id="miniChart" class="chart" viewBox="0 0 580 190" role="img" aria-label="Hydrograph chart"></svg>
     </div>
   </main>
@@ -239,9 +239,9 @@ function drawChart(svg, series, opts={}) {
     <circle cx="${x(peak[0])}" cy="${y(peak[1])}" r="4.5" fill="#c8534d"/>
     ${majorX.map((v,i)=>`<text x="${x(v).toFixed(1)}" y="${h-13}" text-anchor="${i===0?"start":i===majorX.length-1?"end":"middle"}" fill="#65777b" font-size="10">${formatSimTime(v, i===0 || i===majorX.length-1)}</text>`).join("")}
     ${majorY.map(v=>`<text x="${m.l-7}" y="${y(v).toFixed(1)+4}" text-anchor="end" fill="#65777b" font-size="10">${fmt(v,0)}</text>`).join("")}
-    <text x="${m.l}" y="12" fill="#65777b" font-size="11">Flow (cumec)</text>
+    <text x="${m.l}" y="12" fill="#65777b" font-size="11">LS04G simulated flow (cumec)</text>
     <text x="${w-m.r}" y="${h-2}" text-anchor="end" fill="#65777b" font-size="10">${DATA.simulation.source} | ${DATA.simulation.interval_minutes} min</text>
-    <text x="${x(peak[0])+8}" y="${Math.max(18,y(peak[1])-8)}" fill="#183238" font-size="11">Peak ${fmt(peak[1],0)} at h${peak[0]}</text>`;
+    <text x="${x(peak[0])+8}" y="${Math.max(18,y(peak[1])-8)}" fill="#183238" font-size="11">Peak ${fmt(peak[1],0)} at ${formatTimeLabel(peak[0])}</text>`;
 }
 
 function niceCeil(value) {
@@ -341,9 +341,9 @@ function showFeature(feature) {
   $("selectedBadge").textContent = p.feature_type || "Feature";
   const link = hydroForProps(p);
   const hkey = link.key, hydro = link.series;
-  $("stripTitle").textContent = hkey ? `${selectedKey} - ${hkey} hydrograph` : `${selectedKey} - hydrology profile`;
+  $("stripTitle").textContent = hkey ? `${selectedKey} - ${hkey} LS04G simulated hydrograph` : `${selectedKey} - hydrology profile`;
   const fs = hkey ? DATA.flowSummary[hkey] : null;
-  $("stripPeak").textContent = fs ? `LS04G peak ${fmt(fs.ls04g_peak_cumec,0)} cumec at hour ${fs.ls04g_peak_hour}` : link.note;
+  $("stripPeak").textContent = fs ? `LS04G simulated peak ${fmt(fs.ls04g_peak_cumec,0)} cumec at ${fs.ls04g_peak_hour!==undefined ? formatTimeLabel(fs.ls04g_peak_hour) : "NA"}` : link.note;
   drawChart($("miniChart"), hydro, {color:"#1b75bb", props:p});
   renderDetails(p, hkey, hydro, link.note);
 }
@@ -364,7 +364,7 @@ function renderDetails(p, hkey, hydro, linkNote) {
     </div>`;
   }
   if(tab==="hydrograph") {
-    html += `<svg id="detailChart" class="chart" viewBox="0 0 580 220" role="img" aria-label="Selected hydrograph"></svg>`;
+    html += `<p class="muted">Chart shows LS04G simulated hydrograph only. Observed discharge is available as peak metadata where mapped; downstream-linked hydrographs are marked in the source note.</p><svg id="detailChart" class="chart" viewBox="0 0 580 220" role="img" aria-label="Selected LS04G simulated hydrograph"></svg>`;
     html += `<p class="note">${esc(linkNote || "")}</p>`;
     if(p.observed_peak_cumec || p.ls04g_peak_cumec) {
       html += drawBars([
@@ -432,7 +432,7 @@ $("search").addEventListener("change", e => {
 
 $("priorityList").innerHTML = DATA.priorityElements.map(el => {
   const fs = DATA.flowSummary[el] || {};
-  return `<button data-key="${el}"><strong>${el}</strong><br><span class="feature-type">Peak ${fmt(fs.ls04g_peak_cumec,0)} cumec, hour ${fs.ls04g_peak_hour||"NA"}, volume ${fmt(fs.ls04g_volume_mcm,1)} MCM</span></button>`;
+  return `<button data-key="${el}"><strong>${el}</strong><br><span class="feature-type">Peak ${fmt(fs.ls04g_peak_cumec,0)} cumec, ${fs.ls04g_peak_hour!==undefined ? formatTimeLabel(fs.ls04g_peak_hour) : "time NA"}, volume ${fmt(fs.ls04g_volume_mcm,1)} MCM</span></button>`;
 }).join("");
 $("priorityList").addEventListener("click", e => {
   const btn = e.target.closest("button");

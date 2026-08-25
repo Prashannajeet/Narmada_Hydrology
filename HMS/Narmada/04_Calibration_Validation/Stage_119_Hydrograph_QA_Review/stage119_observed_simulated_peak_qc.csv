@@ -1,0 +1,5 @@
+feature_group,name,hms_element,observed_peak_cumec,ls04g_peak_cumec,ls04g_ratio
+gauges,Barmanghat,R_R_19,9232.0,9950.211,1.078
+gauges,Narmadapuram,R_R_13,11850.0,21222.04,1.791
+gauges,Sandia,R_R_16,11639.0,12160.425,1.045
+gauges,Handia,R_R_11,10300.0,26244.166,2.548
