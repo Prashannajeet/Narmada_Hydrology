@@ -47,10 +47,10 @@ button[kind="secondary"]{border-color:#c7d8df;border-radius:7px;color:var(--navy
 </style>''', unsafe_allow_html=True)
 
 @st.cache_resource
-def conn(): return sqlite3.connect(DB, check_same_thread=False)
+def conn(db_path): return sqlite3.connect(db_path, check_same_thread=False)
 
 @st.cache_data
-def query(sql, params=()): return pd.read_sql_query(sql, conn(), params=params)
+def query(sql, params=()): return pd.read_sql_query(sql, conn(str(DB)), params=params)
 
 @st.cache_data
 def table_exists(table_name):
