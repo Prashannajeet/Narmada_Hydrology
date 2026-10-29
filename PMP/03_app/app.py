@@ -8,7 +8,9 @@ import plotly.graph_objects as go
 from streamlit_folium import st_folium
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DB = PROJECT_ROOT / '01_database' / 'pmp_atlas.sqlite'
+DB = PROJECT_ROOT / '01_database' / 'pmp_atlas_complete.sqlite'
+if not DB.exists():
+    DB = PROJECT_ROOT / '01_database' / 'pmp_atlas.sqlite'
 EXPORTS = PROJECT_ROOT / '04_exports'
 
 st.set_page_config(page_title='NITA AI | PMP Atlas', page_icon='🌧️', layout='wide', initial_sidebar_state='collapsed')
