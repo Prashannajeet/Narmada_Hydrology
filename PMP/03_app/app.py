@@ -50,6 +50,12 @@ def conn(): return sqlite3.connect(DB, check_same_thread=False)
 @st.cache_data
 def query(sql, params=()): return pd.read_sql_query(sql, conn(), params=params)
 
+@st.cache_data
+def table_exists(table_name):
+    return not query("SELECT name FROM sqlite_master WHERE type='table' AND name=?", [table_name]).empty
+
+COMPLETE_ATLAS = all(table_exists(name) for name in ['source_page_catalog','source_asset_registry','station_climatology','dad_storm_value','return_period_estimate'])
+
 def gumbel_screening(storm_df):
     """Fit a method-of-moments Gumbel curve to annual storm maxima.
 
@@ -151,7 +157,7 @@ def render_hydrology_analytics(catchment, duration):
         rp_sql='SELECT * FROM return_period_estimate WHERE station_key=?'
         rp_params=[station_key]
         if duration!='All': rp_sql+=' AND duration_hours=?'; rp_params.append(duration)
-        rp=query(rp_sql+' ORDER BY duration_hours,return_period_years,estimate_class',rp_params) if station_key else pd.DataFrame()
+        rp=query(rp_sql+' ORDER BY duration_hours,return_period_years,estimate_class',rp_params) if COMPLETE_ATLAS and station_key else pd.DataFrame()
         if not rp.empty:
             for dur, part in rp.groupby('duration_hours'):
                 st.plotly_chart(return_period_figure(part,f'{station_name}: {int(dur)}-hour Gumbel return-period rainfall'),use_container_width=True,config={'displayModeBar':False})
@@ -171,7 +177,7 @@ def render_hydrology_analytics(catchment, duration):
             m1,m2,m3=st.columns(3); m1.metric('Annual maxima used',f'{len(annual):,} years'); m2.metric('Gumbel location',f'{loc:.1f} mm'); m3.metric('Gumbel scale',f'{beta:.1f} mm')
             st.caption('Regional storm-catalogue screening is retained as a separate diagnostic. The station return-period tables above are source-extracted Gumbel estimates with EST/LL/UL rows.')
     with climatology_tab:
-        clim=query('SELECT * FROM station_climatology WHERE station_key=?',[station_key]) if station_key else pd.DataFrame()
+        clim=query('SELECT * FROM station_climatology WHERE station_key=?',[station_key]) if COMPLETE_ATLAS and station_key else pd.DataFrame()
         if clim.empty:
             st.info('The selected station is outside the 647-station climatology table in Volume II; use the source atlas workspace for the complete station inventory.')
         else:
@@ -195,7 +201,7 @@ def render_hydrology_analytics(catchment, duration):
             st.plotly_chart(fig,use_container_width=True,config={'displayModeBar':False})
             st.download_button('Download selected DAD curves',dad.to_csv(index=False).encode(),'dad_curves.csv','text/csv')
         st.markdown('#### Source DAD storm curves')
-        dad_source=query('SELECT duration_hours,storm_serial_no,storm_date_text,storm_centre,peak_rainfall_mm,area_km2,depth_mm,source_pdf_page FROM dad_storm_value ORDER BY duration_hours,storm_serial_no,area_km2')
+        dad_source=query('SELECT duration_hours,storm_serial_no,storm_date_text,storm_centre,peak_rainfall_mm,area_km2,depth_mm,source_pdf_page FROM dad_storm_value ORDER BY duration_hours,storm_serial_no,area_km2') if COMPLETE_ATLAS else pd.DataFrame()
         if duration!='All': dad_source=dad_source[dad_source['duration_hours'].eq(duration)]
         st.caption(f'{len(dad_source):,} source-linked DAD points from Tables 3-3 to 3-5.')
         st.dataframe(dad_source,use_container_width=True,hide_index=True,height=260)
@@ -213,14 +219,16 @@ if not DB.exists():
 st.markdown('<div class="navline"><span class="nav-tab">Flood &amp; Hydrology</span><span class="nav-tab-muted">PMP Atlas</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="reference-header"><div class="reference-brand">● NITA AI</div><div class="reference-title">Narmada Basin PMP Atlas <span class="report-badge">Report V1</span></div><div class="reference-subtitle">NITA AI dashboard for station extremes, rainfall storms, PMP grids and GIS-based hydrological analysis</div></div>', unsafe_allow_html=True)
 
-counts={'Stations':int(query('SELECT COUNT(*) n FROM rainfall_station').iloc[0,0]),'Return-period rows':int(query('SELECT COUNT(*) n FROM return_period_estimate').iloc[0,0]),'DAD points':int(query('SELECT COUNT(*) n FROM dad_storm_value').iloc[0,0]),'Source assets':int(query('SELECT COUNT(*) n FROM source_asset_registry').iloc[0,0])}
+counts={'Stations':int(query('SELECT COUNT(*) n FROM rainfall_station').iloc[0,0]),'Return-period rows':int(query('SELECT COUNT(*) n FROM return_period_estimate').iloc[0,0]) if COMPLETE_ATLAS else 0,'DAD points':int(query('SELECT COUNT(*) n FROM dad_storm_value').iloc[0,0]) if COMPLETE_ATLAS else 0,'Source assets':int(query('SELECT COUNT(*) n FROM source_asset_registry').iloc[0,0]) if COMPLETE_ATLAS else 0}
 cols=st.columns(4)
 for col,(label,value) in zip(cols,counts.items()): col.metric(label,f'{value:,}')
 
 with st.container(border=True):
     st.markdown('<div class="card-label">Atlas workspace</div>',unsafe_allow_html=True)
     control1,control2,control3=st.columns([1.5,1.2,2.5],gap='small')
-    view=control1.selectbox('Workspace',['Station extremes','Hydrology analytics','Station climatology','Return-period rainfall','DAD storm evidence','Grid PMP','Storm catalogue','Source atlas','NITA exports'],label_visibility='collapsed')
+    workspaces=['Station extremes','Hydrology analytics','Grid PMP','Storm catalogue','NITA exports']
+    if COMPLETE_ATLAS: workspaces=['Station extremes','Hydrology analytics','Station climatology','Return-period rainfall','DAD storm evidence','Grid PMP','Storm catalogue','Source atlas','NITA exports']
+    view=control1.selectbox('Workspace',workspaces,label_visibility='collapsed')
     with control2:
         with st.popover('Filter data'):
             st.markdown('### Filter data')
