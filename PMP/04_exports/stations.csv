@@ -1,0 +1,1166 @@
+station_key,serial_no,catchment_code,district_name,station_name,station_type,latitude_deg,longitude_deg,data_length_years,source_provenance_id
+103:Akola:Obsy:1,1,103,Akola,Akola,Obsy,20.7,77.03,106.0,1
+102:Amagaon:Others:1,1,102,Belgaum,Amagaon,Others,15.01,74.02,33.0,14
+103:Akola Aerodrome:Obsy:2,2,103,Akola,Akola Aerodrome,Obsy,20.7,77.03,37.0,1
+102:Asoga:Others:2,2,102,Belgaum,Asoga,Others,15.6,74.37,21.0,14
+103:Akot:Others:3,3,103,Akola,Akot,Others,21.1,77.07,100.0,1
+102:Kankumbi:Others:3,3,102,Belgaum,Kankumbi,Others,15.67,74.17,38.0,14
+103:Balapur:Others:4,4,103,Akola,Balapur,Others,20.67,76.78,100.0,1
+102:Lond Rly:Others:4,4,102,Belgaum,Lond Rly,Others,15.45,74.5,25.0,14
+103:Murtajapur:Others:5,5,103,Akola,Murtajapur,Others,20.73,77.38,95.0,1
+102:Londa Forest:Pwd:5,5,102,Belgaum,Londa Forest,Pwd,15.45,74.5,21.0,14
+103:Patur:Others:6,6,103,Akola,Patur,Others,20.45,76.95,84.0,1
+102:Yargatti:Pwd:6,6,102,Belgaum,Yargatti,Pwd,15.95,74.03,25.0,14
+103:Telhara:Others:7,7,103,Akola,Telhara,Others,21.03,76.83,98.0,1
+102:Bombay Colaba:Obsy:7,7,102,Bombay City,Bombay Colaba,Obsy,18.98,72.83,108.0,14
+103:Achalpur:Others:8,8,103,Amraoti,Achalpur,Others,21.27,77.52,97.0,1
+102:Bombay Podar M.C:Obsy:8,8,102,Bombay City,Bombay Podar M.C,Obsy,18.98,72.83,21.0,14
+103:Amraoti:Obsy:9,9,103,Amraoti,Amraoti,Obsy,20.93,77.78,105.0,1
+102:Bombay Santacruz:Obsy:9,9,102,Bombay City,Bombay Santacruz,Obsy,18.98,72.83,60.0,14
+103:Anjangaon:Others:10,10,103,Amraoti,Anjangaon,Others,21.17,77.32,100.0,1
+102:Andheri:Others:10,10,102,Bombay Suburban,Andheri,Others,19.12,72.85,25.0,14
+103:Badnera:Others:11,11,103,Amraoti,Badnera,Others,20.87,77.73,84.0,1
+102:Borivali:Others:11,11,102,Bombay Suburban,Borivali,Others,19.22,72.85,22.0,14
+103:Chandur Bazar:Others:12,12,103,Amraoti,Chandur Bazar,Others,21.25,77.73,97.0,1
+102:Kurla:Others:12,12,102,Bombay Suburban,Kurla,Others,19.07,72.88,53.0,14
+103:Chikhalda:Hydro:13,13,103,Amraoti,Chikhalda,Hydro,21.42,77.32,28.0,1
+102:Bulsar:Obsy:13,13,102,Bulsar/Valsad,Bulsar,Obsy,20.62,72.93,28.0,14
+103:Chikhalda:Others:14,14,103,Amraoti,Chikhalda,Others,21.42,77.32,98.0,1
+102:Bulsar:Others:14,14,102,Bulsar/Valsad,Bulsar,Others,20.62,72.93,96.0,14
+103:Daryapur:Hydro:15,15,103,Amraoti,Daryapur,Hydro,20.93,77.33,26.0,1
+102:Dharampur:Others:15,15,102,Bulsar/Valsad,Dharampur,Others,20.55,73.18,99.0,14
+103:Daryapur:Others:16,16,103,Amraoti,Daryapur,Others,20.93,77.33,98.0,1
+102:Jalalpur:Others:16,16,102,Bulsar/Valsad,Jalalpur,Others,20.95,72.9,72.0,15
+103:Dharni:Others:17,17,103,Amraoti,Dharni,Others,21.57,76.88,96.0,1
+102:Pardi:Others:17,17,102,Bulsar/Valsad,Pardi,Others,20.52,72.95,100.0,15
+103:Kholapur:Others:18,18,103,Amraoti,Kholapur,Others,20.95,77.52,88.0,1
+102:Umbergaon:Others:18,18,102,Bulsar/Valsad,Umbergaon,Others,20.2,72.77,96.0,15
+103:Pansemal(Toppa):Others:19,19,103,Barwani,Pansemal(Toppa),Others,21.67,74.7,70.0,1
+102:Dudhani:Others:19,19,102,Dadra & N.Haveli,Dudhani,Others,20.22,73.13,21.0,15
+103:Atner:Others:20,20,103,Betul,Atner,Others,21.63,77.92,97.0,1
+102:Silvassa:Others:20,20,102,Dadra & N.Haveli,Silvassa,Others,20.3,73.05,22.0,15
+103:Bhainsdehi:Others:21,21,103,Betul,Bhainsdehi,Others,21.65,77.63,90.0,1
+102:Ahwa:Others:21,21,102,Dangs,Ahwa,Others,20.75,73.68,98.0,15
+103:Multai:Others:22,22,103,Betul,Multai,Others,21.77,78.27,102.0,1
+102:Golkund:Others:22,22,102,Dangs,Golkund,Others,20.62,73.78,20.0,15
+103:Buldana:Obsy:23,23,103,Buldhana,Buldana,Obsy,20.53,76.18,59.0,1
+102:Waghai:Others:23,23,102,Dangs,Waghai,Others,20.77,73.5,47.0,15
+103:Buldana:Others:24,24,103,Buldhana,Buldana,Others,20.53,76.18,92.0,1
+102:Hubli:Others:24,24,102,Dharwar,Hubli,Others,15.33,75.13,90.0,15
+103:Dhamangaon:Others:25,25,103,Buldhana,Dhamangaon,Others,20.68,76.03,55.0,1
+102:Kalghatgi:Others:25,25,102,Dharwar,Kalghatgi,Others,15.18,74.97,100.0,15
+103:Hiwarkhed:Others:26,26,103,Buldhana,Hiwarkhed,Others,20.6,76.53,32.0,1
+102:Ajjimane:Others:26,26,102,Kanara North,Ajjimane,Others,14.75,74.65,22.0,15
+103:Jalgaon:Others:27,27,103,Buldhana,Jalgaon,Others,21.05,76.53,100.0,1
+102:Anasi:Others:27,27,102,Kanara North,Anasi,Others,14.95,74.37,23.0,15
+103:Khamgaon:Others:28,28,103,Buldhana,Khamgaon,Others,20.72,76.57,98.0,1
+102:Ankola:Others:28,28,102,Kanara North,Ankola,Others,14.67,74.3,99.0,15
+103:Malkapur:Others:29,29,103,Buldhana,Malkapur,Others,20.88,76.2,98.0,1
+102:Arabail:Others:29,29,102,Kanara North,Arabail,Others,14.83,74.97,20.0,15
+103:Nandura:Others:30,30,103,Buldhana,Nandura,Others,20.83,76.47,99.0,1
+102:Attangi:Others:30,30,102,Kanara North,Attangi,Others,14.85,75.0,23.0,15
+103:Shegaon:Others:31,31,103,Buldhana,Shegaon,Others,20.8,76.7,102.0,1
+102:Bandal:Others:31,31,102,Kanara North,Bandal,Others,14.53,74.67,23.0,15
+103:Burhanpur:Hydro:32,32,103,Burhanpur,Burhanpur,Hydro,21.32,76.23,31.0,1
+102:Bhagvathy:Others:32,32,102,Kanara North,Bhagvathy,Others,15.08,74.75,23.0,15
+103:Burhanpur:Others:33,33,103,Burhanpur,Burhanpur,Others,21.32,76.23,103.0,1
+102:Bommanahalli:Others:33,33,102,Kanara North,Bommanahalli,Others,15.17,74.72,23.0,15
+103:Dhulia:Others:34,34,103,Dhulia,Dhulia,Others,20.9,74.78,103.0,1
+102:Castlerock:Others:34,34,102,Kanara North,Castlerock,Others,15.4,74.38,40.0,15
+103:Gidhade:Hydro:35,35,103,Dhulia,Gidhade,Hydro,21.28,74.8,31.0,1
+102:Chandwadi:Others:35,35,102,Kanara North,Chandwadi,Others,15.2,74.0,22.0,15
+103:Pimpelner:Others:36,36,103,Dhulia,Pimpelner,Others,20.95,74.12,64.0,1
+102:Dandeli M.P.C.:Others:36,36,102,Kanara North,Dandeli M.P.C.,Others,15.23,74.62,24.0,15
+103:Sakri:Others:37,37,103,Dhulia,Sakri,Others,21.0,74.3,100.0,2
+102:Dodkopa:Others:37,37,102,Kanara North,Dodkopa,Others,15.22,74.82,23.0,15
+103:Shirpur:Others:38,38,103,Dhulia,Shirpur,Others,21.35,74.88,102.0,2
+102:Gokarn I.B.:Others:38,38,102,Kanara North,Gokarn I.B.,Others,14.55,74.32,29.0,15
+103:Sindkheda:Others:39,39,103,Dhulia,Sindkheda,Others,21.28,74.75,103.0,2
+102:Gunjavathy:Others:39,39,102,Kanara North,Gunjavathy,Others,15.0,74.93,23.0,15
+103:Amalner:Others:40,40,103,Jalgaon,Amalner,Others,21.05,75.07,102.0,2
+102:Haliyal Hospital:Others:40,40,102,Kanara North,Haliyal Hospital,Others,15.33,74.75,84.0,15
+103:Bhadgaon:Others:41,41,103,Jalgaon,Bhadgaon,Others,20.67,75.23,102.0,2
+102:Hittalahally:Others:41,41,102,Kanara North,Hittalahally,Others,14.5,74.8,20.0,15
+103:Bhusaval:Others:42,42,103,Jalgaon,Bhusaval,Others,21.07,75.78,103.0,2
+102:Hulgod:Others:42,42,102,Kanara North,Hulgod,Others,14.97,74.87,23.0,15
+103:Chalisgaon:Others:43,43,103,Jalgaon,Chalisgaon,Others,20.45,75.02,103.0,2
+102:Hulikal:Others:43,43,102,Kanara North,Hulikal,Others,14.7,74.77,23.0,15
+103:Chopda:Others:44,44,103,Jalgaon,Chopda,Others,21.25,75.3,100.0,2
+102:Jagalpet:Others:44,44,102,Kanara North,Jagalpet,Others,15.27,74.5,28.0,15
+103:Edalabad:Others:45,45,103,Jalgaon,Edalabad,Others,21.07,76.07,102.0,2
+102:Joida (Supa):Others:45,45,102,Kanara North,Joida (Supa),Others,15.18,74.6,21.0,15
+103:Erandol:Others:46,46,103,Jalgaon,Erandol,Others,20.93,75.33,100.0,2
+102:Kadra:Others:46,46,102,Kanara North,Kadra,Others,14.9,74.35,28.0,15
+103:Jalgaon:Obsy:47,47,103,Jalgaon,Jalgaon,Obsy,21.05,75.57,100.0,2
+102:Kalasai:Others:47,47,102,Kanara North,Kalasai,Others,15.08,74.43,23.0,15
+103:Jamner:Others:48,48,103,Jalgaon,Jamner,Others,20.82,75.78,102.0,2
+102:Karwar:Obsy:48,48,102,Kanara North,Karwar,Obsy,14.78,74.13,104.0,15
+103:Pachora:Others:49,49,103,Jalgaon,Pachora,Others,20.67,75.37,102.0,2
+102:Karwar Auto:Others:49,49,102,Kanara North,Karwar Auto,Others,14.78,74.13,55.0,15
+103:Parola:Others:50,50,103,Jalgaon,Parola,Others,20.88,75.12,100.0,2
+102:Karwar C.Hospita:Others:50,50,102,Kanara North,Karwar C.Hospita,Others,14.78,74.15,20.0,15
+103:Raver:Others:51,51,103,Jalgaon,Raver,Others,21.25,76.03,100.0,2
+102:Katagal:Others:51,51,102,Kanara North,Katagal,Others,14.48,74.48,23.0,15
+103:Yaval:Others:52,52,103,Jalgaon,Yaval,Others,21.17,75.7,103.0,2
+102:Kirwati:Others:52,52,102,Kanara North,Kirwati,Others,14.97,74.92,21.0,15
+103:Pansemal(Med.):Others:53,53,103,Khargone,Pansemal(Med.),Others,21.67,74.7,34.0,2
+102:Kumbarwada:Others:53,53,102,Kanara North,Kumbarwada,Others,15.13,74.45,30.0,15
+103:Nandurbar:Obsy:54,54,103,Nandurbar,Nandurbar,Obsy,21.37,74.25,34.0,2
+102:Kumta:Others:54,54,102,Kanara North,Kumta,Others,14.42,74.41,101.0,16
+103:Nandurbar:Others:55,55,103,Nandurbar,Nandurbar,Others,21.37,74.25,103.0,2
+102:Kundar Eqn:Others:55,55,102,Kanara North,Kundar Eqn,Others,15.13,74.35,21.0,16
+103:Navapur:Others:56,56,103,Nandurbar,Navapur,Others,21.17,73.78,101.0,2
+102:Kythanhally:Others:56,56,102,Kanara North,Kythanhally,Others,14.93,74.93,21.0,16
+103:Visarwadi:Hydro:57,57,103,Nandurbar,Visarwadi,Hydro,21.18,73.96,28.0,2
+102:Manchikere I:Others:57,57,102,Kanara North,Manchikere I,Others,14.92,74.75,26.0,16
+103:Sagbara:Others:58,58,103,Narmada,Sagbara,Others,21.55,73.8,45.0,2
+102:Mundagod Hospita:Others:58,58,102,Kanara North,Mundagod Hospita,Others,14.97,75.03,103.0,16
+103:Kalvan:Others:59,59,103,Nasik,Kalvan,Others,20.5,74.03,99.0,2
+102:Mundod S.F.:Others:59,59,102,Kanara North,Mundod S.F.,Others,14.97,75.03,20.0,16
+103:Mulher:Hydro:60,60,103,Nasik,Mulher,Hydro,20.8,74.07,31.0,2
+102:Nilkundi:Others:60,60,102,Kanara North,Nilkundi,Others,14.45,74.7,23.0,16
+103:Nandgaon:Others:61,61,103,Nasik,Nandgaon,Others,20.32,74.67,101.0,2
+102:Sirsi:Pwd:61,61,102,Kanara North,Sirsi,Pwd,14.62,74.83,95.0,16
+103:Satna:Others:62,62,103,Nasik,Satna,Others,20.6,74.2,88.0,2
+102:Supa:Others:62,62,102,Kanara North,Supa,Others,15.27,74.5,86.0,16
+103:Somthane:Others:63,63,103,Nasik,Somthane,Others,20.15,74.58,35.0,2
+102:Tatwal:Others:63,63,102,Kanara North,Tatwal,Others,15.08,74.75,21.0,16
+103:Kamrej:Others:64,64,103,Surat,Kamrej,Others,21.28,72.98,45.0,2
+102:Thargod:Others:64,64,102,Kanara North,Thargod,Others,14.67,74.87,22.0,16
+103:Mandvi:Others:65,65,103,Surat,Mandvi,Others,21.25,73.3,99.0,2
+102:Tyagali:Others:65,65,102,Kanara North,Tyagali,Others,14.48,74.87,23.0,16
+103:Surat:Obsy:66,66,103,Surat,Surat,Obsy,21.2,72.87,107.0,2
+102:Vajralli:Others:66,66,102,Kanara North,Vajralli,Others,14.88,74.75,22.0,16
+103:Ukai Dam Site:Others:67,67,103,Surat,Ukai Dam Site,Others,21.32,73.72,24.0,2
+102:Vanahalli:Others:67,67,102,Kanara North,Vanahalli,Others,14.88,74.75,21.0,16
+104:Alirajpur:Obsy:68,68,104,Alirajpur,Alirajpur,Obsy,22.3,74.37,40.0,2
+102:Yellapur:Others:68,68,102,Kanara North,Yellapur,Others,14.95,74.72,101.0,16
+104:Alirajpur:Others:69,69,104,Alirajpur,Alirajpur,Others,22.3,74.37,103.0,2
+102:Gaganbawada:Others:69,69,102,Kolhapur,Gaganbawada,Others,16.55,73.83,63.0,16
+104:Baihar:Obsy:70,70,104,Balaghat,Baihar,Obsy,22.1,80.55,22.0,2
+102:Peint:Others:70,70,102,Nasik,Peint,Others,20.25,73.5,99.0,16
+104:Baihar:Others:71,71,104,Balaghat,Baihar,Others,22.1,80.57,97.0,2
+102:Surgana:Others:71,71,102,Nasik,Surgana,Others,20.57,73.62,47.0,16
+104:Palhera:Others:72,72,104,Balaghat,Palhera,Others,22.05,80.77,52.0,2
+102:Chikhli:Others:72,72,102,Navsari,Chikhli,Others,20.76,73.06,98.0,16
+104:Paraswada:Others:73,73,104,Balaghat,Paraswada,Others,22.18,80.32,51.0,2
+102:Gandevi:Others:73,73,102,Navsari,Gandevi,Others,20.82,72.98,45.0,16
+104:Saleteka:Others:74,74,104,Balaghat,Saleteka,Others,21.78,80.83,59.0,2
+102:Navsari:Others:74,74,102,Navsari,Navsari,Others,20.95,72.93,73.0,16
+104:Bhilpur:Others:75,75,104,Baroda,Bhilpur,Others,22.45,73.97,21.0,3
+102:Pernem:Obsy:75,75,102,North Goa,Pernem,Obsy,15.72,73.8,51.0,16
+104:Chhota-Udepur:Others:76,76,104,Baroda,Chhota-Udepur,Others,22.3,74.02,100.0,3
+102:Alibag:Obsy:76,76,102,Raigarh,Alibag,Obsy,18.63,72.88,77.0,16
+104:Dabhoi:Others:77,77,104,Baroda,Dabhoi,Others,22.12,73.43,70.0,3
+102:Alibag-Cvl.Hosp.:Others:77,77,102,Raigarh,Alibag-Cvl.Hosp.,Others,18.63,72.88,72.0,16
+104:Jambugam:Others:78,78,104,Baroda,Jambugam,Others,22.28,73.77,31.0,3
+102:Bhira:Obsy:78,78,102,Raigarh,Bhira,Obsy,18.45,73.39,47.0,16
+104:Jetpur:Others:79,79,104,Baroda,Jetpur,Others,22.33,73.85,38.0,3
+102:Karjat:Others:79,79,102,Raigarh,Karjat,Others,18.92,73.33,99.0,16
+104:Kawant:Others:80,80,104,Baroda,Kawant,Others,22.08,74.05,24.0,3
+102:Khalapur:Others:80,80,102,Raigarh,Khalapur,Others,18.87,73.28,45.0,16
+104:Naswadi:Others:81,81,104,Baroda,Naswadi,Others,22.05,73.72,45.0,3
+102:Mahad:Others:81,81,102,Raigarh,Mahad,Others,18.08,73.42,102.0,16
+104:Sankheda:Others:82,82,104,Baroda,Sankheda,Others,22.17,73.58,46.0,3
+102:Mangaon:Others:82,82,102,Raigarh,Mangaon,Others,18.23,73.28,103.0,16
+104:Sinor:Others:83,83,104,Baroda,Sinor,Others,21.92,73.33,46.0,3
+102:Matheran:Others:83,83,102,Raigarh,Matheran,Others,18.98,73.28,97.0,16
+104:Tilakwada:Others:84,84,104,Baroda,Tilakwada,Others,21.88,73.58,41.0,3
+102:Mhasla:Others:84,84,102,Raigarh,Mhasla,Others,18.13,73.12,45.0,16
+104:Barwani:Others:85,85,104,Barwani,Barwani,Others,22.03,74.88,98.0,3
+102:Murud:Others:85,85,102,Raigarh,Murud,Others,18.32,72.97,43.0,16
+104:Barwani(Med.):Others:86,86,104,Barwani,Barwani(Med.),Others,22.03,74.88,20.0,3
+102:Panvel:Others:86,86,102,Raigarh,Panvel,Others,18.98,73.12,100.0,16
+104:Barwani(Rajghat):Hydro:87,87,104,Barwani,Barwani(Rajghat),Hydro,22.03,74.88,27.0,3
+102:Pen:Others:87,87,102,Raigarh,Pen,Others,18.73,73.1,99.0,16
+104:Rajpur:Others:88,88,104,Barwani,Rajpur,Others,21.95,75.13,70.0,3
+102:Poladpur:Others:88,88,102,Raigarh,Poladpur,Others,17.98,73.47,48.0,16
+104:Sendhwa(Med.):Others:89,89,104,Barwani,Sendhwa(Med.),Others,21.68,75.1,41.0,3
+102:Roha:Others:89,89,102,Raigarh,Roha,Others,18.43,73.12,103.0,16
+104:Thikri:Hydro:90,90,104,Barwani,Thikri,Hydro,22.07,75.4,44.0,3
+102:Shriwardhan:Others:90,90,102,Raigarh,Shriwardhan,Others,18.05,73.02,47.0,16
+104:Betul:Obsy:91,91,104,Betul,Betul,Obsy,21.92,77.9,59.0,3
+102:Sudhagad:Others:91,91,102,Raigarh,Sudhagad,Others,18.53,73.32,49.0,16
+104:Betul/Badnur:Others:92,92,104,Betul,Betul/Badnur,Others,21.92,77.9,96.0,3
+102:Uran:Others:92,92,102,Raigarh,Uran,Others,18.9,72.92,101.0,17
+104:Chicholi:Others:93,93,104,Betul,Chicholi,Others,22.02,77.67,92.0,3
+102:Chiplun:Others:93,93,102,Ratnagiri,Chiplun,Others,17.53,73.52,102.0,17
+104:Khedi:Hydro:94,94,104,Betul,Khedi,Hydro,21.83,77.87,23.0,3
+102:Dapoli:Others:94,94,102,Ratnagiri,Dapoli,Others,17.77,73.2,100.0,17
+104:Sarani Dam:Hydro:95,95,104,Betul,Sarani Dam,Hydro,22.17,78.08,28.0,3
+102:Devrukh:Others:95,95,102,Ratnagiri,Devrukh,Others,17.05,73.62,93.0,17
+104:Shahpur:Others:96,96,104,Betul,Shahpur,Others,22.2,77.92,89.0,3
+102:Guhagarh:Others:96,96,102,Ratnagiri,Guhagarh,Others,17.47,73.2,100.0,17
+104:Ankleshwar:Others:97,97,104,Broach,Ankleshwar,Others,21.63,73.0,97.0,3
+102:Khed:Others:97,97,102,Ratnagiri,Khed,Others,17.72,73.4,102.0,17
+104:Bhalod:Others:98,98,104,Broach,Bhalod,Others,21.8,73.17,31.0,3
+102:Lanja:Others:98,98,102,Ratnagiri,Lanja,Others,16.87,73.55,55.0,17
+104:Broach:Obsy:99,99,104,Broach,Broach,Obsy,21.7,72.97,25.0,3
+102:Mandangad:Others:99,99,102,Ratnagiri,Mandangad,Others,17.98,73.25,99.0,17
+104:Broach:Others:100,100,104,Broach,Broach,Others,21.7,72.97,90.0,3
+102:Rajapur:Others:100,100,102,Ratnagiri,Rajapur,Others,16.65,73.52,102.0,17
+104:Hansot:Others:101,101,104,Broach,Hansot,Others,21.58,72.82,98.0,3
+102:Ratnagiri:Obsy:101,101,102,Ratnagiri,Ratnagiri,Obsy,16.98,73.3,108.0,17
+104:Ilav:Others:102,102,104,Broach,Ilav,Others,21.45,72.8,93.0,3
+102:Ratnagiri:Others:102,102,102,Ratnagiri,Ratnagiri,Others,16.98,73.3,45.0,17
+104:Jhagadia:Others:103,103,104,Broach,Jhagadia,Others,21.72,73.18,44.0,3
+102:Devgad:Obsy:103,103,102,Sindhudurg,Devgad,Obsy,16.37,73.38,47.0,17
+104:Panoli:Others:104,104,104,Broach,Panoli,Others,21.55,72.97,22.0,3
+102:Devgad:Others:104,104,102,Sindhudurg,Devgad,Others,16.37,73.38,100.0,17
+104:Valia:Others:105,105,104,Broach,Valia,Others,21.55,73.15,64.0,3
+102:Kankavli:Others:105,105,102,Sindhudurg,Kankavli,Others,16.27,73.7,56.0,17
+104:Harrai:Hydro:106,106,104,Chindwara,Harrai,Hydro,22.62,79.23,20.0,3
+102:Kudal:Others:106,106,102,Sindhudurg,Kudal,Others,16.02,73.7,99.0,17
+104:Harrai:Others:107,107,104,Chindwara,Harrai,Others,22.62,79.23,100.0,3
+102:Malvan:Others:107,107,102,Sindhudurg,Malvan,Others,16.05,73.47,100.0,17
+104:Tamia:Others:108,108,104,Chindwara,Tamia,Others,22.35,78.68,91.0,3
+102:Sawantwadi:Others:108,108,102,Sindhudurg,Sawantwadi,Others,15.9,73.82,101.0,17
+104:Kannod:Obsy:109,109,104,Dewas,Kannod,Obsy,22.67,76.73,27.0,3
+102:Vengurla:Obsy:109,109,102,Sindhudurg,Vengurla,Obsy,15.87,73.63,54.0,17
+104:Kannod:Others:110,110,104,Dewas,Kannod,Others,22.67,76.73,74.0,3
+102:Vengurla:Others:110,110,102,Sindhudurg,Vengurla,Others,15.87,73.63,98.0,17
+104:Khategaon:Others:111,111,104,Dewas,Khategaon,Others,22.6,76.92,41.0,3
+102:Dabolim N.A.S.:Obsy:111,111,102,South Goa,Dabolim N.A.S.,Obsy,15.38,73.82,42.0,17
+104:Udainagar(Med.):Others:112,112,104,Dewas,Udainagar(Med.),Others,22.55,76.2,36.0,3
+102:Bardoli:Others:112,112,102,Surat,Bardoli,Others,21.12,73.12,98.0,17
+104:Dhar:Obsy:113,113,104,Dhar,Dhar,Obsy,22.6,75.3,31.0,4
+102:Mahuwa:Others:113,113,102,Surat,Mahuwa,Others,21.03,73.12,46.0,17
+104:Dhar:Others:114,114,104,Dhar,Dhar,Others,22.6,75.3,101.0,4
+102:Palsana:Others:114,114,102,Surat,Palsana,Others,21.1,72.98,46.0,17
+104:Dharampuri:Others:115,115,104,Dhar,Dharampuri,Others,22.15,75.35,73.0,4
+102:Songadh:Others:115,115,102,Tapi,Songadh,Others,21.18,73.55,65.0,17
+104:Manawar:Others:116,116,104,Dhar,Manawar,Others,22.23,75.08,97.0,4
+102:Songadh Fort:Hydro:116,116,102,Tapi,Songadh Fort,Hydro,21.18,73.55,23.0,17
+104:Dindori:Others:117,117,104,Dindori,Dindori,Others,22.93,81.08,102.0,4
+102:Bassein:Others:117,117,102,Thane,Bassein,Others,19.35,72.8,87.0,17
+104:Harda:Others:118,118,104,Harda,Harda,Others,22.35,77.08,99.0,4
+102:Bhiwandi:Others:118,118,102,Thane,Bhiwandi,Others,19.3,73.05,99.0,17
+104:Bagratawa:Hydro:119,119,104,Hoshangabad,Bagratawa,Hydro,22.63,77.98,44.0,4
+102:Dahanu:Obsy:119,119,102,Thane,Dahanu,Obsy,19.98,72.72,57.0,17
+104:Hoshangabad:Obsy:120,120,104,Hoshangabad,Hoshangabad,Obsy,22.26,71.19,107.0,4
+102:Dahanu:Others:120,120,102,Thane,Dahanu,Others,19.98,72.72,102.0,17
+104:Makrai:Others:121,121,104,Hoshangabad,Makrai,Others,22.08,77.08,81.0,4
+102:Jawhar:Others:121,121,102,Thane,Jawhar,Others,19.92,73.23,49.0,17
+104:Pachmarhi:Obsy:122,122,104,Hoshangabad,Pachmarhi,Obsy,22.47,78.43,92.0,4
+102:Kalyan:Others:122,122,102,Thane,Kalyan,Others,19.25,73.12,98.0,17
+104:Power Kheda:Others:123,123,104,Hoshangabad,Power Kheda,Others,22.67,77.75,23.0,4
+102:Mahim:Others:123,123,102,Thane,Mahim,Others,19.65,72.72,89.0,17
+104:Seoni:Others:124,124,104,Hoshangabad,Seoni,Others,22.45,77.48,99.0,4
+102:Mokhada:Others:124,124,102,Thane,Mokhada,Others,19.93,73.33,101.0,17
+104:Shivpar:Hydro:125,125,104,Hoshangabad,Shivpar,Hydro,22.52,77.32,24.0,4
+102:Murbad:Others:125,125,102,Thane,Murbad,Others,19.23,73.4,99.0,17
+104:Sohagpur:Others:126,126,104,Hoshangabad,Sohagpur,Others,22.7,78.2,101.0,4
+102:Shahapur:Others:126,126,102,Thane,Shahapur,Others,19.45,73.33,101.0,17
+104:T.Dam(Hosh.Bad):Hydro:127,127,104,Hoshangabad,T.Dam(Hosh.Bad),Hydro,22.58,77.92,30.0,4
+102:Thane:Others:127,127,102,Thane,Thane,Others,19.2,72.98,98.0,17
+104:Manpur(Tappa):Others:128,128,104,Indore,Manpur(Tappa),Others,22.43,75.63,73.0,4
+102:Vada:Others:128,128,102,Thane,Vada,Others,19.65,73.13,103.0,17
+104:Adhartal:Others:129,129,104,Jabalpur,Adhartal,Others,23.17,79.92,23.0,4
+311:Akola:Others:129,129,311,Ahmednagar,Akola,Others,19.55,74.02,104.0,17
+104:Barerakalan:Others:130,130,104,Jabalpur,Barerakalan,Others,23.1,80.03,49.0,4
+311:Kopargaon:Others:130,130,311,Ahmednagar,Kopargaon,Others,19.9,74.48,100.0,18
+104:Jamtara:Hydro:131,131,104,Jabalpur,Jamtara,Hydro,23.07,79.95,25.0,4
+311:Nevasa:Others:131,131,311,Ahmednagar,Nevasa,Others,19.55,74.93,103.0,18
+104:Pariat:Others:132,132,104,Jabalpur,Pariat,Others,23.25,80.15,52.0,4
+311:Pathardi:Others:132,132,311,Ahmednagar,Pathardi,Others,19.17,75.17,88.0,18
+104:Patan:Others:133,133,104,Jabalpur,Patan,Others,23.3,79.7,79.0,4
+311:Rahuri:Others:133,133,311,Ahmednagar,Rahuri,Others,19.4,74.65,102.0,18
+104:Sehora:Others:134,134,104,Jabalpur,Sehora,Others,23.48,80.1,92.0,4
+311:Sangamner:Others:134,134,311,Ahmednagar,Sangamner,Others,19.57,74.22,101.0,18
+104:Jabat:Others:135,135,104,Jhabua,Jabat,Others,22.42,74.57,22.0,4
+311:Shevgaon:Others:135,135,311,Ahmednagar,Shevgaon,Others,19.33,75.22,100.0,18
+104:Thandla:Others:136,136,104,Jhabua,Thandla,Others,22.03,73.05,22.0,4
+311:Shrirampur:Others:136,136,311,Ahmednagar,Shrirampur,Others,19.5,75.0,48.0,18
+104:Bohoribund:Others:137,137,104,Katni,Bohoribund,Others,23.67,80.07,61.0,4
+311:Aurangabad:Obsy:137,137,311,Aurangabad,Aurangabad,Obsy,19.88,75.33,83.0,18
+104:Harsud:Others:138,138,104,Khandwa,Harsud,Others,22.12,76.73,103.0,4
+311:Chikalthana/Aero:Obsy:138,138,311,Aurangabad,Chikalthana/Aero,Obsy,19.86,75.4,58.0,18
+104:Mandhata:Others:139,139,104,Khandwa,Mandhata,Others,22.25,76.15,77.0,4
+311:Gangapur:Others:139,139,311,Aurangabad,Gangapur,Others,19.7,75.02,52.0,18
+104:Punasa:Hydro:140,140,104,Khandwa,Punasa,Hydro,22.23,76.4,44.0,4
+311:Kannad:Others:140,140,311,Aurangabad,Kannad,Others,20.27,75.15,53.0,18
+104:Bhikangaon:Hydro:141,141,104,Khargone,Bhikangaon,Hydro,21.87,75.97,30.0,4
+311:Khaldabad:Others:141,141,311,Aurangabad,Khaldabad,Others,20.02,75.18,51.0,18
+104:Burwaha:Others:142,142,104,Khargone,Burwaha,Others,22.27,76.03,74.0,4
+311:Paithan:Others:142,142,311,Aurangabad,Paithan,Others,19.47,75.4,42.0,18
+104:Kasrawad:Others:143,143,104,Khargone,Kasrawad,Others,22.13,75.6,22.0,4
+311:Sillod:Others:143,143,311,Aurangabad,Sillod,Others,20.3,75.65,54.0,18
+104:Khargone:Obsy:144,144,104,Khargone,Khargone,Obsy,21.82,75.62,32.0,4
+311:Soegaon:Others:144,144,311,Aurangabad,Soegaon,Others,20.58,75.6,45.0,18
+104:Khargone:Others:145,145,104,Khargone,Khargone,Others,21.82,75.62,74.0,4
+311:Vijapur/Vaijapur:Others:145,145,311,Aurangabad,Vijapur/Vaijapur,Others,19.92,74.73,50.0,18
+104:Khargone(Med.):Others:146,146,104,Khargone,Khargone(Med.),Others,21.82,75.62,25.0,4
+311:Beed:Obsy:146,146,311,Beed,Beed,Obsy,18.98,75.77,37.0,18
+104:Maheshwar:Others:147,147,104,Khargone,Maheshwar,Others,22.2,75.58,73.0,4
+311:Beed:Others:147,147,311,Beed,Beed,Others,19.0,75.77,83.0,18
+104:Mandaleswar:Hydro:148,148,104,Khargone,Mandaleswar,Hydro,22.2,75.48,25.0,4
+311:Guorai:Others:148,148,311,Beed,Guorai,Others,19.25,75.75,51.0,18
+104:Mortakka:Hydro:149,149,104,Khargone,Mortakka,Hydro,22.23,76.03,32.0,4
+311:Manjlegaon:Others:149,149,311,Beed,Manjlegaon,Others,19.15,76.22,46.0,18
+104:Mortakka:Others:150,150,104,Khargone,Mortakka,Others,22.23,76.03,24.0,4
+311:Momina/Ambejogai:Others:150,150,311,Beed,Momina/Ambejogai,Others,18.72,76.38,53.0,18
+104:Bajag:Others:151,151,104,Mandla,Bajag,Others,22.67,81.37,49.0,5
+311:Deolgaon Raja:Others:151,151,311,Buldhana,Deolgaon Raja,Others,20.03,76.03,86.0,18
+104:Bichhia:Others:152,152,104,Mandla,Bichhia,Others,22.45,80.72,73.0,5
+311:Yerli:Hydro:152,152,311,Buldhana,Yerli,Hydro,20.15,76.1,28.0,18
+104:Mandla:Obsy:153,153,104,Mandla,Mandla,Obsy,22.6,80.38,54.0,5
+311:Sidheshwar Camp:Others:153,153,311,Hingoli,Sidheshwar Camp,Others,19.58,76.92,34.0,18
+104:Mandla:Others:154,154,104,Mandla,Mandla,Others,22.6,80.38,98.0,5
+311:Ambad:Others:154,154,311,Jalna,Ambad,Others,19.62,75.78,46.0,18
+104:Narayanganj:Others:155,155,104,Mandla,Narayanganj,Others,22.83,80.25,79.0,5
+311:Bhokardan:Others:155,155,311,Jalna,Bhokardan,Others,20.27,75.77,50.0,18
+104:Niwas:Others:156,156,104,Mandla,Niwas,Others,23.05,80.45,88.0,5
+311:Jafferabad:Others:156,156,311,Jalna,Jafferabad,Others,20.2,76.02,47.0,18
+104:Akkalkuwa:Others:157,157,104,Nandurbar,Akkalkuwa,Others,21.75,74.0,47.0,5
+311:Jalna:Others:157,157,311,Jalna,Jalna,Others,19.83,75.88,48.0,18
+104:Dediapada:Others:158,158,104,Narmada,Dediapada,Others,21.63,73.58,66.0,5
+311:Partur:Others:158,158,311,Jalna,Partur,Others,19.6,76.22,48.0,18
+104:Gardeshwar:Others:159,159,104,Narmada,Gardeshwar,Others,21.88,73.7,36.0,5
+311:Nilanga:Others:159,159,311,Latur,Nilanga,Others,18.08,76.75,24.0,18
+104:Rajpipala/Nandod:Others:160,160,104,Narmada,Rajpipala/Nandod,Others,21.87,73.5,90.0,5
+311:Billoli:Others:160,160,311,Nanded,Billoli,Others,18.78,77.73,53.0,18
+104:Barmanghat:Hydro:161,161,104,Narsinghpur,Barmanghat,Hydro,23.0,79.0,30.0,5
+311:Kandhar:Others:161,161,311,Nanded,Kandhar,Others,18.83,77.17,51.0,18
+104:Chindwara:Others:162,162,104,Narsinghpur,Chindwara,Others,23.05,79.48,87.0,5
+311:Nanded:Obsy:162,162,311,Nanded,Nanded,Obsy,19.08,77.33,43.0,18
+104:Gadarwah:Hydro:163,163,104,Narsinghpur,Gadarwah,Hydro,22.92,78.8,20.0,5
+311:Nanded:Others:163,163,311,Nanded,Nanded,Others,19.13,77.33,102.0,18
+104:Gadarwara:Others:164,164,104,Narsinghpur,Gadarwara,Others,22.92,78.8,98.0,5
+311:Bolthan:Others:164,164,311,Nasik,Bolthan,Others,20.2,74.92,42.0,18
+104:Mohpani:Others:165,165,104,Narsinghpur,Mohpani,Others,22.73,78.82,83.0,5
+311:Chandor:Others:165,165,311,Nasik,Chandor,Others,20.33,74.25,101.0,18
+104:Narsinghpur:Obsy:166,166,104,Narsinghpur,Narsinghpur,Obsy,22.95,79.2,43.0,5
+311:Dindori:Others:166,166,311,Nasik,Dindori,Others,20.2,73.83,101.0,18
+104:Narsinghpur:Others:167,167,104,Narsinghpur,Narsinghpur,Others,22.95,79.2,101.0,5
+311:Igatpuri:Others:167,167,311,Nasik,Igatpuri,Others,19.72,73.58,99.0,18
+104:Tendukhera:Others:168,168,104,Narsinghpur,Tendukhera,Others,23.17,78.88,78.0,5
+311:Kolegaon Mal:Others:168,168,311,Nasik,Kolegaon Mal,Others,19.92,74.17,33.0,19
+104:Jambughoda:Others:169,169,104,Panch-Mahals,Jambughoda,Others,22.38,73.73,100.0,5
+311:Nasik:Obsy:169,169,311,Nasik,Nasik,Obsy,20.0,73.79,51.0,19
+104:Bareli:Others:170,170,104,Raisen,Bareli,Others,23.0,77.23,80.0,5
+311:Nasik:Others:170,170,311,Nasik,Nasik,Others,20.0,73.78,92.0,19
+104:Barna Dam:Hydro:171,171,104,Raisen,Barna Dam,Hydro,23.13,78.07,30.0,5
+311:Niphad:Others:171,171,311,Nasik,Niphad,Others,20.08,74.12,102.0,19
+104:Salwani(Silvani):Others:172,172,104,Raisen,Salwani(Silvani),Others,23.3,78.45,78.0,5
+311:Ozar Aerodrome:Obsy:172,172,311,Nasik,Ozar Aerodrome,Obsy,20.13,73.92,37.0,19
+104:Silwani:Hydro:173,173,104,Raisen,Silwani,Hydro,23.3,78.45,20.0,5
+311:Pimpalgaon:Others:173,173,311,Nasik,Pimpalgaon,Others,20.17,73.98,87.0,19
+104:Udaipura:Others:174,174,104,Raisen,Udaipura,Others,23.08,78.5,69.0,5
+311:Sinnar:Others:174,174,311,Nasik,Sinnar,Others,19.85,74.0,100.0,19
+104:Budhni:Others:175,175,104,Sehore,Budhni,Others,22.78,77.68,49.0,5
+311:Trimbak:Others:175,175,311,Nasik,Trimbak,Others,19.95,73.53,79.0,19
+104:Nasrullaganj:Others:176,176,104,Sehore,Nasrullaganj,Others,22.68,77.27,79.0,5
+311:Yeola:Others:176,176,311,Nasik,Yeola,Others,20.05,74.48,102.0,19
+104:Ghansore:Others:177,177,104,Seoni,Ghansore,Others,22.63,79.95,69.0,5
+311:Dhalegaon:Hydro:177,177,311,Parbhani,Dhalegaon,Hydro,19.2,76.37,24.0,19
+104:Lakhandon:Hydro:178,178,104,Seoni,Lakhandon,Hydro,22.6,79.6,24.0,5
+311:Jintoor:Others:178,178,311,Parbhani,Jintoor,Others,19.62,76.7,44.0,19
+104:Lakhnadon:Others:179,179,104,Seoni,Lakhnadon,Others,22.6,79.6,99.0,5
+311:Parbhani:Obsy:179,179,311,Parbhani,Parbhani,Obsy,19.27,76.77,96.0,19
+104:Kim:Hydro:180,180,104,Surat,Kim,Hydro,21.4,72.97,34.0,5
+311:Pathri:Others:180,180,311,Parbhani,Pathri,Others,19.25,76.45,44.0,19
+104:Mangrol:Others:181,181,104,Surat,Mangrol,Others,21.47,73.13,72.0,5
+311:Purna:Others:181,181,311,Parbhani,Purna,Others,19.2,77.03,21.0,19
+104:Olpad:Others:182,182,104,Surat,Olpad,Others,21.35,72.75,99.0,5
+314:Adilabad:Pwd:182,182,314,Adilabad,Adilabad,Pwd,19.67,78.53,31.0,19
+105:Bhadran:Others:183,183,105,Anand,Bhadran,Others,22.37,72.9,53.0,5
+314:Adilabad:Rev:183,183,314,Adilabad,Adilabad,Rev,19.67,78.53,61.0,19
+105:Borsad:Others:184,184,105,Anand,Borsad,Others,22.43,72.9,100.0,5
+314:Sirpur:Rev:184,184,314,Adilabad,Sirpur,Rev,19.47,79.6,44.0,19
+105:Cambay:Others:185,185,105,Anand,Cambay,Others,22.32,72.62,91.0,5
+314:Barud/Warud:Others:185,185,314,Amraoti,Barud/Warud,Others,21.47,78.27,96.0,19
+105:Arthuna:Others:186,186,105,Banswara,Arthuna,Others,23.5,74.08,82.0,5
+314:Chandur Railway:Others:186,186,314,Amraoti,Chandur Railway,Others,20.82,77.97,103.0,19
+105:Bagidora:Others:187,187,105,Banswara,Bagidora,Others,23.45,73.28,43.0,5
+314:Morsi:Others:187,187,314,Amraoti,Morsi,Others,21.33,78.02,97.0,19
+105:Banswara:Obsy:188,188,105,Banswara,Banswara,Obsy,23.55,74.45,41.0,5
+314:Talegaon:Others:188,188,314,Amraoti,Talegaon,Others,20.68,78.1,71.0,19
+105:Banswara:Others:189,189,105,Banswara,Banswara,Others,23.55,74.45,110.0,6
+314:Chikhli:Others:189,189,314,Buldhana,Chikhli,Others,20.35,76.25,97.0,19
+105:Bhungra:Others:190,190,105,Banswara,Bhungra,Others,23.68,74.52,78.0,6
+314:Donegaon:Others:190,190,314,Buldhana,Donegaon,Others,20.18,76.72,85.0,19
+105:Danpur/Danpura:Others:191,191,105,Banswara,Danpur/Danpura,Others,23.52,74.72,77.0,6
+314:Mehkar:Others:191,191,314,Buldhana,Mehkar,Others,20.17,76.55,102.0,19
+105:Garhi:Others:192,192,105,Banswara,Garhi,Others,23.6,74.13,99.0,6
+314:Chandrapur:Obsy:192,192,314,Chandrapur,Chandrapur,Obsy,19.95,79.3,106.0,19
+105:Ghatol:Others:193,193,105,Banswara,Ghatol,Others,23.75,74.42,54.0,6
+314:Warora:Others:193,193,314,Chandrapur,Warora,Others,20.22,79.02,98.0,19
+105:Jagpura:Others:194,194,105,Banswara,Jagpura,Others,23.87,74.35,81.0,6
+314:Hingoli:Others:194,194,314,Hingoli,Hingoli,Others,19.72,77.15,67.0,19
+105:Khamera:Others:195,195,105,Banswara,Khamera,Others,23.78,74.47,39.0,6
+314:Kalmanoori:Others:195,195,314,Hingoli,Kalmanoori,Others,19.67,77.31,43.0,19
+105:Khandu:Others:196,196,105,Banswara,Khandu,Others,23.45,74.53,71.0,6
+314:Katol:Others:196,196,314,Nagpur,Katol,Others,21.27,78.58,101.0,19
+105:Khushalgarh:Others:197,197,105,Banswara,Khushalgarh,Others,23.2,74.45,109.0,6
+314:Kinwat:Others:197,197,314,Nanded,Kinwat,Others,19.63,78.2,34.0,19
+105:Loharia:Others:198,198,105,Banswara,Loharia,Others,23.77,74.23,71.0,6
+314:Arvi:Hydro:198,198,314,Wardha,Arvi,Hydro,20.98,78.25,24.0,19
+105:Sajjangarh:Others:199,199,105,Banswara,Sajjangarh,Others,23.25,74.25,78.0,6
+314:Arvi:Others:199,199,314,Wardha,Arvi,Others,20.98,78.25,102.0,19
+105:Sallopat:Others:200,200,105,Banswara,Sallopat,Others,23.25,74.1,78.0,6
+314:Hinganghat:Others:200,200,314,Wardha,Hinganghat,Others,20.55,78.83,102.0,19
+105:Shergarh:Others:201,201,105,Banswara,Shergarh,Others,23.33,74.17,79.0,6
+314:Wardha:Obsy:201,201,314,Wardha,Wardha,Obsy,20.67,78.58,39.0,19
+105:Baroda Aero:Obsy:202,202,105,Baroda,Baroda Aero,Obsy,22.33,73.27,45.0,6
+314:Wardha:Others:202,202,314,Wardha,Wardha,Others,20.75,78.62,87.0,19
+105:Baroda College:Obsy:203,203,105,Baroda,Baroda College,Obsy,22.33,73.27,83.0,6
+314:Karanjia:Others:203,203,314,Washim,Karanjia,Others,20.48,77.49,83.0,19
+105:Bhadarva:Others:204,204,105,Baroda,Bhadarva,Others,22.52,73.13,26.0,6
+314:Mangrulpir:Others:204,204,314,Washim,Mangrulpir,Others,20.31,77.33,101.0,19
+105:Bodeli:Hydro:205,205,105,Baroda,Bodeli,Hydro,22.57,73.9,21.0,6
+314:Risod:Others:205,205,314,Washim,Risod,Others,19.98,76.79,86.0,19
+105:Karjan:Others:206,206,105,Baroda,Karjan,Others,22.05,73.13,43.0,6
+314:Washim:Others:206,206,314,Washim,Washim,Others,20.1,77.14,97.0,20
+105:Padra:Others:207,207,105,Baroda,Padra,Others,22.23,73.08,45.0,6
+314:Darwha:Others:207,207,314,Yeotmal,Darwha,Others,20.32,77.77,98.0,20
+105:Savli:Others:208,208,105,Baroda,Savli,Others,22.57,73.22,46.0,6
+314:Digras:Others:208,208,314,Yeotmal,Digras,Others,20.12,77.72,95.0,20
+105:Waghodia:Others:209,209,105,Baroda,Waghodia,Others,22.33,73.33,45.0,6
+314:Ner:Others:209,209,314,Yeotmal,Ner,Others,20.48,77.87,93.0,20
+105:Amod:Others:210,210,105,Broach,Amod,Others,22.0,72.87,99.0,6
+314:Pandherikawara:Others:210,210,314,Yeotmal,Pandherikawara,Others,20.02,78.55,75.0,20
+105:Dahej:Others:211,211,105,Broach,Dahej,Others,21.72,72.58,76.0,6
+314:Pengana Bridge:Hydro:211,211,314,Yeotmal,Pengana Bridge,Hydro,19.82,78.57,25.0,20
+105:Jambusar:Others:212,212,105,Broach,Jambusar,Others,22.05,72.8,98.0,6
+314:Pusad:Obsy:212,212,314,Yeotmal,Pusad,Obsy,19.92,77.58,41.0,20
+105:Vagra:Others:213,213,105,Broach,Vagra,Others,21.85,72.85,99.0,6
+314:Pusad:Others:213,213,314,Yeotmal,Pusad,Others,19.92,77.58,80.0,20
+105:Bhopal Sagar:Others:214,214,105,Chittorgarh,Bhopal Sagar,Others,24.08,74.18,39.0,6
+314:Umerkhed:Others:214,214,314,Yeotmal,Umerkhed,Others,19.58,77.7,101.0,20
+105:Chhotisadri:Others:215,215,105,Chittorgarh,Chhotisadri,Others,24.38,74.7,42.0,6
+314:Wani:Others:215,215,314,Yeotmal,Wani,Others,20.05,78.95,101.0,20
+105:Partabgarh:Others:216,216,105,Chittorgarh,Partabgarh,Others,24.05,74.78,100.0,6
+314:Yeotmal:Obsy:216,216,314,Yeotmal,Yeotmal,Obsy,20.4,78.15,60.0,20
+105:Badnawar:Others:217,217,105,Dhar,Badnawar,Others,23.02,75.23,72.0,6
+314:Yeotmal:Others:217,217,314,Yeotmal,Yeotmal,Others,20.38,78.13,84.0,20
+105:Sardarpur:Others:218,218,105,Dhar,Sardarpur,Others,22.67,74.98,98.0,6
+315:Balaghat:Others:218,218,315,Balaghat,Balaghat,Others,21.8,80.2,99.0,20
+105:D.Baria:Others:219,219,105,Dohad,D.Baria,Others,22.7,73.91,95.0,6
+315:Dhuti:Others:219,219,315,Balaghat,Dhuti,Others,22.12,80.07,62.0,20
+105:Dohad:Obsy:220,220,105,Dohad,Dohad,Obsy,22.83,74.27,52.0,6
+315:Dongargaon:Others:220,220,315,Balaghat,Dongargaon,Others,21.72,80.42,61.0,20
+105:Dohad:Others:221,221,105,Dohad,Dohad,Others,22.83,74.27,20.0,6
+315:Jamunia:Others:221,221,315,Balaghat,Jamunia,Others,22.2,80.3,61.0,20
+105:Jhalod:Others:222,222,105,Dohad,Jhalod,Others,23.09,74.15,99.0,6
+315:Katangi:Others:222,222,315,Balaghat,Katangi,Others,21.78,79.8,94.0,20
+105:Santrampur/Sant:Others:223,223,105,Dohad,Santrampur/Sant,Others,23.18,73.87,65.0,6
+315:Kattanjhiri:Others:223,223,315,Balaghat,Kattanjhiri,Others,21.83,79.98,59.0,20
+105:Aspur:Others:224,224,105,Dungarpur,Aspur,Others,23.97,74.07,52.0,6
+315:Kosmi:Others:224,224,315,Balaghat,Kosmi,Others,21.75,80.05,29.0,20
+105:Dewal:Others:225,225,105,Dungarpur,Dewal,Others,23.87,73.78,52.0,6
+315:Lalburra:Others:225,225,315,Balaghat,Lalburra,Others,21.95,80.05,23.0,20
+105:Dungarpur:Obsy:226,226,105,Dungarpur,Dungarpur,Obsy,23.85,73.72,25.0,6
+315:Lanji:Others:226,226,315,Balaghat,Lanji,Others,21.5,80.53,98.0,20
+105:Dungarpur:Others:227,227,105,Dungarpur,Dungarpur,Others,23.85,73.72,108.0,7
+315:Sarthi:Others:227,227,315,Balaghat,Sarthi,Others,21.92,80.0,56.0,20
+105:Galiakot:Others:228,228,105,Dungarpur,Galiakot,Others,23.52,74.0,52.0,7
+315:Waramain:Others:228,228,315,Balaghat,Waramain,Others,21.62,80.4,75.0,20
+105:Ganeshpur:Others:229,229,105,Dungarpur,Ganeshpur,Others,23.95,73.9,51.0,7
+315:Waraseoni:Others:229,229,315,Balaghat,Waraseoni,Others,21.75,80.05,94.0,20
+105:Nithawa/Natau:Others:230,230,105,Dungarpur,Nithawa/Natau,Others,23.92,74.3,78.0,7
+315:Bhandara:Hydro:230,230,315,Bhandara,Bhandara,Hydro,21.17,79.65,23.0,20
+105:Pderdi:Hydro:231,231,105,Dungarpur,Pderdi,Hydro,23.75,74.12,27.0,7
+315:Bhandara:Others:231,231,315,Bhandara,Bhandara,Others,21.17,79.67,98.0,20
+105:Sagwara:Others:232,232,105,Dungarpur,Sagwara,Others,23.68,74.03,100.0,7
+315:Chandpur:Others:232,232,315,Bhandara,Chandpur,Others,21.5,79.78,79.0,20
+105:Sahla/Sabla:Others:233,233,105,Dungarpur,Sahla/Sabla,Others,23.85,74.17,52.0,7
+315:Chorkhamara:Others:233,233,315,Bhandara,Chorkhamara,Others,21.27,79.97,65.0,20
+105:Jhabua:Others:234,234,105,Jhabua,Jhabua,Others,22.78,74.58,104.0,7
+315:Deori:Others:234,234,315,Bhandara,Deori,Others,21.07,80.37,55.0,20
+105:Petalwad:Others:235,235,105,Jhabua,Petalwad,Others,23.02,74.8,21.0,7
+315:Khyrbund:Others:235,235,315,Bhandara,Khyrbund,Others,21.48,80.07,89.0,20
+105:Godhra:Others:236,236,105,Panch-Mahals,Godhra,Others,22.78,73.62,99.0,7
+315:Pangree:Others:236,236,315,Bhandara,Pangree,Others,21.42,80.1,67.0,20
+105:Halol:Others:237,237,105,Panch-Mahals,Halol,Others,22.5,73.48,98.0,7
+315:Paoni:Others:237,237,315,Bhandara,Paoni,Others,20.78,79.65,51.0,20
+105:Kalol:Others:238,238,105,Panch-Mahals,Kalol,Others,22.62,73.47,100.0,7
+315:Sakoli:Others:238,238,315,Bhandara,Sakoli,Others,21.08,80.0,99.0,20
+105:Lunawada:Others:239,239,105,Panch-Mahals,Lunawada,Others,23.13,73.62,98.0,7
+315:Asola:Others:239,239,315,Chandrapur,Asola,Others,20.25,79.85,81.0,20
+105:Sangtala:Others:240,240,105,Panch-Mahals,Sangtala,Others,22.57,73.92,23.0,7
+315:Brahmapuri:Others:240,240,315,Chandrapur,Brahmapuri,Others,20.6,79.87,102.0,20
+105:Shehra:Others:241,241,105,Panch-Mahals,Shehra,Others,22.95,73.63,46.0,7
+315:Bramhapuri:Obsy:241,241,315,Chandrapur,Bramhapuri,Obsy,20.61,79.86,51.0,20
+105:Ratlam:Obsy:242,242,105,Ratlam,Ratlam,Obsy,23.33,75.03,56.0,7
+315:Chimur:Others:242,242,315,Chandrapur,Chimur,Others,20.5,79.38,101.0,20
+105:Ratlam:Others:243,243,105,Ratlam,Ratlam,Others,23.33,75.03,102.0,7
+315:Ghorajheri:Others:243,243,315,Chandrapur,Ghorajheri,Others,20.53,79.63,82.0,20
+105:Sailana:Others:244,244,105,Ratlam,Sailana,Others,23.45,74.93,102.0,7
+315:Khairee:Others:244,244,315,Chandrapur,Khairee,Others,20.27,79.77,84.0,21
+105:Dhariawad:Others:245,245,105,Udaipur,Dhariawad,Others,24.1,74.47,33.0,7
+315:Mul:Others:245,245,315,Chandrapur,Mul,Others,20.07,79.68,76.0,21
+105:Kherwara:Others:246,246,105,Udaipur,Kherwara,Others,23.98,73.6,109.0,7
+315:Nalesar:Others:246,246,315,Chandrapur,Nalesar,Others,20.05,79.47,65.0,21
+105:Salumberr:Others:247,247,105,Udaipur,Salumberr,Others,24.13,74.05,54.0,7
+315:Sindewahi:Others:247,247,315,Chandrapur,Sindewahi,Others,20.28,79.68,52.0,21
+105:Sarara/Salara:Others:248,248,105,Udaipur,Sarara/Salara,Others,24.18,73.92,69.0,7
+315:Amarwara:Others:248,248,315,Chindwara,Amarwara,Others,22.3,79.17,89.0,21
+106:Ahmedabad Aero:Obsy:249,249,106,Ahmedabad,Ahmedabad Aero,Obsy,23.03,72.62,109.0,7
+315:Chaurai:Others:249,249,315,Chindwara,Chaurai,Others,22.05,79.27,71.0,21
+106:Aslali:Others:250,250,106,Ahmedabad,Aslali,Others,22.92,72.58,48.0,7
+315:Chindwara:Obsy:250,250,315,Chindwara,Chindwara,Obsy,21.0,79.0,52.0,21
+106:Dehgaon:Others:251,251,106,Ahmedabad,Dehgaon,Others,23.17,72.82,40.0,7
+315:Chindwara:Others:251,251,315,Chindwara,Chindwara,Others,22.07,78.95,97.0,21
+106:Dholka:Others:252,252,106,Ahmedabad,Dholka,Others,22.72,72.45,99.0,7
+315:Sausar:Others:252,252,315,Chindwara,Sausar,Others,21.63,78.78,102.0,21
+106:Sanand:Others:253,253,106,Ahmedabad,Sanand,Others,22.98,72.38,99.0,7
+315:Armori:Others:253,253,315,Gadchiroli,Armori,Others,20.47,79.98,95.0,21
+106:Anand:Others:254,254,106,Anand,Anand,Others,22.55,72.96,99.0,7
+315:Dhanora:Others:254,254,315,Gadchiroli,Dhanora,Others,20.27,80.32,56.0,21
+106:Dhambola:Others:255,255,106,Dungarpur,Dhambola,Others,23.6,73.77,78.0,7
+315:Gadchiroli:Others:255,255,315,Gadchiroli,Gadchiroli,Others,20.18,80.0,95.0,21
+106:Balasinor:Others:256,256,106,Kaira/Kheda,Balasinor,Others,22.95,73.33,99.0,7
+315:Garmuri:Others:256,256,315,Gadchiroli,Garmuri,Others,19.95,79.9,46.0,21
+106:Dakor:Others:257,257,106,Kaira/Kheda,Dakor,Others,22.75,73.15,75.0,7
+315:Bodalkasa:Others:257,257,315,Gondia,Bodalkasa,Others,21.37,80.05,82.0,21
+106:Kaira/Kheda:Others:258,258,106,Kaira/Kheda,Kaira/Kheda,Others,22.75,72.7,90.0,7
+315:Gondia:Obsy:258,258,315,Gondia,Gondia,Obsy,21.46,80.2,56.0,21
+106:Kapadvanj:Others:259,259,106,Kaira/Kheda,Kapadvanj,Others,23.03,73.07,95.0,7
+315:Gondia:Others:259,259,315,Gondia,Gondia,Others,21.45,80.2,60.0,21
+106:Mahudha:Others:260,260,106,Kaira/Kheda,Mahudha,Others,22.82,72.93,76.0,7
+315:Tirora:Others:260,260,315,Gondia,Tirora,Others,21.41,79.93,87.0,21
+106:Matar:Others:261,261,106,Kaira/Kheda,Matar,Others,22.7,72.63,98.0,7
+315:Deolapur:Others:261,261,315,Nagpur,Deolapur,Others,21.58,79.38,56.0,21
+106:Mehmedabad:Others:262,262,106,Kaira/Kheda,Mehmedabad,Others,22.83,72.75,100.0,7
+315:Kindsi:Others:262,262,315,Nagpur,Kindsi,Others,21.38,79.4,70.0,21
+106:Nadiad:Others:263,263,106,Kaira/Kheda,Nadiad,Others,22.7,72.87,97.0,7
+315:Nagpur Aerodrome:Obsy:263,263,315,Nagpur,Nagpur Aerodrome,Obsy,21.09,79.05,61.0,21
+106:Pinglaj:Others:264,264,106,Kaira/Kheda,Pinglaj,Others,22.75,72.58,59.0,7
+315:Nagpur Govt.Farm:Others:264,264,315,Nagpur,Nagpur Govt.Farm,Others,21.15,79.07,38.0,21
+106:Savli Tank:Others:265,265,106,Kaira/Kheda,Savli Tank,Others,22.92,73.1,60.0,8
+315:Nagpur Meyo Hosp:Obsy:265,265,315,Nagpur,Nagpur Meyo Hosp,Obsy,21.1,79.12,101.0,21
+106:Sayat Tank:Others:266,266,106,Kaira/Kheda,Sayat Tank,Others,22.78,73.08,52.0,8
+315:Perseoni:Others:266,266,315,Nagpur,Perseoni,Others,21.37,79.15,78.0,21
+106:Thasra:Others:267,267,106,Kaira/Kheda,Thasra,Others,22.8,73.22,100.0,8
+315:Ramtek:Others:267,267,315,Nagpur,Ramtek,Others,21.4,79.33,100.0,21
+106:Tranza Nag Tank:Others:268,268,106,Kaira/Kheda,Tranza Nag Tank,Others,22.55,72.6,29.0,8
+315:Saoner:Others:268,268,315,Nagpur,Saoner,Others,21.38,78.92,96.0,21
+106:Wanakbori Weir:Others:269,269,106,Kaira/Kheda,Wanakbori Weir,Others,22.82,73.35,22.0,8
+315:Tharsa:Others:269,269,315,Nagpur,Tharsa,Others,21.23,79.38,73.0,21
+106:Wanghroli Tank:Others:270,270,106,Kaira/Kheda,Wanghroli Tank,Others,22.88,73.32,60.0,8
+315:Umrer:Others:270,270,315,Nagpur,Umrer,Others,20.85,79.33,102.0,21
+106:Dharoi:Hydro:271,271,106,Mehsana,Dharoi,Hydro,24.5,73.0,47.0,8
+315:Ari Tank:Others:271,271,315,Seoni,Ari Tank,Others,21.95,79.72,27.0,21
+106:Kalol:Others:272,272,106,Mehsana,Kalol,Others,23.23,72.5,70.0,8
+315:Bori:Others:272,272,315,Seoni,Bori,Others,22.07,79.7,53.0,21
+106:Mansa:Others:273,273,106,Mehsana,Mansa,Others,23.42,72.67,21.0,8
+315:Chinchbund:Others:273,273,315,Seoni,Chinchbund,Others,21.93,79.73,28.0,21
+106:Vijapur:Others:274,274,106,Mehsana,Vijapur,Others,23.57,72.75,45.0,8
+315:Keolari:Others:274,274,315,Seoni,Keolari,Others,22.38,79.9,77.0,21
+106:Bhiloda:Others:275,275,106,Sabarkantha,Bhiloda,Others,23.77,73.25,44.0,8
+315:Roomal:Others:275,275,315,Seoni,Roomal,Others,22.32,80.07,76.0,21
+106:Byad:Others:276,276,106,Sabarkantha,Byad,Others,23.22,73.23,99.0,8
+315:Seoni:Obsy:276,276,315,Seoni,Seoni,Obsy,22.08,79.55,107.0,21
+106:Himatnagar:Others:277,277,106,Sabarkantha,Himatnagar,Others,23.6,72.97,98.0,8
+315:Kharangha:Others:277,277,315,Wardha,Kharangha,Others,20.9,78.48,24.0,21
+106:Idar:Obsy:278,278,106,Sabarkantha,Idar,Obsy,23.85,73.0,47.0,8
+319:Ambabhona:Others:278,278,319,Bargarh,Ambabhona,Others,21.58,83.47,69.0,21
+106:Idar:Others:279,279,106,Sabarkantha,Idar,Others,23.85,73.0,88.0,8
+319:Paikmal:Others:279,279,319,Bargarh,Paikmal,Others,20.92,82.75,33.0,21
+106:Khedbrahma:Hydro:280,280,106,Sabarkantha,Khedbrahma,Hydro,24.38,73.05,35.0,8
+319:Khijrawan:Hydro:280,280,319,Bastar,Khijrawan,Hydro,20.3,81.77,34.0,21
+106:Khedbrahma:Others:281,281,106,Sabarkantha,Khedbrahma,Others,24.03,73.05,20.0,8
+319:Bilaspur:Others:281,281,319,Bilaspur,Bilaspur,Others,22.08,82.13,99.0,21
+106:Malpur:Others:282,282,106,Sabarkantha,Malpur,Others,23.35,73.47,42.0,8
+319:Khurai:Others:282,282,319,Bilaspur,Khurai,Others,22.42,81.6,44.0,22
+106:Meghraj:Others:283,283,106,Sabarkantha,Meghraj,Others,23.5,73.5,45.0,8
+319:Kotaghat:Others:283,283,319,Bilaspur,Kotaghat,Others,22.3,82.22,57.0,22
+106:Modasa:Others:284,284,106,Sabarkantha,Modasa,Others,23.45,73.28,98.0,8
+319:Mungeli:Others:284,284,319,Bilaspur,Mungeli,Others,22.07,81.68,99.0,22
+106:Mohanpur:Others:285,285,106,Sabarkantha,Mohanpur,Others,23.45,73.07,55.0,8
+319:Pandaria:Others:285,285,319,Bilaspur,Pandaria,Others,22.22,81.42,71.0,22
+106:Posina:Hydro:286,286,106,Sabarkantha,Posina,Hydro,24.37,73.03,34.0,8
+319:Pasan:Others:286,286,319,Bilaspur,Pasan,Others,22.83,82.2,49.0,22
+106:Prantij:Others:287,287,106,Sabarkantha,Prantij,Others,23.43,72.87,98.0,8
+319:Pondilafa:Others:287,287,319,Bilaspur,Pondilafa,Others,22.57,82.62,55.0,22
+106:Vijaynagar:Hydro:288,288,106,Sabarkantha,Vijaynagar,Hydro,23.98,73.28,32.0,8
+319:Dhamtari:Others:288,288,319,Dhamtari,Dhamtari,Others,20.7,81.57,93.0,22
+106:Bikrani:Hydro:289,289,106,Udaipur,Bikrani,Hydro,24.53,73.2,36.0,8
+319:Kurud:Others:289,289,319,Dhamtari,Kurud,Others,20.83,81.72,79.0,22
+106:Jaisamand:Others:290,290,106,Udaipur,Jaisamand,Others,24.25,73.2,23.0,8
+319:Adamabad:Others:290,290,319,Durg,Adamabad,Others,20.68,81.25,65.0,22
+106:Jhadol:Hydro:291,291,106,Udaipur,Jhadol,Hydro,24.38,73.47,24.0,8
+319:Bemetara:Others:291,291,319,Durg,Bemetara,Others,21.72,81.53,94.0,22
+106:Kotra:Others:292,292,106,Udaipur,Kotra,Others,24.37,73.17,53.0,8
+319:Bhatagaon:Others:292,292,319,Durg,Bhatagaon,Others,20.95,81.4,63.0,22
+106:Phalasiya/Jhadol:Others:293,293,106,Udaipur,Phalasiya/Jhadol,Others,24.12,73.33,35.0,8
+319:Bhilai:Others:293,293,319,Durg,Bhilai,Others,21.2,81.42,65.0,22
+106:Saidam:Hydro:294,294,106,Udaipur,Saidam,Hydro,24.38,73.18,26.0,8
+319:Durg:Others:294,294,319,Durg,Durg,Others,21.22,81.28,99.0,22
+106:Tarpal:Hydro:295,295,106,Udaipur,Tarpal,Hydro,24.67,73.58,22.0,8
+319:Khamaria:Others:295,295,319,Durg,Khamaria,Others,21.8,81.33,64.0,22
+107:Barwala:Others:296,296,107,Ahmedabad,Barwala,Others,22.1,71.92,21.0,8
+319:Khapari:Others:296,296,319,Durg,Khapari,Others,21.03,81.4,86.0,22
+107:Dhandhuka:Others:297,297,107,Ahmedabad,Dhandhuka,Others,22.37,71.98,99.0,8
+319:Kharra:Others:297,297,319,Durg,Kharra,Others,21.55,81.53,64.0,22
+107:Dholera:Others:298,298,107,Ahmedabad,Dholera,Others,22.25,72.18,81.0,8
+319:Sanjari:Others:298,298,319,Durg,Sanjari,Others,20.87,81.03,52.0,22
+107:Mandal:Others:299,299,107,Ahmedabad,Mandal,Others,23.28,71.92,74.0,8
+319:Selod:Others:299,299,319,Durg,Selod,Others,21.08,81.43,64.0,22
+107:Ranpur:Others:300,300,107,Ahmedabad,Ranpur,Others,22.35,71.72,85.0,8
+319:Dhabara /Dabra:Others:300,300,319,Janjgir,Dhabara /Dabra,Others,21.78,83.08,33.0,22
+107:Viramgam:Others:301,301,107,Ahmedabad,Viramgam,Others,23.12,72.05,95.0,8
+319:Janjgir:Others:301,301,319,Janjgir,Janjgir,Others,22.02,82.58,86.0,22
+107:Amreli:Obsy:302,302,107,Amreli,Amreli,Obsy,21.6,71.22,35.0,8
+319:Sakti:Others:302,302,319,Janjgir,Sakti,Others,22.03,82.97,95.0,22
+107:Amreli:Others:303,303,107,Amreli,Amreli,Others,21.6,71.22,74.0,9
+319:Seorinarayan:Others:303,303,319,Janjgir,Seorinarayan,Others,21.72,82.6,22.0,22
+107:Babra:Others:304,304,107,Amreli,Babra,Others,21.83,71.3,41.0,9
+319:Pathalgaon:Hydro:304,304,319,Jashpurnagar,Pathalgaon,Hydro,22.57,83.5,30.0,22
+107:Damnagar:Others:305,305,107,Amreli,Damnagar,Others,21.7,71.52,25.0,9
+319:Jharsuguda:Others:305,305,319,Jharsuguda,Jharsuguda,Others,21.85,84.03,62.0,22
+107:Dhari:Others:306,306,107,Amreli,Dhari,Others,21.33,71.03,43.0,9
+319:Laikera Bl Ii:Others:306,306,319,Jharsuguda,Laikera Bl Ii,Others,21.88,84.17,29.0,22
+107:Jafrabad:Others:307,307,107,Amreli,Jafrabad,Others,20.85,71.37,98.0,9
+319:Lakhanpur:Others:307,307,319,Jharsuguda,Lakhanpur,Others,21.58,83.58,32.0,22
+107:Khambha:Others:308,308,107,Amreli,Khambha,Others,21.13,71.25,74.0,9
+319:Kathghora:Others:308,308,319,Korba,Kathghora,Others,22.5,82.55,84.0,22
+107:Kodinar:Others:309,309,107,Amreli,Kodinar,Others,20.78,70.72,44.0,9
+319:Korba:Others:309,309,319,Korba,Korba,Others,22.33,82.7,73.0,22
+107:Kunkawav:Others:310,310,107,Amreli,Kunkawav,Others,21.63,70.98,38.0,9
+319:Kowardha:Others:310,310,319,Kowardha,Kowardha,Others,22.02,81.25,92.0,22
+107:Lathi:Others:311,311,107,Amreli,Lathi,Others,21.72,71.38,38.0,9
+319:Mahasamund:Others:311,311,319,Mahasamund,Mahasamund,Others,21.1,82.1,87.0,22
+107:Lilia:Others:312,312,107,Amreli,Lilia,Others,21.53,71.35,42.0,9
+319:Saraipali:Others:312,312,319,Mahasamund,Saraipali,Others,21.08,82.45,75.0,22
+107:Rajula:Others:313,313,107,Amreli,Rajula,Others,21.07,71.45,39.0,9
+319:Nawapara:Others:313,313,319,Nawapara,Nawapara,Others,20.83,82.55,65.0,22
+107:Danta:Others:314,314,107,Banaskantha,Danta,Others,24.2,72.77,45.0,9
+319:Dharamjaigarh:Others:314,314,319,Raigarh,Dharamjaigarh,Others,22.47,83.22,82.0,22
+107:Deesa:Obsy:315,315,107,Banaskantha,Deesa,Obsy,24.2,72.25,109.0,9
+319:Gharghoda:Hydro:315,315,319,Raigarh,Gharghoda,Hydro,22.17,83.35,28.0,22
+107:Deodar:Others:316,316,107,Banaskantha,Deodar,Others,24.12,71.78,45.0,9
+319:Ginabahar:Hydro:316,316,319,Raigarh,Ginabahar,Hydro,22.77,83.97,45.0,22
+107:Kankrej:Others:317,317,107,Banaskantha,Kankrej,Others,24.05,71.75,45.0,9
+319:Raigarh:Others:317,317,319,Raigarh,Raigarh,Others,21.92,83.4,85.0,22
+107:Palanpur:Others:318,318,107,Banaskantha,Palanpur,Others,24.17,72.43,97.0,9
+319:Sarangarh:Others:318,318,319,Raigarh,Sarangarh,Others,21.58,83.08,91.0,22
+107:Tharad:Others:319,319,107,Banaskantha,Tharad,Others,24.38,71.62,99.0,9
+319:Tapkara:Hydro:319,319,319,Raigarh,Tapkara,Hydro,22.58,83.97,39.0,22
+107:Vadgam:Others:320,320,107,Banaskantha,Vadgam,Others,24.07,72.48,45.0,9
+319:Arang:Others:320,320,319,Raipur,Arang,Others,21.2,81.98,75.0,23
+107:Wav:Others:321,321,107,Banaskantha,Wav,Others,24.37,71.52,42.0,9
+319:Arjuni:Others:321,321,319,Raipur,Arjuni,Others,21.5,82.62,38.0,23
+107:Bhaunagar Aero:Obsy:322,322,107,Bhaunagar,Bhaunagar Aero,Obsy,21.75,72.2,58.0,9
+319:Baloda Bazar:Others:322,322,319,Raipur,Baloda Bazar,Others,21.67,82.17,94.0,23
+107:Bhaunagarpara:Obsy:323,323,107,Bhaunagar,Bhaunagarpara,Obsy,21.75,72.2,61.0,9
+319:Bhatagaon:Others:323,323,319,Raipur,Bhatagaon,Others,21.15,81.73,60.0,23
+107:Botad:Others:324,324,107,Bhaunagar,Botad,Others,22.17,71.67,39.0,9
+319:Budni:Others:324,324,319,Raipur,Budni,Others,20.92,81.83,38.0,23
+107:Gadhada:Others:325,325,107,Bhaunagar,Gadhada,Others,21.92,71.58,39.0,9
+319:Gariabund:Others:325,325,319,Raipur,Gariabund,Others,20.63,82.07,88.0,23
+107:Gogha:Others:326,326,107,Bhaunagar,Gogha,Others,21.68,71.28,88.0,9
+319:Gattasilli:Others:326,326,319,Raipur,Gattasilli,Others,20.45,81.82,52.0,23
+107:Kundla:Others:327,327,107,Bhaunagar,Kundla,Others,21.35,71.3,25.0,9
+319:Kanki:Others:327,327,319,Raipur,Kanki,Others,21.38,81.98,65.0,23
+107:Mahuva:Obsy:328,328,107,Bhaunagar,Mahuva,Obsy,21.08,71.78,35.0,9
+319:Kendri:Others:328,328,319,Raipur,Kendri,Others,21.1,81.73,55.0,23
+107:Mahuva:Others:329,329,107,Bhaunagar,Mahuva,Others,21.08,71.78,83.0,9
+319:Khairdatan:Others:329,329,319,Raipur,Khairdatan,Others,21.57,82.33,76.0,23
+107:Malamgiri Tank:Others:330,330,107,Bhaunagar,Malamgiri Tank,Others,21.17,71.75,20.0,9
+319:Kondapar:Others:330,330,319,Raipur,Kondapar,Others,21.72,81.98,57.0,23
+107:Palitana:Others:331,331,107,Bhaunagar,Palitana,Others,21.52,71.83,100.0,9
+319:Kusrangi:Others:331,331,319,Raipur,Kusrangi,Others,21.35,82.0,46.0,23
+107:Sihor:Others:332,332,107,Bhaunagar,Sihor,Others,21.7,71.95,42.0,9
+319:Lahood:Others:332,332,319,Raipur,Lahood,Others,21.58,82.25,38.0,23
+107:Songadh:Others:333,333,107,Bhaunagar,Songadh,Others,21.73,71.88,67.0,9
+319:Lakholi:Others:333,333,319,Raipur,Lakholi,Others,21.2,81.9,49.0,23
+107:Talaja:Others:334,334,107,Bhaunagar,Talaja,Others,21.37,72.05,39.0,9
+319:Mainpur:Hydro:334,334,319,Raipur,Mainpur,Hydro,20.28,82.23,33.0,23
+107:Umrala:Others:335,335,107,Bhaunagar,Umrala,Others,21.85,71.8,41.0,9
+319:Maramsilli:Others:335,335,319,Raipur,Maramsilli,Others,20.55,81.67,56.0,23
+107:Vallabhipur:Others:336,336,107,Bhaunagar,Vallabhipur,Others,21.83,71.92,42.0,9
+319:Pallari:Others:336,336,319,Raipur,Pallari,Others,21.53,82.17,47.0,23
+107:Bhanwad:Others:337,337,107,Jamnagar,Bhanwad,Others,21.93,69.78,42.0,9
+319:Pindron:Others:337,337,319,Raipur,Pindron,Others,21.67,81.87,79.0,23
+107:Dhrol:Others:338,338,107,Jamnagar,Dhrol,Others,22.57,70.42,41.0,9
+319:Pithora:Others:338,338,319,Raipur,Pithora,Others,21.27,82.52,57.0,23
+107:Dwarka:Obsy:339,339,107,Jamnagar,Dwarka,Obsy,22.33,69.08,105.0,9
+319:Rajim:Others:339,339,319,Raipur,Rajim,Others,20.97,81.88,56.0,23
+107:Fulzargiri Schem:Others:340,340,107,Jamnagar,Fulzargiri Schem,Others,22.0,70.25,22.0,9
+319:Rudri:Others:340,340,319,Raipur,Rudri,Others,20.67,81.57,58.0,23
+107:Jam Jodhpur:Others:341,341,107,Jamnagar,Jam Jodhpur,Others,21.92,70.03,38.0,10
+319:Sandi:Others:341,341,319,Raipur,Sandi,Others,21.5,82.5,41.0,23
+107:Jamnagar:Agro:342,342,107,Jamnagar,Jamnagar,Agro,22.47,70.0,31.0,10
+319:Simga:Others:342,342,319,Raipur,Simga,Others,21.63,81.7,75.0,23
+107:Jodia:Others:343,343,107,Jamnagar,Jodia,Others,22.7,70.32,42.0,10
+319:Ambagarh Chowki:Others:343,343,319,Rajnandgaon,Ambagarh Chowki,Others,20.78,80.73,87.0,23
+107:Kalwad:Others:344,344,107,Jamnagar,Kalwad,Others,22.22,70.38,41.0,10
+319:Chhuikhadan:Others:344,344,319,Rajnandgaon,Chhuikhadan,Others,21.53,81.0,95.0,23
+107:Kalyanpur:Others:345,345,107,Jamnagar,Kalyanpur,Others,22.08,69.37,41.0,10
+319:Dongargarh:Others:345,345,319,Rajnandgaon,Dongargarh,Others,21.2,80.75,88.0,23
+107:Khambhalia:Others:346,346,107,Jamnagar,Khambhalia,Others,22.22,69.67,38.0,10
+319:Gondai:Others:346,346,319,Rajnandgaon,Gondai,Others,21.67,81.12,86.0,23
+107:Lalpur:Others:347,347,107,Jamnagar,Lalpur,Others,22.2,69.97,42.0,10
+319:Khairagarh:Others:347,347,319,Rajnandgaon,Khairagarh,Others,21.42,80.98,96.0,23
+107:Latnipur:Others:348,348,107,Jamnagar,Latnipur,Others,22.63,70.53,25.0,10
+319:Rajnandgaon:Others:348,348,319,Rajnandgaon,Rajnandgaon,Others,21.08,81.03,96.0,23
+107:Navanagar:Others:349,349,107,Jamnagar,Navanagar,Others,22.47,70.08,56.0,10
+319:Kuchinda:Others:349,349,319,Sambalpur,Kuchinda,Others,21.75,84.35,21.0,23
+107:Okha:Obsy:350,350,107,Jamnagar,Okha,Obsy,21.58,74.3,43.0,10
+319:Kusumi:Hydro:350,350,319,Sambalpur,Kusumi,Hydro,21.75,84.52,52.0,23
+107:Bhesan:Others:351,351,107,Junagadh,Bhesan,Others,21.53,70.7,22.0,10
+319:Hemgir:Hydro:351,351,319,Sundargarh,Hemgir,Hydro,21.95,83.7,59.0,23
+107:Hasanpur:Others:352,352,107,Junagadh,Hasanpur,Others,21.32,70.98,22.0,10
+319:Lephripara:Others:352,352,319,Sundargarh,Lephripara,Others,22.1,83.82,25.0,23
+107:Junagadh:Others:353,353,107,Junagadh,Junagadh,Others,21.52,70.47,98.0,10
+319:Sundergarh:Others:353,353,319,Sundargarh,Sundergarh,Others,22.12,84.03,32.0,23
+107:Keshod:Others:354,354,107,Junagadh,Keshod,Others,21.3,70.25,22.0,10
+319:Ujjalpur:Hydro:354,354,319,Sundargarh,Ujjalpur,Hydro,22.08,83.92,48.0,23
+107:Keshod Aero:Obsy:355,355,107,Junagadh,Keshod Aero,Obsy,21.3,70.25,45.0,10
+319:Sitapur:Others:355,355,319,Surguja,Sitapur,Others,22.77,83.5,29.0,23
+107:Malia:Others:356,356,107,Junagadh,Malia,Others,21.15,70.3,38.0,10
+404:Bangu/Bagan:Others:356,356,404,Chittorgarh,Bangu/Bagan,Others,24.98,75.13,39.0,23
+107:Manavadar:Others:357,357,107,Junagadh,Manavadar,Others,21.5,70.15,41.0,10
+404:Bhensrodgarh:Others:357,357,404,Chittorgarh,Bhensrodgarh,Others,24.97,75.53,27.0,23
+107:Mangrol:Others:358,358,107,Junagadh,Mangrol,Others,21.12,70.12,42.0,10
+404:Chambal/R.B.Dam:Obsy:358,358,404,Chittorgarh,Chambal/R.B.Dam,Obsy,24.92,75.58,46.0,24
+107:Monderda:Others:359,359,107,Junagadh,Monderda,Others,21.33,70.45,42.0,10
+404:Dewas Ar.:Others:359,359,404,Dewas,Dewas Ar.,Others,22.97,76.07,90.0,24
+107:Talala:Others:360,360,107,Junagadh,Talala,Others,21.05,70.53,39.0,10
+404:Dapalpur:Others:360,360,404,Indore,Dapalpur,Others,22.85,75.55,69.0,24
+107:Una:Others:361,361,107,Junagadh,Una,Others,20.83,71.07,31.0,10
+404:Gautampura:Others:361,361,404,Indore,Gautampura,Others,22.98,75.77,20.0,24
+107:Varthli:Others:362,362,107,Junagadh,Varthli,Others,21.47,70.33,32.0,10
+404:Indore:Obsy:362,362,404,Indore,Indore,Obsy,22.72,75.8,103.0,24
+107:Veraval:Obsy:363,363,107,Junagadh,Veraval,Obsy,20.9,70.37,109.0,10
+404:Indore(Corporat):Others:363,363,404,Indore,Indore(Corporat),Others,22.72,75.85,35.0,24
+107:Visavadur:Others:364,364,107,Junagadh,Visavadur,Others,21.33,70.75,22.0,10
+404:Mhew(Mhow):Others:364,364,404,Indore,Mhew(Mhow),Others,22.55,75.77,63.0,24
+107:Chanasama:Others:365,365,107,Mehsana,Chanasama,Others,23.72,72.12,45.0,10
+404:Sanwer:Others:365,365,404,Indore,Sanwer,Others,22.97,75.83,43.0,24
+107:Kadi:Others:366,366,107,Mehsana,Kadi,Others,23.3,72.33,44.0,10
+404:Dug/Dag:Others:366,366,404,Jhalawar,Dug/Dag,Others,23.93,75.83,97.0,24
+107:Kheralu:Others:367,367,107,Mehsana,Kheralu,Others,23.88,72.63,45.0,10
+404:Gangdhar:Others:367,367,404,Jhalawar,Gangdhar,Others,23.95,75.62,39.0,24
+107:Mehsana:Others:368,368,107,Mehsana,Mehsana,Others,23.62,72.38,73.0,10
+404:Garoth:Others:368,368,404,Mandsaur,Garoth,Others,24.33,75.65,71.0,24
+107:Sidhpur:Others:369,369,107,Mehsana,Sidhpur,Others,23.92,72.38,45.0,10
+404:Mandsaur:Others:369,369,404,Mandsaur,Mandsaur,Others,24.07,75.07,94.0,24
+107:Visnagar:Others:370,370,107,Mehsana,Visnagar,Others,23.7,72.55,44.0,10
+404:Sitamau:Others:370,370,404,Mandsaur,Sitamau,Others,24.03,75.37,101.0,24
+107:Radhanpur:Obsy:371,371,107,Patan,Radhanpur,Obsy,23.83,71.6,22.0,10
+404:Suvasara:Others:371,371,404,Mandsaur,Suvasara,Others,24.07,75.65,76.0,24
+107:Radhanpur:Others:372,372,107,Patan,Radhanpur,Others,23.83,71.6,87.0,10
+404:Manasa:Others:372,372,404,Neemuch,Manasa,Others,24.47,75.13,62.0,24
+107:Kuliyana:Others:373,373,107,Porbandar,Kuliyana,Others,21.6,69.98,31.0,10
+404:Neemuch:Obsy:373,373,404,Neemuch,Neemuch,Obsy,24.47,74.9,103.0,24
+107:Porbandar:Obsy:374,374,107,Porbandar,Porbandar,Obsy,21.63,69.6,29.0,10
+404:Neemuch:Others:374,374,404,Neemuch,Neemuch,Others,24.47,74.87,93.0,24
+107:Porbandar:Others:375,375,107,Porbandar,Porbandar,Others,21.63,69.6,87.0,10
+404:Jaora:Others:375,375,404,Ratlam,Jaora,Others,23.63,75.13,96.0,24
+107:Porbandar Aero:Obsy:376,376,107,Porbandar,Porbandar Aero,Obsy,21.63,69.6,32.0,10
+404:Badnagar:Others:376,376,404,Ujjain,Badnagar,Others,23.05,75.37,94.0,24
+107:Ranawao:Others:377,377,107,Porbandar,Ranawao,Others,21.68,69.75,42.0,10
+404:Khachrod:Others:377,377,404,Ujjain,Khachrod,Others,23.43,75.28,95.0,24
+107:Dhoraji:Others:378,378,107,Rajkot,Dhoraji,Others,21.73,70.45,99.0,10
+404:Mahidpur:Others:378,378,404,Ujjain,Mahidpur,Others,23.48,75.67,70.0,24
+107:Gondal:Others:379,379,107,Rajkot,Gondal,Others,21.97,70.8,97.0,11
+404:Tarana:Others:379,379,404,Ujjain,Tarana,Others,23.33,76.03,71.0,24
+107:Jam-Kamdarna:Others:380,380,107,Rajkot,Jam-Kamdarna,Others,21.88,70.48,41.0,11
+404:Ujjain:Obsy:380,380,404,Ujjain,Ujjain,Obsy,23.18,75.78,43.0,24
+107:Jasdan:Others:381,381,107,Rajkot,Jasdan,Others,22.03,71.2,94.0,11
+404:Ujjain:Others:381,381,404,Ujjain,Ujjain,Others,23.18,75.78,93.0,24
+107:Jetpur-Moni:Others:382,382,107,Rajkot,Jetpur-Moni,Others,21.75,70.63,39.0,11
+405:Antah:Others:382,382,405,Baran,Antah,Others,25.15,76.3,91.0,24
+107:Kotada Sangani:Others:383,383,107,Rajkot,Kotada Sangani,Others,22.0,70.83,39.0,11
+405:Atru:Others:383,383,405,Baran,Atru,Others,24.87,76.67,95.0,24
+107:Lodhika:Others:384,384,107,Rajkot,Lodhika,Others,22.13,70.63,37.0,11
+405:Baran:Others:384,384,405,Baran,Baran,Others,25.12,76.52,100.0,24
+107:Malia Miyane:Others:385,385,107,Rajkot,Malia Miyane,Others,23.12,70.62,30.0,11
+405:Chabra/Disp:Others:385,385,405,Baran,Chabra/Disp,Others,24.67,76.85,70.0,24
+107:Morvi:Others:386,386,107,Rajkot,Morvi,Others,22.82,70.83,101.0,11
+405:Chhipabarod:Others:386,386,405,Baran,Chhipabarod,Others,24.62,76.7,95.0,24
+107:Paddhari:Others:387,387,107,Rajkot,Paddhari,Others,22.45,70.62,39.0,11
+405:Kishanganj:Others:387,387,405,Baran,Kishanganj,Others,25.1,76.65,91.0,24
+107:Rajkot:Others:388,388,107,Rajkot,Rajkot,Others,22.3,70.77,21.0,11
+405:Mangrol:Others:388,388,405,Baran,Mangrol,Others,25.33,76.52,97.0,24
+107:Rajkot Aero:Obsy:389,389,107,Rajkot,Rajkot Aero,Obsy,22.3,70.77,109.0,11
+405:Bundi:Others:389,389,405,Bundi,Bundi,Others,25.45,75.63,95.0,24
+107:Upleta:Others:390,390,107,Rajkot,Upleta,Others,21.72,70.3,22.0,11
+405:Hindoli:Others:390,390,405,Bundi,Hindoli,Others,25.58,75.5,70.0,24
+107:Wankaner:Others:391,391,107,Rajkot,Wankaner,Others,22.62,70.93,100.0,11
+405:Indergarh:Others:391,391,405,Bundi,Indergarh,Others,25.28,76.17,90.0,24
+107:Abu:Obsy:392,392,107,Sirohi,Abu,Obsy,24.5,72.78,104.0,11
+405:Nainwa:Others:392,392,405,Bundi,Nainwa,Others,25.77,75.85,44.0,24
+107:Abu Road:Others:393,393,107,Sirohi,Abu Road,Others,24.48,72.8,74.0,11
+405:Patan:Others:393,393,405,Bundi,Patan,Others,25.3,75.95,70.0,24
+107:Danta:Others:394,394,107,Sirohi,Danta,Others,24.8,72.8,21.0,11
+405:Talera:Others:394,394,405,Bundi,Talera,Others,25.32,75.73,38.0,24
+107:Mount Abu:Others:395,395,107,Sirohi,Mount Abu,Others,24.6,72.72,50.0,11
+405:Sonaktch Med.:Others:395,395,405,Dewas,Sonaktch Med.,Others,22.97,76.35,27.0,24
+107:Pindwara:Others:396,396,107,Sirohi,Pindwara,Others,24.78,73.05,53.0,11
+405:Sonkatch:Others:396,396,405,Dewas,Sonkatch,Others,22.97,76.35,101.0,25
+107:Reodar:Others:397,397,107,Sirohi,Reodar,Others,24.63,72.53,53.0,11
+405:Chachora:Others:397,397,405,Guna,Chachora,Others,24.17,77.0,95.0,25
+107:Sirohi:Others:398,398,107,Sirohi,Sirohi,Others,24.88,72.87,109.0,11
+405:Guna:Obsy:398,398,405,Guna,Guna,Obsy,24.65,77.32,73.0,25
+107:Bajan:Others:399,399,107,Surendranagar,Bajan,Others,23.12,71.77,86.0,11
+405:Guna:Others:399,399,405,Guna,Guna,Others,24.63,77.32,96.0,25
+107:Chotila:Others:400,400,107,Surendranagar,Chotila,Others,22.92,71.25,34.0,11
+405:Asnawar:Others:400,400,405,Jhalawar,Asnawar,Others,24.47,76.33,32.0,25
+107:Chuda:Others:401,401,107,Surendranagar,Chuda,Others,22.48,71.68,86.0,11
+405:Bakani/Rallai:Others:401,401,405,Jhalawar,Bakani/Rallai,Others,24.3,76.23,95.0,25
+107:Dasuda:Others:402,402,107,Surendranagar,Dasuda,Others,23.28,71.83,32.0,11
+405:Iklera/Aklera:Others:402,402,405,Jhalawar,Iklera/Aklera,Others,24.42,76.57,100.0,25
+107:Dhrangadhra:Others:403,403,107,Surendranagar,Dhrangadhra,Others,22.98,71.47,101.0,11
+405:Jhalara Patan:Others:403,403,405,Jhalawar,Jhalara Patan,Others,24.55,76.17,39.0,25
+107:Halwad:Others:404,404,107,Surendranagar,Halwad,Others,23.1,71.18,33.0,11
+405:Jhalawar:Obsy:404,404,405,Jhalawar,Jhalawar,Obsy,24.53,76.17,67.0,25
+107:Kharaghoda:Others:405,405,107,Surendranagar,Kharaghoda,Others,23.17,71.72,66.0,11
+405:Jhalawar:Others:405,405,405,Jhalawar,Jhalawar,Others,24.6,76.15,38.0,25
+107:Lakntar:Others:406,406,107,Surendranagar,Lakntar,Others,22.87,71.78,40.0,11
+405:Khanpur:Others:406,406,405,Jhalawar,Khanpur,Others,24.73,76.38,100.0,25
+107:Limbadi:Others:407,407,107,Surendranagar,Limbadi,Others,22.57,71.8,31.0,11
+405:Manohar Thana:Others:407,407,405,Jhalawar,Manohar Thana,Others,24.23,76.8,100.0,25
+107:Muli:Others:408,408,107,Surendranagar,Muli,Others,22.62,71.45,30.0,11
+405:Pachaahar:Others:408,408,405,Jhalawar,Pachaahar,Others,24.38,75.82,39.0,25
+107:Sayala:Others:409,409,107,Surendranagar,Sayala,Others,22.55,71.47,30.0,11
+405:Pirawa:Others:409,409,405,Jhalawar,Pirawa,Others,24.17,76.03,65.0,25
+107:Surendranagar:Obsy:410,410,107,Surendranagar,Surendranagar,Obsy,22.7,71.67,24.0,11
+405:Chechat:Others:410,410,405,Kotah,Chechat,Others,24.77,75.88,65.0,25
+107:Vanod:Others:411,411,107,Surendranagar,Vanod,Others,23.42,71.92,20.0,11
+405:Digod:Others:411,411,405,Kotah,Digod,Others,25.13,76.08,39.0,25
+107:Wadhwan:Others:412,412,107,Surendranagar,Wadhwan,Others,22.7,71.67,96.0,11
+405:Itawah:Others:412,412,405,Kotah,Itawah,Others,25.53,76.38,85.0,25
+108:Ajmer:Obsy:413,413,108,Ajmer,Ajmer,Obsy,26.45,74.62,109.0,11
+405:Kotah:Obsy:413,413,405,Kotah,Kotah,Obsy,25.18,75.85,79.0,25
+108:Ajmer:Others:414,414,108,Ajmer,Ajmer,Others,26.45,74.62,53.0,11
+405:Kotah-Aero:Obsy:414,414,405,Kotah,Kotah-Aero,Obsy,25.15,75.85,45.0,25
+108:Jawaja:Others:415,415,108,Ajmer,Jawaja,Others,25.95,74.22,106.0,11
+405:Ladpura:Others:415,415,405,Kotah,Ladpura,Others,24.88,75.95,38.0,25
+108:Mangliawas:Others:416,416,108,Ajmer,Mangliawas,Others,26.28,74.52,52.0,11
+405:Pipalda:Others:416,416,405,Kotah,Pipalda,Others,25.08,76.42,39.0,25
+108:Nayanagar/Beawar:Others:417,417,108,Ajmer,Nayanagar/Beawar,Others,26.1,74.32,110.0,12
+405:Ramganj Mandi:Others:417,417,405,Kotah,Ramganj Mandi,Others,24.63,75.93,39.0,25
+108:Pisangan:Others:418,418,108,Ajmer,Pisangan,Others,26.4,74.38,106.0,12
+405:Sangod:Others:418,418,405,Kotah,Sangod,Others,24.93,76.28,97.0,25
+108:Pushkar:Others:419,419,108,Ajmer,Pushkar,Others,26.5,74.55,58.0,12
+405:Biaora(Biaera):Others:419,419,405,Rajgarh,Biaora(Biaera),Others,23.92,76.92,72.0,25
+108:Todgarh:Others:420,420,108,Ajmer,Todgarh,Others,25.68,73.97,108.0,12
+405:Khilchipur:Others:420,420,405,Rajgarh,Khilchipur,Others,24.05,76.57,102.0,25
+108:Dhanera:Others:421,421,108,Banaskantha,Dhanera,Others,24.52,72.03,43.0,12
+405:Narsingarh:Others:421,421,405,Rajgarh,Narsingarh,Others,23.7,77.08,102.0,25
+108:Naroli/Karban:Others:422,422,108,Banaskantha,Naroli/Karban,Others,24.58,71.77,23.0,12
+405:Rajgarh:Obsy:422,422,405,Rajgarh,Rajgarh,Obsy,24.0,76.72,48.0,25
+108:Navsari/Kudalia:Others:423,423,108,Banaskantha,Navsari/Kudalia,Others,24.55,71.35,23.0,12
+405:Rajgarh:Others:423,423,405,Rajgarh,Rajgarh,Others,24.02,76.73,74.0,25
+108:Balotra:Others:424,424,108,Barmer,Balotra,Others,25.83,72.25,48.0,12
+405:Sarangpur:Others:424,424,405,Rajgarh,Sarangpur,Others,23.57,76.47,71.0,25
+108:Barmer:Obsy:425,425,108,Barmer,Barmer,Obsy,25.75,71.4,80.0,12
+405:Sawai Madhopur:Obsy:425,425,405,Sawai Madhopur,Sawai Madhopur,Obsy,25.98,76.37,28.0,25
+108:Barmer:Others:426,426,108,Barmer,Barmer,Others,25.75,71.4,109.0,12
+405:Sawai Madhopur:Others:426,426,405,Sawai Madhopur,Sawai Madhopur,Others,25.98,76.37,94.0,25
+108:Barmer Mali Tank:Others:427,427,108,Barmer,Barmer Mali Tank,Others,25.75,71.4,22.0,12
+405:Ashta:Others:427,427,405,Sehore,Ashta,Others,23.02,76.72,99.0,25
+108:Chotan:Others:428,428,108,Barmer,Chotan,Others,25.48,71.07,107.0,12
+405:Doraha:Others:428,428,405,Sehore,Doraha,Others,23.4,77.17,27.0,25
+108:Gudha:Others:429,429,108,Barmer,Gudha,Others,25.18,71.72,68.0,12
+405:Ichhawar:Others:429,429,405,Sehore,Ichhawar,Others,23.03,77.03,84.0,25
+108:Jasol:Others:430,430,108,Barmer,Jasol,Others,25.82,72.22,59.0,12
+405:Sehore Qasba:Others:430,430,405,Sehore,Sehore Qasba,Others,23.2,77.08,70.0,25
+108:Pachpadra:Others:431,431,108,Barmer,Pachpadra,Others,25.93,72.27,110.0,12
+405:Agar:Others:431,431,405,Shajapur,Agar,Others,23.72,76.02,98.0,25
+108:Siwana:Others:432,432,108,Barmer,Siwana,Others,25.65,72.42,109.0,12
+405:Shajapur:Obsy:432,432,405,Shajapur,Shajapur,Obsy,23.43,76.32,35.0,25
+108:Ahore:Others:433,433,108,Jalore,Ahore,Others,25.33,72.75,53.0,12
+405:Shajapur:Others:433,433,405,Shajapur,Shajapur,Others,23.43,76.27,91.0,25
+108:Bhinmal:Others:434,434,108,Jalore,Bhinmal,Others,25.02,72.27,80.0,12
+405:Shujalpur:Others:434,434,405,Shajapur,Shujalpur,Others,23.4,76.72,102.0,26
+108:Jalore:Obsy:435,435,108,Jalore,Jalore,Obsy,25.35,72.62,40.0,12
+405:Susner:Others:435,435,405,Shajapur,Susner,Others,23.95,76.08,91.0,26
+108:Jalore:Others:436,436,108,Jalore,Jalore,Others,25.35,72.62,110.0,12
+406:Arain:Others:436,436,406,Ajmer,Arain,Others,26.45,75.05,54.0,26
+108:Jaswantpura:Others:437,437,108,Jalore,Jaswantpura,Others,24.8,72.47,107.0,12
+406:Bhinai:Others:437,437,406,Ajmer,Bhinai,Others,26.07,74.77,58.0,26
+108:Sachor:Others:438,438,108,Jalore,Sachor,Others,24.75,71.77,109.0,12
+406:Bijai Nagar:Others:438,438,406,Ajmer,Bijai Nagar,Others,25.92,74.58,50.0,26
+108:Bilara:Others:439,439,108,Jodhpur,Bilara,Others,26.18,73.7,110.0,12
+406:Deoli:Others:439,439,406,Ajmer,Deoli,Others,25.77,75.38,56.0,26
+108:Jodhpur:Obsy:440,440,108,Jodhpur,Jodhpur,Obsy,26.3,73.03,104.0,12
+406:Gagel:Others:440,440,406,Ajmer,Gagel,Others,26.53,74.75,59.0,26
+108:Jodhpur:Others:441,441,108,Jodhpur,Jodhpur,Others,26.3,73.03,82.0,12
+406:Goela:Others:441,441,406,Ajmer,Goela,Others,26.12,74.95,102.0,26
+108:Osian:Others:442,442,108,Jodhpur,Osian,Others,26.72,72.92,54.0,12
+406:Kekri:Others:442,442,406,Ajmer,Kekri,Others,25.97,75.15,109.0,26
+108:Shergarh:Others:443,443,108,Jodhpur,Shergarh,Others,26.33,72.3,110.0,12
+406:Kishangarh:Others:443,443,406,Ajmer,Kishangarh,Others,26.57,74.85,54.0,26
+108:Merta City:Others:444,444,108,Nagour,Merta City,Others,26.63,74.03,109.0,12
+406:Masuda:Others:444,444,406,Ajmer,Masuda,Others,26.12,74.53,47.0,26
+108:Merta Road:Others:445,445,108,Nagour,Merta Road,Others,26.63,74.03,41.0,12
+406:Nasirabad:Others:445,445,406,Ajmer,Nasirabad,Others,26.28,74.73,58.0,26
+108:Bali:Others:446,446,108,Pali,Bali,Others,25.18,73.28,110.0,12
+406:Sarwar:Others:446,446,406,Ajmer,Sarwar,Others,26.07,75.02,54.0,26
+108:Desuri:Others:447,447,108,Pali,Desuri,Others,25.28,73.55,110.0,12
+406:Sawar:Others:447,447,406,Ajmer,Sawar,Others,25.75,75.22,100.0,26
+108:Jaitram:Others:448,448,108,Pali,Jaitram,Others,26.2,73.95,109.0,12
+406:Srinagar:Others:448,448,406,Ajmer,Srinagar,Others,26.43,74.77,57.0,26
+108:Kharchi:Others:449,449,108,Pali,Kharchi,Others,25.67,73.58,43.0,12
+406:Arwar Dam:Others:449,449,406,Bhilwara,Arwar Dam,Others,25.8,74.82,25.0,26
+108:Kharda:Others:450,450,108,Pali,Kharda,Others,25.43,73.46,21.0,12
+406:Asind:Others:450,450,406,Bhilwara,Asind,Others,25.73,74.33,53.0,26
+108:Marwar Junction:Others:451,451,108,Pali,Marwar Junction,Others,25.73,73.7,44.0,12
+406:Banera:Others:451,451,406,Bhilwara,Banera,Others,25.5,74.67,54.0,26
+108:Pali:Others:452,452,108,Pali,Pali,Others,25.78,73.33,109.0,12
+406:Bhilwara:Obsy:452,452,406,Bhilwara,Bhilwara,Obsy,25.35,74.63,40.0,26
+108:Raipur:Others:453,453,108,Pali,Raipur,Others,26.05,74.03,54.0,12
+406:Bhilwara:Others:453,453,406,Bhilwara,Bhilwara,Others,25.35,74.63,68.0,26
+108:Sojat:Others:454,454,108,Pali,Sojat,Others,25.93,73.67,109.0,12
+406:Gangapur Sahara:Others:454,454,406,Bhilwara,Gangapur Sahara,Others,25.22,74.25,79.0,26
+108:Khumbalgarh:Others:455,455,108,Rajasmand,Khumbalgarh,Others,25.15,73.58,54.0,13
+406:Hurda:Others:455,455,406,Bhilwara,Hurda,Others,25.92,74.68,54.0,26
+108:Erinpura:Others:456,456,108,Sirohi,Erinpura,Others,25.13,73.07,21.0,13
+406:Jahazpur:Others:456,456,406,Bhilwara,Jahazpur,Others,25.6,75.28,69.0,26
+108:Sheoganj:Others:457,457,108,Sirohi,Sheoganj,Others,25.12,73.07,100.0,13
+406:Khari Dam:Others:457,457,406,Bhilwara,Khari Dam,Others,25.03,74.83,26.0,26
+109:Santalpur:Others:458,458,109,Banaskantha,Santalpur,Others,23.77,71.17,43.0,13
+406:Kotari:Others:458,458,406,Bhilwara,Kotari,Others,25.42,74.9,53.0,26
+109:Anjar:Others:459,459,109,Kutch,Anjar,Others,23.12,70.03,99.0,13
+406:Mandal:Others:459,459,406,Bhilwara,Mandal,Others,25.48,74.58,54.0,26
+109:Bachau:Others:460,460,109,Kutch,Bachau,Others,23.3,70.33,45.0,13
+406:Mandalgarh:Others:460,460,406,Bhilwara,Mandalgarh,Others,25.22,75.1,54.0,26
+109:Bhuj/R.Mata A.:Obsy:461,461,109,Kutch,Bhuj/R.Mata A.,Obsy,23.25,69.8,107.0,13
+406:Meja Dam:Others:461,461,406,Bhilwara,Meja Dam,Others,25.38,74.55,25.0,26
+109:Kandla New:Obsy:462,462,109,Kutch,Kandla New,Obsy,23.03,70.17,59.0,13
+406:Nahar Sagar:Others:462,462,406,Bhilwara,Nahar Sagar,Others,25.72,74.85,24.0,26
+109:Khawada:Others:463,463,109,Kutch,Khawada,Others,23.85,69.73,23.0,13
+406:Raipur:Others:463,463,406,Bhilwara,Raipur,Others,25.4,74.17,54.0,26
+109:Lakhapat:Others:464,464,109,Kutch,Lakhapat,Others,23.83,68.78,42.0,13
+406:Sahara:Others:464,464,406,Bhilwara,Sahara,Others,25.18,74.23,38.0,26
+109:Mandvi:Obsy:465,465,109,Kutch,Mandvi,Obsy,22.83,69.37,27.0,13
+406:Sakeri Dam:Others:465,465,406,Bhilwara,Sakeri Dam,Others,25.7,74.57,25.0,26
+109:Mandvi:Others:466,466,109,Kutch,Mandvi,Others,22.83,69.37,78.0,13
+406:Shahpura:Others:466,466,406,Bhilwara,Shahpura,Others,25.62,74.93,109.0,26
+109:Mundra:Others:467,467,109,Kutch,Mundra,Others,22.85,69.73,47.0,13
+406:Umed Sagar:Others:467,467,406,Bhilwara,Umed Sagar,Others,25.57,74.95,25.0,26
+109:Nakhatrana:Others:468,468,109,Kutch,Nakhatrana,Others,23.37,69.27,45.0,13
+406:Badgaon:Others:468,468,406,Chittorgarh,Badgaon,Others,24.7,74.52,26.0,26
+109:Naliya:Obsy:469,469,109,Kutch,Naliya,Obsy,23.27,68.83,49.0,13
+406:Bari-Sadri:Others:469,469,406,Chittorgarh,Bari-Sadri,Others,24.42,74.48,52.0,26
+109:Naliya:Others:470,470,109,Kutch,Naliya,Others,23.27,68.83,81.0,13
+406:Bhadesar:Others:470,470,406,Chittorgarh,Bhadesar,Others,24.68,74.5,54.0,26
+109:Rahapur:Others:471,471,109,Kutch,Rahapur,Others,23.57,70.63,97.0,13
+406:Chittorgarh:Obsy:471,471,406,Chittorgarh,Chittorgarh,Obsy,24.88,74.63,33.0,26
+406:Chittorgarh:Others:472,472,406,Chittorgarh,Chittorgarh,Others,24.88,74.63,68.0,27
+406:Dungla:Others:473,473,406,Chittorgarh,Dungla,Others,24.52,74.33,54.0,27
+406:Gambhiri Dam:Others:474,474,406,Chittorgarh,Gambhiri Dam,Others,24.7,74.7,25.0,27
+406:Gangrar:Others:475,475,406,Chittorgarh,Gangrar,Others,25.05,74.62,54.0,27
+406:Kapasam:Others:476,476,406,Chittorgarh,Kapasam,Others,24.88,74.32,68.0,27
+406:Nimbahera:Others:477,477,406,Chittorgarh,Nimbahera,Others,24.62,74.7,80.0,27
+406:Orai Dam:Others:478,478,406,Chittorgarh,Orai Dam,Others,25.03,74.83,25.0,27
+406:Rashmi:Others:479,479,406,Chittorgarh,Rashmi,Others,25.07,74.35,53.0,27
+406:Lalsot:Others:480,480,406,Dausa,Lalsot,Others,26.55,76.33,108.0,27
+406:Amber:Others:481,481,406,Jaipur,Amber,Others,26.98,75.87,93.0,27
+406:Bassi:Others:482,482,406,Jaipur,Bassi,Others,26.83,76.07,50.0,27
+406:Chatsu:Others:483,483,406,Jaipur,Chatsu,Others,26.6,75.95,108.0,27
+406:Dudu/Mozamabad:Others:484,484,406,Jaipur,Dudu/Mozamabad,Others,26.68,75.23,67.0,27
+406:Jaipur:Obsy:485,485,406,Jaipur,Jaipur,Obsy,26.92,76.83,28.0,27
+406:Jaipur:Others:486,486,406,Jaipur,Jaipur,Others,26.92,76.83,51.0,27
+406:Jaipur Aero:Obsy:487,487,406,Jaipur,Jaipur Aero,Obsy,26.92,76.83,109.0,27
+406:Kanota:Others:488,488,406,Jaipur,Kanota,Others,26.88,75.95,26.0,27
+406:Naraina:Others:489,489,406,Jaipur,Naraina,Others,26.8,75.22,60.0,27
+406:Phagi:Others:490,490,406,Jaipur,Phagi,Others,26.58,75.57,52.0,27
+406:Phulera:Others:491,491,406,Jaipur,Phulera,Others,26.75,75.23,52.0,27
+406:Samod:Others:492,492,406,Jaipur,Samod,Others,27.17,75.75,99.0,27
+406:Sanganer:Others:493,493,406,Jaipur,Sanganer,Others,26.8,75.78,108.0,27
+406:Nawalgarh:Others:494,494,406,Jhunjhunu,Nawalgarh,Others,,,56.0,27
+406:Sapotra:Others:495,495,406,Karauli,Sapotra,Others,26.28,76.75,99.0,27
+406:Jawad:Others:496,496,406,Neemuch,Jawad,Others,24.6,74.85,80.0,27
+406:Amet:Others:497,497,406,Rajasmand,Amet,Others,25.3,73.92,54.0,27
+406:Bhim/Dawer:Others:498,498,406,Rajasmand,Bhim/Dawer,Others,25.75,74.08,110.0,27
+406:Deogarh:Others:499,499,406,Rajasmand,Deogarh,Others,25.53,73.92,54.0,27
+406:Nathdwara:Others:500,500,406,Rajasmand,Nathdwara,Others,24.93,73.83,54.0,27
+406:Railmagra:Others:501,501,406,Rajasmand,Railmagra,Others,24.97,74.1,54.0,27
+406:Rajsamand:Others:502,502,406,Rajasmand,Rajsamand,Others,25.07,73.88,69.0,27
+406:Bamanwas:Others:503,503,406,Sawai Madhopur,Bamanwas,Others,26.5,76.58,52.0,27
+406:Bonli:Others:504,504,406,Sawai Madhopur,Bonli,Others,26.33,76.23,49.0,27
+406:Gangapur:Others:505,505,406,Sawai Madhopur,Gangapur,Others,26.48,76.73,108.0,27
+406:Khandar:Others:506,506,406,Sawai Madhopur,Khandar,Others,26.02,76.62,79.0,27
+406:Malarna/Chour:Others:507,507,406,Sawai Madhopur,Malarna/Chour,Others,26.23,76.5,38.0,27
+406:Moransagar:Others:508,508,406,Sawai Madhopur,Moransagar,Others,26.68,76.55,21.0,27
+406:Deoli/Doni:Others:509,509,406,Tonk,Deoli/Doni,Others,25.87,75.6,40.0,27
+406:Malpura:Others:510,510,406,Tonk,Malpura,Others,26.28,75.38,97.0,28
+406:Niwai:Others:511,511,406,Tonk,Niwai,Others,26.35,75.92,70.0,28
+406:Nizamat Aligarh:Others:512,512,406,Tonk,Nizamat Aligarh,Others,25.97,76.08,29.0,28
+406:Todaraising:Others:513,513,406,Tonk,Todaraising,Others,26.03,75.48,67.0,28
+406:Tonk:Obsy:514,514,406,Tonk,Tonk,Obsy,26.17,75.8,42.0,28
+406:Tonk:Others:515,515,406,Tonk,Tonk,Others,26.17,75.8,98.0,28
+406:Uniara/Aligarh:Others:516,516,406,Tonk,Uniara/Aligarh,Others,25.92,76.03,82.0,28
+406:Maholi/Mavli:Others:517,517,406,Udaipur,Maholi/Mavli,Others,24.78,73.98,53.0,28
+406:Saira/Gogunda:Others:518,518,406,Udaipur,Saira/Gogunda,Others,24.98,73.42,52.0,28
+406:Udaipur:Obsy:519,519,406,Udaipur,Udaipur,Obsy,24.58,73.7,96.0,28
+406:Udaipur:Others:520,520,406,Udaipur,Udaipur,Others,24.58,73.7,44.0,28
+406:Udaipur/D-Aero:Obsy:521,521,406,Udaipur,Udaipur/D-Aero,Obsy,24.58,73.7,46.0,28
+406:Vallabhgarh:Others:522,522,406,Udaipur,Vallabhgarh,Others,24.87,74.0,48.0,28
+408:Auraiya:Others:523,523,408,Auraiya,Auraiya,Others,26.47,79.52,100.0,28
+408:Auraiya/Ghat:Hydro:524,524,408,Auraiya,Auraiya/Ghat,Hydro,26.43,79.42,20.0,28
+408:Badausa:Others:525,525,408,Banda,Badausa,Others,25.23,80.65,82.0,28
+408:Banda:Obsy:526,526,408,Banda,Banda,Obsy,25.47,80.37,55.0,28
+408:Banda:Others:527,527,408,Banda,Banda,Others,25.48,80.35,103.0,28
+408:Beberu:Others:528,528,408,Banda,Beberu,Others,25.55,80.72,102.0,28
+408:Chillaghat:Hydro:529,529,408,Banda,Chillaghat,Hydro,25.55,80.78,30.0,28
+408:Girwan Narni:Others:530,530,408,Banda,Girwan Narni,Others,25.3,80.4,97.0,28
+408:Kamasin:Others:531,531,408,Banda,Kamasin,Others,25.52,80.92,82.0,28
+408:Pailani:Others:532,532,408,Banda,Pailani,Others,25.75,80.43,82.0,28
+408:Bhind:Others:533,533,408,Bhind,Bhind,Others,26.57,78.8,101.0,28
+408:Gohad:Others:534,534,408,Bhind,Gohad,Others,26.42,78.45,94.0,28
+408:Lahar:Others:535,535,408,Bhind,Lahar,Others,26.2,78.93,95.0,28
+408:Mehgaon:Others:536,536,408,Bhind,Mehgaon,Others,26.5,78.62,90.0,28
+408:Berasia:Others:537,537,408,Bhopal,Berasia,Others,23.63,77.43,86.0,28
+408:Bhopal:Obsy:538,538,408,Bhopal,Bhopal,Obsy,23.28,77.35,52.0,28
+408:Bhopal:Others:539,539,408,Bhopal,Bhopal,Others,23.27,77.42,51.0,28
+408:Bijawar:Others:540,540,408,Chhatarpur,Bijawar,Others,24.62,79.5,100.0,28
+408:Buxwaha:Others:541,541,408,Chhatarpur,Buxwaha,Others,24.25,79.3,42.0,28
+408:Chhatarpur:Others:542,542,408,Chhatarpur,Chhatarpur,Others,24.92,79.6,97.0,28
+408:Khajuraho Aero:Obsy:543,543,408,Chhatarpur,Khajuraho Aero,Obsy,24.98,79.92,33.0,28
+408:Nowgong:Obsy:544,544,408,Chhatarpur,Nowgong,Obsy,25.07,79.45,103.0,28
+408:Rajnagar:Others:545,545,408,Chhatarpur,Rajnagar,Others,24.88,79.92,33.0,28
+408:Karwi:Others:546,546,408,Chitrakoot,Karwi,Others,25.21,80.91,97.0,28
+408:Mau:Others:547,547,408,Chitrakoot,Mau,Others,25.53,80.92,97.0,28
+408:Damoh:Obsy:548,548,408,Damoh,Damoh,Obsy,23.83,79.45,24.0,29
+408:Damoh:Others:549,549,408,Damoh,Damoh,Others,23.83,79.45,103.0,29
+408:Hardua Marar:Others:550,550,408,Damoh,Hardua Marar,Others,23.77,79.55,50.0,29
+408:Hatta:Others:551,551,408,Damoh,Hatta,Others,24.13,79.6,97.0,29
+408:Jabera:Others:552,552,408,Damoh,Jabera,Others,23.55,79.68,93.0,29
+408:Majgahan Hansra:Others:553,553,408,Damoh,Majgahan Hansra,Others,23.55,79.07,43.0,29
+408:Mala:Others:554,554,408,Damoh,Mala,Others,23.68,79.73,47.0,29
+408:Datia:Obsy:555,555,408,Datia,Datia,Obsy,25.67,78.47,32.0,29
+408:Datia:Others:556,556,408,Datia,Datia,Others,25.67,78.47,99.0,29
+408:Seodha(Seondha):Others:557,557,408,Datia,Seodha(Seondha),Others,26.15,78.8,96.0,29
+408:Bidhuna:Others:558,558,408,Etawah,Bidhuna,Others,26.8,79.52,100.0,29
+408:Khaga:Others:559,559,408,Fatehpur,Khaga,Others,25.78,81.12,100.0,29
+408:Ashoknagar(Civ.):Others:560,560,408,Guna,Ashoknagar(Civ.),Others,24.57,77.72,36.0,29
+408:Chanderi(Civil):Others:561,561,408,Guna,Chanderi(Civil),Others,24.72,78.13,31.0,29
+408:Mungaoli:Others:562,562,408,Guna,Mungaoli,Others,24.4,78.1,95.0,29
+408:Pachhar:Others:563,563,408,Guna,Pachhar,Others,24.57,77.72,41.0,29
+408:Bhandar:Others:564,564,408,Gwalior,Bhandar,Others,25.73,78.75,89.0,29
+408:Ghatigaon(Barai):Others:565,565,408,Gwalior,Ghatigaon(Barai),Others,26.05,77.95,62.0,29
+408:Gird(Gwalior):Others:566,566,408,Gwalior,Gird(Gwalior),Others,26.2,78.17,86.0,29
+408:Gwalior:Obsy:567,567,408,Gwalior,Gwalior,Obsy,26.23,78.25,64.0,29
+408:Pichhore(Dabra):Others:568,568,408,Gwalior,Pichhore(Dabra),Others,25.95,78.4,92.0,29
+408:Belathal:Others:569,569,408,Hamirpur,Belathal,Others,25.28,79.53,77.0,29
+408:Bijanagar:Others:570,570,408,Hamirpur,Bijanagar,Others,25.32,79.92,77.0,29
+408:Hamirpur:Obsy:571,571,408,Hamirpur,Hamirpur,Obsy,25.95,80.15,25.0,29
+408:Hamirpur:Others:572,572,408,Hamirpur,Hamirpur,Others,25.95,80.13,101.0,29
+408:Khannah:Others:573,573,408,Hamirpur,Khannah,Others,25.57,80.05,74.0,29
+408:Maudeha:Others:574,574,408,Hamirpur,Maudeha,Others,25.68,80.12,101.0,29
+408:Rath:Others:575,575,408,Hamirpur,Rath,Others,25.58,79.58,101.0,29
+408:Sarila:Others:576,576,408,Hamirpur,Sarila,Others,25.77,79.68,80.0,29
+408:Borina:Others:577,577,408,Jabalpur,Borina,Others,23.85,80.05,56.0,29
+408:Jalaun:Others:578,578,408,Jalaun,Jalaun,Others,26.13,79.33,102.0,29
+408:Kalpi:Others:579,579,408,Jalaun,Kalpi,Others,26.13,79.75,102.0,29
+408:Kunch:Others:580,580,408,Jalaun,Kunch,Others,25.98,79.15,102.0,29
+408:Orai:Obsy:581,581,408,Jalaun,Orai,Obsy,25.98,79.5,45.0,29
+408:Orai:Others:582,582,408,Jalaun,Orai,Others,25.98,79.47,102.0,29
+408:Barwasagar:Others:583,583,408,Jhansi,Barwasagar,Others,25.38,78.73,79.0,29
+408:Garotha:Others:584,584,408,Jhansi,Garotha,Others,25.55,79.3,102.0,29
+408:Jhansi:Obsy:585,585,408,Jhansi,Jhansi,Obsy,25.45,78.58,105.0,29
+408:Jhansi:Others:586,586,408,Jhansi,Jhansi,Others,25.43,78.58,90.0,30
+408:Magarwara:Others:587,587,408,Jhansi,Magarwara,Others,25.3,78.85,79.0,30
+408:Mau:Others:588,588,408,Jhansi,Mau,Others,25.23,79.13,86.0,30
+408:Moth:Others:589,589,408,Jhansi,Moth,Others,25.72,78.93,103.0,30
+408:Pachwara:Others:590,590,408,Jhansi,Pachwara,Others,25.37,79.08,79.0,30
+408:Akbarpur:Others:591,591,408,Kanpur Dehat,Akbarpur,Others,26.37,79.95,103.0,30
+408:Bhognipur:Others:592,592,408,Kanpur Dehat,Bhognipur,Others,26.2,79.83,103.0,30
+408:Derapur:Others:593,593,408,Kanpur Dehat,Derapur,Others,26.42,79.78,102.0,30
+408:Ghatampur:Others:594,594,408,Kanpur Nagar,Ghatampur,Others,26.17,80.17,100.0,30
+408:Manjhanpur:Others:595,595,408,Kaushambi,Manjhanpur,Others,25.53,81.38,100.0,30
+408:Sirathu:Others:596,596,408,Kaushambi,Sirathu,Others,25.65,81.32,100.0,30
+408:Lalitpur:Others:597,597,408,Lalitpur,Lalitpur,Others,24.7,78.42,103.0,30
+408:Mahroni:Others:598,598,408,Lalitpur,Mahroni,Others,24.58,78.72,103.0,30
+408:Charkhari:Others:599,599,408,Mahoba,Charkhari,Others,25.4,79.75,98.0,30
+408:Kulpahar:Others:600,600,408,Mahoba,Kulpahar,Others,25.53,80.06,88.0,30
+408:Mahoba:Others:601,601,408,Mahoba,Mahoba,Others,25.29,79.87,98.0,30
+408:Ambah:Others:602,602,408,Morena,Ambah,Others,26.7,78.23,93.0,30
+408:Jaura:Others:603,603,408,Morena,Jaura,Others,26.35,77.82,90.0,30
+408:Morena:Others:604,604,408,Morena,Morena,Others,26.5,78.0,89.0,30
+408:Sabalgarh:Others:605,605,408,Morena,Sabalgarh,Others,26.25,77.4,100.0,30
+408:Ajaigarh:Others:606,606,408,Panna,Ajaigarh,Others,24.9,80.25,99.0,30
+408:Panna:Obsy:607,607,408,Panna,Panna,Obsy,24.72,80.17,33.0,30
+408:Panna:Others:608,608,408,Panna,Panna,Others,24.72,80.2,99.0,30
+408:Pawai:Others:609,609,408,Panna,Pawai,Others,24.27,80.17,48.0,30
+408:Sahanagar:Others:610,610,408,Panna,Sahanagar,Others,23.98,80.3,38.0,30
+408:Begumganj:Others:611,611,408,Raisen,Begumganj,Others,23.6,78.33,85.0,30
+408:Ghairatganj:Others:612,612,408,Raisen,Ghairatganj,Others,23.42,78.22,80.0,30
+408:Kaliakheri:Others:613,613,408,Raisen,Kaliakheri,Others,23.03,77.67,90.0,30
+408:Raisen:Obsy:614,614,408,Raisen,Raisen,Obsy,23.32,77.83,27.0,30
+408:Raisen:Others:615,615,408,Raisen,Raisen,Others,23.33,77.8,96.0,30
+408:Banda:Others:616,616,408,Sagar,Banda,Others,24.05,78.97,87.0,30
+408:Chandia Nallah:Others:617,617,408,Sagar,Chandia Nallah,Others,24.32,79.15,45.0,30
+408:Deori:Others:618,618,408,Sagar,Deori,Others,23.38,79.03,81.0,30
+408:Garhakota:Others:619,619,408,Sagar,Garhakota,Others,23.78,79.82,54.0,30
+408:Khurai:Others:620,620,408,Sagar,Khurai,Others,24.05,78.32,101.0,30
+408:Rehli:Others:621,621,408,Sagar,Rehli,Others,23.63,79.07,101.0,30
+408:Sagar:Obsy:622,622,408,Sagar,Sagar,Obsy,23.85,78.75,103.0,30
+408:Baraundha:Others:623,623,408,Satna,Baraundha,Others,25.05,80.63,32.0,30
+408:Bijaypur:Others:624,624,408,Sheopur,Bijaypur,Others,26.05,77.38,89.0,31
+408:Karera:Others:625,625,408,Shivpuri,Karera,Others,25.45,78.13,96.0,31
+408:Kolaras:Others:626,626,408,Shivpuri,Kolaras,Others,25.22,77.6,93.0,31
+408:Pichhore:Others:627,627,408,Shivpuri,Pichhore,Others,25.17,78.18,99.0,31
+408:Shivpuri:Obsy:628,628,408,Shivpuri,Shivpuri,Obsy,25.33,77.65,43.0,31
+408:Shivpuri:Others:629,629,408,Shivpuri,Shivpuri,Others,25.42,77.65,98.0,31
+408:Orchha:Others:630,630,408,Tikamgarh,Orchha,Others,25.35,78.65,28.0,31
+408:Tikamgarh:Obsy:631,631,408,Tikamgarh,Tikamgarh,Obsy,24.75,78.83,28.0,31
+408:Tikamgarh:Others:632,632,408,Tikamgarh,Tikamgarh,Others,24.75,78.83,101.0,31
+408:Basoda:Others:633,633,408,Vidisha,Basoda,Others,23.87,77.93,96.0,31
+408:Kurwai:Others:634,634,408,Vidisha,Kurwai,Others,24.13,78.05,101.0,31
+408:Lateri:Others:635,635,408,Vidisha,Lateri,Others,24.05,77.42,43.0,31
+408:Sironj:Others:636,636,408,Vidisha,Sironj,Others,24.1,77.7,61.0,31
+408:Vidisha:Obsy:637,637,408,Vidisha,Vidisha,Obsy,23.53,77.82,29.0,31
+408:Vidisha:Others:638,638,408,Vidisha,Vidisha,Others,23.53,77.82,101.0,31
+414:Arwal:Others:639,639,414,Arwal,Arwal,Others,25.23,84.68,90.0,31
+414:Barun:Others:640,640,414,Aurangabad,Barun,Others,24.83,84.17,33.0,31
+414:Daudnagar(Haspu):Others:641,641,414,Aurangabad,Daudnagar(Haspu),Others,25.05,84.4,98.0,31
+414:Pendra Road:Obsy:642,642,414,Bilaspur,Pendra Road,Obsy,22.77,81.9,101.0,31
+414:Simaria:Others:643,643,414,Chatra,Simaria,Others,24.07,84.92,29.0,31
+414:Shahpura:Others:644,644,414,Dindori,Shahpura,Others,23.18,80.7,85.0,31
+414:Bhandaria:Others:645,645,414,Garhwa,Bhandaria,Others,23.72,83.83,77.0,31
+414:Bhavnathpur:Others:646,646,414,Garhwa,Bhavnathpur,Others,24.38,83.58,79.0,31
+414:Garhwa:Others:647,647,414,Garhwa,Garhwa,Others,24.17,83.8,86.0,31
+414:Nagerutari:Others:648,648,414,Garhwa,Nagerutari,Others,24.28,83.5,82.0,31
+414:Ranka:Others:649,649,414,Garhwa,Ranka,Others,24.0,83.83,83.0,31
+414:Bishnupur:Others:650,650,414,Gumla,Bishnupur,Others,23.38,84.38,64.0,31
+414:Ghaghra:Others:651,651,414,Gumla,Ghaghra,Others,23.42,84.5,38.0,31
+414:Amari:Others:652,652,414,Jabalpur,Amari,Others,23.82,80.55,58.0,31
+414:Khitoli:Others:653,653,414,Jabalpur,Khitoli,Others,23.72,80.83,58.0,31
+414:Murwara(Kathi):Others:654,654,414,Jabalpur,Murwara(Kathi),Others,23.85,80.4,84.0,31
+414:Niwar(Amehta):Others:655,655,414,Jabalpur,Niwar(Amehta),Others,23.72,80.38,59.0,31
+414:Bijeraghogarh:Others:656,656,414,Katni,Bijeraghogarh,Others,23.98,80.6,69.0,31
+414:Janakpur:Others:657,657,414,Korea,Janakpur,Others,23.72,81.82,42.0,31
+414:Balumath:Others:658,658,414,Latehar,Balumath,Others,23.83,84.78,96.0,31
+414:Barwadih:Others:659,659,414,Latehar,Barwadih,Others,23.85,84.12,58.0,31
+414:Latehar:Hydro:660,660,414,Latehar,Latehar,Hydro,23.75,84.5,24.0,31
+414:Latehar:Others:661,661,414,Latehar,Latehar,Others,23.75,84.5,87.0,31
+414:Mahuadaur:Others:662,662,414,Latehar,Mahuadaur,Others,23.4,84.13,96.0,32
+414:Chopan:Hydro:663,663,414,Mirzapur,Chopan,Hydro,24.48,83.0,24.0,32
+414:Sirdala:Others:664,664,414,Nawadah,Sirdala,Others,24.1,84.08,29.0,32
+414:Bishrampur:Others:665,665,414,Palamau,Bishrampur,Others,24.25,83.93,84.0,32
+414:Daltonganj:Obsy:666,666,414,Palamau,Daltonganj,Obsy,24.05,84.07,104.0,32
+414:Garu:Others:667,667,414,Palamau,Garu,Others,23.67,84.23,79.0,32
+414:Hussainabad:Others:668,668,414,Palamau,Hussainabad,Others,24.53,84.02,78.0,32
+414:Japla:Hydro:669,669,414,Palamau,Japla,Hydro,24.58,83.97,28.0,32
+414:Lesliganj:Others:670,670,414,Palamau,Lesliganj,Others,24.05,84.22,91.0,32
+414:Netarhat:Others:671,671,414,Palamau,Netarhat,Others,23.48,84.27,55.0,32
+414:Panki:Others:672,672,414,Palamau,Panki,Others,24.05,84.47,79.0,32
+414:Patan:Others:673,673,414,Palamau,Patan,Others,24.22,84.18,83.0,32
+414:Akbarpur:Others:674,674,414,Rohtas,Akbarpur,Others,24.63,83.97,62.0,32
+414:Dehri:Obsy:675,675,414,Rohtas,Dehri,Obsy,24.92,84.18,89.0,32
+414:Inderpuri:Hydro:676,676,414,Rohtas,Inderpuri,Hydro,24.92,84.12,26.0,32
+414:Nauhatta:Others:677,677,414,Rohtas,Nauhatta,Others,24.5,83.75,31.0,32
+414:Nauka:Others:678,678,414,Rohtas,Nauka,Others,24.08,82.75,30.0,32
+414:Rohtas:Others:679,679,414,Rohtas,Rohtas,Others,24.58,83.92,31.0,32
+414:Anuppur:Others:680,680,414,Shahdol,Anuppur,Others,23.12,81.7,22.0,32
+414:Beohari:Others:681,681,414,Shahdol,Beohari,Others,24.03,81.37,62.0,32
+414:Pushparajgarh:Others:682,682,414,Shahdol,Pushparajgarh,Others,22.9,81.55,57.0,32
+414:Sohagpur:Others:683,683,414,Shahdol,Sohagpur,Others,23.32,81.35,99.0,32
+414:Jaiwan:Others:684,684,414,Sidhi,Jaiwan,Others,24.33,82.27,41.0,32
+414:Sidhi:Obsy:685,685,414,Sidhi,Sidhi,Obsy,24.42,81.87,46.0,32
+414:Sidhi:Others:686,686,414,Sidhi,Sidhi,Others,24.4,81.88,97.0,32
+414:Singrauli:Others:687,687,414,Sidhi,Singrauli,Others,24.02,82.58,34.0,32
+414:Dudhi:Others:688,688,414,Sonbhadra,Dudhi,Others,24.22,83.25,102.0,32
+414:Ambikapur:Obsy:689,689,414,Surguja,Ambikapur,Obsy,23.17,83.25,52.0,32
+414:Ambikapur:Others:690,690,414,Surguja,Ambikapur,Others,23.12,83.2,85.0,32
+414:Kusami:Others:691,691,414,Surguja,Kusami,Others,23.27,83.92,37.0,32
+414:Ramanujganj:Others:692,692,414,Surguja,Ramanujganj,Others,23.8,83.7,46.0,32
+414:Surajpur:Others:693,693,414,Surguja,Surajpur,Others,23.22,82.87,40.0,32
+414:Umaria:Obsy:694,694,414,Umaria,Umaria,Obsy,23.53,80.88,72.0,32

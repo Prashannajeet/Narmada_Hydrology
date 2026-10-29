@@ -1,0 +1,11 @@
+catchment_code,name,area_km2,source_provenance_id
+103L,Lower Tapi,32759.0,38
+103U,Upper Tapi,32911.0,38
+104L,Lower Narmada,13760.0,38
+104M,Middle Narmada,60059.0,38
+104U,Upper Narmada,23687.0,38
+105,Mahi,39262.0,38
+106,Sabarmati,21677.0,38
+107,Saurashtra,99697.0,38
+108,Luni,70993.0,38
+109,Kutch,32178.0,38

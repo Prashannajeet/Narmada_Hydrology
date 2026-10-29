@@ -1,0 +1,35 @@
+{
+  "adapter": "nita-geoai",
+  "adapter_version": "1.0",
+  "crs": "EPSG:4326",
+  "packages": [
+    {
+      "file": "catchments.csv",
+      "format": "csv"
+    },
+    {
+      "file": "grid_pmp_estimates.csv",
+      "format": "csv"
+    },
+    {
+      "file": "nita_export_manifest.json",
+      "format": "json"
+    },
+    {
+      "file": "stations.csv",
+      "format": "csv"
+    },
+    {
+      "file": "stations.geojson",
+      "format": "geojson"
+    },
+    {
+      "file": "station_extremes.csv",
+      "format": "csv"
+    },
+    {
+      "file": "storms.csv",
+      "format": "csv"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Source PDFs stay local and are not required by the hosted app.
+00_source_documents/*.pdf
+
+# Local Python/runtime outputs.
+**/__pycache__/
+**/*.pyc
+.streamlit/secrets.toml
