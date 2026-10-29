@@ -24,6 +24,7 @@
 | 05N Context-sensitive table filters | Complete | Added sidebar filters for station name/district/type/rainfall, grid ID/area/PMP and storm centre/year/peak rainfall | Filtered station records also control the station map markers |
 | 05O Main-window dashboard controls | Complete | Replaced sidebar filtering with a compact main-window workspace dock and Filter data popover; removed the left rail for a full-width evidence canvas | Dashboard now keeps controls discoverable without consuming the station/map workspace |
 | 05P Map interaction controls | Complete | Collapsed ArcGIS layer switcher to the default layer icon and disabled wheel zoom propagation | Prevents rapid zoom/page movement; map zoom remains available through the controlled +/− buttons |
+| 05Q Streamlit Community Cloud deployment | Complete | Public app at `https://narmada-pmp-atlas.streamlit.app/` from GitHub branch `pmp-atlas-live` | Cloud dependency installation completed and branded dashboard verified live; source PDFs remain excluded from the repository |
 | 06 Map product extraction | Pending | `06_spatial_products` | Requires georeferencing and control-point QA |
 | 07 Remaining table extraction | Pending | TD coefficients, ARFs, MAF and related tables | Requires merged-cell/footnote validation |
 | 08 Model-input publication | Pending | Approved scenario packages in `07_model_inputs` | Requires hydrologist/model-owner review |
