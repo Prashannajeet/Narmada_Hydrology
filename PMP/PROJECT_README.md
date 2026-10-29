@@ -22,6 +22,7 @@
 ```powershell
 Set-Location 'D:\01 Project\Development\PMP'
 python .\02_etl\etl.py
+python .\02_etl\comprehensive_atlas_etl.py
 streamlit run .\03_app\app.py
 ```
 
