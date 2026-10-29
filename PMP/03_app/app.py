@@ -49,10 +49,8 @@ button[kind="secondary"]{border-color:#c7d8df;border-radius:7px;color:var(--navy
 @st.cache_resource
 def conn(db_path): return sqlite3.connect(db_path, check_same_thread=False)
 
-@st.cache_data
 def query(sql, params=()): return pd.read_sql_query(sql, conn(str(DB)), params=params)
 
-@st.cache_data
 def table_exists(table_name):
     return not query("SELECT name FROM sqlite_master WHERE type='table' AND name=?", [table_name]).empty
 
