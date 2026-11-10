@@ -26,6 +26,7 @@
 | 05P Map interaction controls | Complete | Collapsed ArcGIS layer switcher to the default layer icon and disabled wheel zoom propagation | Prevents rapid zoom/page movement; map zoom remains available through the controlled +/− buttons |
 | 05Q Streamlit Community Cloud deployment | Complete | Public app at `https://narmada-pmp-atlas.streamlit.app/` from GitHub branch `pmp-atlas-live` | Cloud dependency installation completed and branded dashboard verified live; source PDFs remain excluded from the repository |
 | 05R Complete atlas evidence layer | Complete | Added two-volume page catalogue, 1,240 source figure/table/map references, 375 raw extracted tables, 647 station climatology rows, 3,635 DAD points and 37,110 Gumbel return-period rows | Database counts reconciled by duration (24/48/72 h) and estimate class (EST/LL/UL); app exposes dedicated source-linked workspaces and downloads |
+| 05S Professional map symbology | In progress | Replaced uniform large teal station points with small clustered markers, catchment-based colours, formatted tooltips, automatic extent and a compact legend | Local syntax and diff checks pass; public deployment pending rebuild verification |
 | 06 Map product extraction | Pending | `06_spatial_products` | Requires georeferencing and control-point QA |
 | 07 Remaining table extraction | Pending | TD coefficients, ARFs, MAF and related tables | Requires merged-cell/footnote validation |
 | 08 Model-input publication | Pending | Approved scenario packages in `07_model_inputs` | Requires hydrologist/model-owner review |

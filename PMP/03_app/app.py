@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import folium
+from folium.plugins import MarkerCluster
 import plotly.graph_objects as go
 from streamlit_folium import st_folium
 
@@ -12,6 +13,12 @@ DB = PROJECT_ROOT / '01_database' / 'pmp_atlas_complete.sqlite'
 if not DB.exists():
     DB = PROJECT_ROOT / '01_database' / 'pmp_atlas.sqlite'
 EXPORTS = PROJECT_ROOT / '04_exports'
+
+MAP_PALETTE = {
+    '103U': '#0072B2', '103L': '#56B4E9', '104U': '#009E73', '104M': '#66A61E',
+    '104L': '#E69F00', '105': '#D55E00', '106': '#CC79A7', '107': '#F0E442',
+    '108': '#8C6BB1', '109': '#A6761D', '103': '#1B9E77', '104': '#7570B3',
+}
 
 st.set_page_config(page_title='NITA AI | PMP Atlas', page_icon='🌧️', layout='wide', initial_sidebar_state='collapsed')
 st.markdown('''<style>
@@ -132,6 +139,42 @@ def esri_basemap():
     folium.LayerControl(collapsed=True, position='topright').add_to(m)
     return m
 
+def add_map_legend(m, title='Station catchment'):
+    """Add a compact, colorblind-conscious catchment legend to a Folium map."""
+    items = ''.join(
+        f'<div><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:{color};margin-right:5px;border:1px solid #fff"></span>{label}</div>'
+        for label, color in MAP_PALETTE.items()
+    )
+    html = f'''<div style="position:fixed;z-index:9999;right:14px;bottom:24px;background:rgba(255,255,255,.94);border:1px solid #cbd5e1;border-radius:7px;padding:8px 10px;font:11px/1.35 Arial,sans-serif;color:#16324a;box-shadow:0 2px 8px rgba(15,23,42,.18)"><strong style="display:block;margin-bottom:4px">{title}</strong>{items}<div style="margin-top:4px;color:#64748b">Markers cluster while zoomed out</div></div>'''
+    m.get_root().html.add_child(folium.Element(html))
+
+def add_station_markers(m, map_df, legend_title='Station catchment'):
+    """Render small clustered station points with a stable catchment colour scheme."""
+    if map_df.empty:
+        return
+    cluster = MarkerCluster(
+        name='Rainfall stations',
+        options={'maxClusterRadius': 34, 'disableClusteringAtZoom': 9, 'showCoverageOnHover': False, 'spiderfyOnMaxZoom': True},
+    ).add_to(m)
+    bounds = []
+    for row in map_df.dropna(subset=['latitude_deg','longitude_deg']).itertuples():
+        catchment = str(getattr(row, 'catchment_code', '') or '')
+        color = MAP_PALETTE.get(catchment, '#4B5563')
+        name = str(getattr(row, 'station_name', 'Station') or 'Station')
+        lat, lon = float(row.latitude_deg), float(row.longitude_deg)
+        tooltip = f'<b>{name}</b><br>Catchment: {catchment or "Not reported"}'
+        if hasattr(row, 'rainfall_mm') and pd.notna(getattr(row, 'rainfall_mm')):
+            tooltip += f'<br>Rainfall: {float(row.rainfall_mm):,.0f} mm'
+        folium.CircleMarker(
+            location=[lat, lon], radius=2.7, color=color, weight=0.8,
+            opacity=0.95, fill=True, fill_color=color, fill_opacity=0.86,
+            tooltip=folium.Tooltip(tooltip, sticky=False),
+        ).add_to(cluster)
+        bounds.append([lat, lon])
+    if bounds:
+        m.fit_bounds(bounds, padding=(18, 18), max_zoom=7)
+    add_map_legend(m, legend_title)
+
 def render_hydrology_analytics(catchment, duration):
     st.markdown('<div class="section-title">Hydrology analytics workspace</div><div class="section-copy">Separate analytical tabs for station frequency, DAD/PMP curves and map context.</div>', unsafe_allow_html=True)
     frequency_tab, climatology_tab, dad_tab, map_tab = st.tabs(['Return periods & Gumbel', 'Station climatology', 'DAD / PMP curves', 'Station map'])
@@ -209,7 +252,7 @@ def render_hydrology_analytics(catchment, duration):
     with map_tab:
         m=esri_basemap()
         map_df=query('SELECT station_key,station_name,catchment_code,latitude_deg,longitude_deg FROM rainfall_station WHERE latitude_deg IS NOT NULL AND longitude_deg IS NOT NULL'+(' AND catchment_code=?' if catchment!='All' else ''),[catchment] if catchment!='All' else [])
-        for r in map_df.itertuples(): folium.CircleMarker([r.latitude_deg,r.longitude_deg],radius=4,tooltip=f'{r.station_name} ({r.catchment_code})',color='#087f83',fill=True,fill_opacity=.8).add_to(m)
+        add_station_markers(m, map_df)
         st_folium(m,height=650,width=1400,use_container_width=True)
 
 if not DB.exists():
@@ -269,8 +312,7 @@ with st.container():
         st.caption(f'{len(df):,} station records match the active filters.')
         st.markdown('<div class="section-title">Station extremes and rainfall evidence</div><div class="section-copy">Observed maximum 1-, 2- and 3-day rainfall records linked to the atlas station inventory.</div>',unsafe_allow_html=True)
         m=esri_basemap()
-        for r in df.drop_duplicates('station_key').itertuples():
-            if pd.notna(r.latitude_deg) and pd.notna(r.longitude_deg): folium.CircleMarker([r.latitude_deg,r.longitude_deg],radius=4,tooltip=f'{r.station_name} ({r.catchment_code})',color='#087f83',fill=True,fill_opacity=.8).add_to(m)
+        add_station_markers(m, df.drop_duplicates('station_key'), 'Station catchment')
         station_map=m
         table_col,map_col=st.columns([1.35,1],gap='small')
         with table_col:
